@@ -61,15 +61,30 @@ Si uno falla, los demás continúan.
 
 ## El visor
 
-- **Vista Lista** y **vista Mapa** (Leaflet + OpenStreetMap, sin API key).
-- **Filtros**: texto, total mensual máx., dormitorios mínimos, comuna, barrio
-  objetivo, fuente, “solo dentro de presupuesto”, “solo en barrios objetivo”,
-  “ocultar contactadas”, y orden.
-- **Botón ✓ Contactada** por propiedad — se guarda en tu navegador
-  (`localStorage`), persiste entre sesiones.
-- Cada tarjeta/pin lleva al **link oficial** (para ver fotos) y a **Google Maps**
-  (para revisar el barrio).
-- Colores: 🟢 calza (presupuesto + 3D) · 🟡 parcial · 🔴 fuera · 🟣 contactada.
+- **3 vistas**: **Lista**, **Mapa** (Leaflet + OpenStreetMap, sin API key) y
+  **Métricas** (dashboard con el embudo de cuántas se ajustan a lo que buscamos).
+- **Botón 🎯 Match perfecto**: de un clic muestra solo lo que buscan tú y Pancho
+  (3+ dormitorios · en barrio objetivo · ≤ $800.000 total). El número en el botón
+  es cuántas calzan.
+- **Filtros**: texto, total mensual máx., dormitorios mínimos, **distancia al
+  metro**, **antigüedad del edificio** (incluye “más de 30 años”), comuna, barrio,
+  fuente, “dentro de presupuesto”, “en barrios objetivo”, “admite mascotas 🐾”,
+  “solo favoritas ⭐”, “ocultar contactadas”, y varios órdenes (incl. cercanía a
+  metro y antigüedad).
+- **⭐ Favoritas / de interés** y **✓ Contactada** por propiedad — se guardan en tu
+  navegador (`localStorage`) y persisten entre sesiones. Filtra por “solo favoritas”.
+- Cada tarjeta muestra: precio, **gastos comunes reales** (o estimados), total,
+  dormitorios, baños, m², **antigüedad**, **mascotas**, barrio y **metro + metros
+  de distancia**. Lleva al **link oficial** (fotos) y a **Google Maps**.
+- Colores: 🎯 match perfecto · 🟢 calza · 🟡 parcial · 🔴 fuera · 🟣 contactada.
+
+### Distancia al metro y antigüedad
+- **Metro**: se calcula con la estación de Metro más cercana (coordenadas en
+  `metro.py`, líneas 1/3/5/6 de la zona) — sin scraping.
+- **Antigüedad y gastos comunes reales**: se extraen de la ficha de detalle de
+  Portal Inmobiliario (que solo carga con JavaScript) usando **Playwright**.
+  Corre `python run_all.py --enrich`, o `python enrich_pi.py`. Cachea en
+  `data/detalle_cache.json`, así re-ejecutar no repite lo ya hecho.
 
 ---
 

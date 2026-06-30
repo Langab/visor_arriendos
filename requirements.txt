@@ -1,5 +1,7 @@
 requests>=2.31
 beautifulsoup4>=4.12
 pandas>=2.0
-# Opcional (solo si activas los scrapers de Yapo/TocToc/GoPlaceIt con navegador):
-# playwright>=1.40
+# Para enriquecer fichas (gastos comunes reales, antigüedad, mascotas) con run_all.py --enrich
+# y para los scrapers de Yapo/TocToc/GoPlaceIt con navegador:
+playwright>=1.40
+# tras instalar:  python -m playwright install chromium

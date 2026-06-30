@@ -53,12 +53,27 @@ def main():
                     help="No scrapea; solo reconstruye master desde data/raw/")
     ap.add_argument("--sin-geo", action="store_true",
                     help="No geocodifica (más rápido, sin mapa para avisos nuevos)")
+    ap.add_argument("--enrich", action="store_true",
+                    help="Enriquece con la ficha de detalle (gastos comunes reales, "
+                         "antigüedad, mascotas…) vía Playwright. Más lento.")
     args = ap.parse_args()
 
     t0 = time.time()
     if not args.solo_consolidar:
         correr_scrapers()
+    # Primera consolidación (necesaria para que enrich_pi elija los relevantes)
     consolidate.consolidar(geo=not args.sin_geo)
+    if args.enrich:
+        print("\n" + "=" * 60 + "\nENRIQUECIENDO FICHAS (Playwright)\n" + "=" * 60)
+        try:
+            import enrich_pi
+            import sys as _sys
+            _sys.argv = ["enrich_pi.py", "--limit", "250"]
+            enrich_pi.main()
+            consolidate.consolidar(geo=not args.sin_geo)  # reconsolida con el detalle
+        except Exception:
+            print("⚠ enriquecimiento falló (¿instalaste playwright?). Sigo sin él:")
+            traceback.print_exc()
     print(f"\n✅ Listo en {time.time() - t0:.0f}s. "
           f"Abre viewer/index.html para ver el resultado.")
 

@@ -21,6 +21,18 @@ import unicodedata
 
 import config
 import geocode
+import metro
+
+DETALLE_CACHE = os.path.join(config.DATA_DIR, "detalle_cache.json")
+
+
+def _cargar_detalle() -> dict:
+    if os.path.exists(DETALLE_CACHE):
+        try:
+            return json.load(open(DETALLE_CACHE, encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
 
 
 def _norm(s: str) -> str:
@@ -69,8 +81,22 @@ def deduplicar(listings: list[dict]) -> list[dict]:
 
 
 def enriquecer(listings: list[dict]) -> list[dict]:
+    detalle = _cargar_detalle()
     for l in listings:
         l["barrio"] = l.get("barrio") or _detectar_barrio(l.get("direccion", ""))
+
+        # Fusiona datos de la ficha de detalle (gastos comunes reales, antigüedad,
+        # mascotas, estacionamientos, etc.) cuando existen.
+        d = detalle.get(l.get("id", ""), {})
+        for campo in ("antiguedad_anios", "admite_mascotas", "estacionamientos",
+                      "bodegas", "piso", "orientacion", "superficie_util_m2",
+                      "superficie_total_m2"):
+            if campo in d:
+                l[campo] = d[campo]
+        if d.get("gastos_comunes_clp"):
+            l["gastos_comunes_clp"] = d["gastos_comunes_clp"]
+        if d.get("corredor") is not None:
+            l["corredor"] = d["corredor"]
 
         # Gastos comunes: usa el real si existe, si no estima
         gc = l.get("gastos_comunes_clp")
@@ -80,6 +106,16 @@ def enriquecer(listings: list[dict]) -> list[dict]:
         precio = l.get("precio_clp")
         l["total_estimado_clp"] = (precio + gc_calc) if precio else None
 
+        # Distancia a la estación de metro más cercana
+        if l.get("lat") and l.get("lng"):
+            est, linea, dist = metro.estacion_mas_cercana(l["lat"], l["lng"])
+            l["metro_cercano"] = est
+            l["metro_linea"] = linea
+            l["metro_dist_m"] = dist
+        else:
+            l["metro_cercano"] = ""
+            l["metro_dist_m"] = None
+
         # ¿Calza con la búsqueda?
         dorm = l.get("dormitorios") or 0
         total = l.get("total_estimado_clp")
@@ -87,7 +123,13 @@ def enriquecer(listings: list[dict]) -> list[dict]:
         l["dentro_presupuesto"] = bool(total and total <= config.PRESUPUESTO_MAX_CLP)
         l["en_barrio_objetivo"] = bool(l["barrio"])
 
-        # Puntaje simple de relevancia para ordenar (0-100)
+        # MATCH PERFECTO: lo que buscan tú y Pancho (3+ piezas, en barrio objetivo,
+        # total ≤ presupuesto). Antigüedad NO obliga (es preferencia, no requisito).
+        l["match_perfecto"] = bool(
+            l["calza_dormitorios"] and l["dentro_presupuesto"] and l["en_barrio_objetivo"]
+        )
+
+        # Puntaje de relevancia para ordenar (0-100)
         score = 0
         if l["dentro_presupuesto"]:
             score += 40
@@ -97,6 +139,8 @@ def enriquecer(listings: list[dict]) -> list[dict]:
             score += 15
         if l["en_barrio_objetivo"]:
             score += 25
+        if l.get("metro_dist_m") is not None and l["metro_dist_m"] <= 500:
+            score += 5
         l["relevancia"] = score
 
         # Link a Google Maps (para revisar el barrio)
@@ -124,9 +168,12 @@ def escribir_salidas(listings: list[dict]):
     # CSV
     campos = ["id", "fuente", "titulo", "precio_clp", "gastos_comunes_clp",
               "gastos_comunes_estimado", "total_estimado_clp", "dormitorios",
-              "banos", "superficie_m2", "direccion", "comuna", "barrio",
+              "banos", "superficie_m2", "antiguedad_anios", "admite_mascotas",
+              "estacionamientos", "bodegas", "piso", "orientacion",
+              "direccion", "comuna", "barrio", "metro_cercano", "metro_dist_m",
               "corredor", "plazo_entrega", "lat", "lng", "relevancia",
-              "dentro_presupuesto", "calza_dormitorios", "url", "google_maps"]
+              "match_perfecto", "dentro_presupuesto", "calza_dormitorios",
+              "url", "google_maps"]
     with open(config.MASTER_CSV, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=campos, extrasaction="ignore")
         w.writeheader()
@@ -143,6 +190,9 @@ def escribir_salidas(listings: list[dict]):
         "presupuesto_max": config.PRESUPUESTO_MAX_CLP,
         "dormitorios_objetivo": config.DORMITORIOS_OBJETIVO,
         "barrios": config.BARRIOS_OBJETIVO,
+        "match_perfecto": sum(1 for l in listings if l.get("match_perfecto")),
+        "con_gastos_reales": sum(1 for l in listings if not l.get("gastos_comunes_estimado")),
+        "con_antiguedad": sum(1 for l in listings if l.get("antiguedad_anios") is not None),
     }
     with open(config.VIEWER_DATA_JS, "w", encoding="utf-8") as f:
         f.write("// Generado automáticamente por consolidate.py — no editar a mano.\n")

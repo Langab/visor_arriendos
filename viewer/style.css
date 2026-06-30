@@ -91,6 +91,23 @@ body {
   font-size: 12.5px; font-weight: 600; cursor: pointer; }
 .link:hover { text-decoration: underline; }
 
+/* Botón Match Perfecto */
+.match-btn { display: flex; align-items: center; gap: 12px; width: 100%; cursor: pointer;
+  border: 1.5px solid var(--primary); background: linear-gradient(135deg, #fff, #fdf3ef);
+  color: var(--ink); border-radius: 12px; padding: 12px 14px; font: inherit; text-align: left;
+  box-shadow: var(--shadow); transition: .16s; }
+.match-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-h); }
+.match-btn.active { background: linear-gradient(135deg, var(--primary), var(--primary-d)); color: #fff; border-color: var(--primary-d); }
+.match-btn .match-emoji { font-size: 22px; flex: none; }
+.match-btn .match-txt { display: flex; flex-direction: column; line-height: 1.2; flex: 1; }
+.match-btn .match-txt b { font-size: 14px; }
+.match-btn .match-txt small { font-size: 10.5px; color: var(--muted); }
+.match-btn.active .match-txt small { color: rgba(255,255,255,.85); }
+.match-btn .match-count { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600;
+  background: var(--primary); color: #fff; min-width: 34px; height: 34px; border-radius: 9px;
+  display: grid; place-items: center; flex: none; }
+.match-btn.active .match-count { background: rgba(255,255,255,.22); }
+
 .field { display: flex; flex-direction: column; gap: 8px; border: 0; margin: 0; padding: 0; }
 .field > span { font-size: 12.5px; font-weight: 600; color: var(--ink); }
 .field .hint { font-size: 11px; color: var(--muted); font-weight: 400; }
@@ -164,9 +181,17 @@ input[type=range] { width: 100%; accent-color: var(--primary); }
   box-shadow: var(--shadow); letter-spacing: .02em; }
 .badge-rel.good { background: var(--good); } .badge-rel.mid { background: var(--mid); }
 .badge-rel.bad { background: var(--bad); }
-.src-chip { position: absolute; top: 10px; right: 10px; z-index: 2;
+.badge-rel.match { background: linear-gradient(135deg, var(--primary), var(--primary-d)); }
+.src-chip { position: absolute; top: 10px; right: 42px; z-index: 2;
   font-size: 10px; font-weight: 600; background: rgba(255,255,255,.92); color: var(--ink);
   padding: 4px 9px; border-radius: 999px; box-shadow: var(--shadow); }
+.fav-btn { position: absolute; top: 8px; right: 8px; z-index: 3; width: 28px; height: 28px;
+  border: 0; border-radius: 50%; background: rgba(255,255,255,.92); cursor: pointer;
+  font-size: 15px; line-height: 1; display: grid; place-items: center; box-shadow: var(--shadow);
+  transition: .15s; padding: 0; }
+.fav-btn:hover { transform: scale(1.12); }
+.fav-btn.on { background: #fff7e0; }
+.tag-metro { background: rgba(192,89,59,.10); border-color: rgba(192,89,59,.2); color: var(--primary-d); }
 
 .body { padding: 14px 15px 15px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
@@ -216,6 +241,34 @@ input[type=range] { width: 100%; accent-color: var(--primary); }
   border: 2px solid #fff; box-shadow: var(--shadow-h); }
 .marker-pin.good { background: var(--good); } .marker-pin.mid { background: var(--mid); }
 .marker-pin.bad { background: var(--bad); } .marker-pin.done { background: var(--done); }
+
+/* ---------------------------- Métricas ---------------------------- */
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+.metric-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+  padding: 18px 20px; box-shadow: var(--shadow); }
+.metric-card.wide { grid-column: 1 / -1; }
+.metric-card h3 { font-family: 'Fraunces', serif; font-size: 16px; margin: 0 0 14px; }
+.bar-row { display: grid; grid-template-columns: 110px 1fr 44px; align-items: center; gap: 10px; margin-bottom: 9px; }
+.bar-label { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { background: var(--surface-2); border-radius: 999px; height: 10px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--primary)); }
+.bar-val { font-size: 12.5px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+
+.funnel { display: flex; gap: 10px; flex-wrap: wrap; }
+.fn { flex: 1; min-width: 110px; background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 11px; padding: 14px; text-align: center; position: relative; }
+.fn b { font-family: 'Fraunces', serif; font-size: 26px; display: block; line-height: 1; }
+.fn span { font-size: 11px; color: var(--muted); margin-top: 5px; display: block; }
+.fn.hl { background: linear-gradient(135deg, var(--primary), var(--primary-d)); border-color: var(--primary-d); }
+.fn.hl b, .fn.hl span { color: #fff; }
+
+.kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.metric-card.wide + .kpis { grid-column: auto; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 11px; padding: 14px; box-shadow: var(--shadow); }
+.kpi b { font-family: 'Fraunces', serif; font-size: 24px; display: block; line-height: 1; }
+.kpi span { font-size: 11px; color: var(--muted); margin-top: 5px; display: block; }
+.kpi.hl b { color: var(--primary); }
 
 /* ----------------------------- Vacío ------------------------------ */
 .empty { text-align: center; padding: 80px 20px; color: var(--muted); }

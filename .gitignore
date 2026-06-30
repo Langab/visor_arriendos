@@ -7,3 +7,5 @@ __pycache__/
 .DS_Store
 .claude/
 manual/facebook_marketplace.csv
+data/enrich.log
+data/*.log
