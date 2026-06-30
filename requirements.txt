@@ -1,0 +1,5 @@
+requests>=2.31
+beautifulsoup4>=4.12
+pandas>=2.0
+# Opcional (solo si activas los scrapers de Yapo/TocToc/GoPlaceIt con navegador):
+# playwright>=1.40

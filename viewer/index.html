@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visor de Arriendos · Santiago</title>
+
+  <!-- Leaflet (mapa con OpenStreetMap, sin API key) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+  <!-- ====================== ENCABEZADO ====================== -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🏠</div>
+      <div>
+        <h1>Visor de Arriendos</h1>
+        <p class="sub">Santiago · Bustamante · Lastarria · Salvador · Barrio Italia · Manuel Montt</p>
+      </div>
+    </div>
+
+    <div class="stats" id="stats"><!-- inyectado por JS --></div>
+
+    <div class="view-toggle">
+      <button id="btn-lista" class="active" data-view="lista">▤ Lista</button>
+      <button id="btn-mapa" data-view="mapa">◉ Mapa</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- ====================== FILTROS ====================== -->
+    <aside class="filters" id="filters">
+      <div class="filters-head">
+        <h2>Filtros</h2>
+        <button id="reset" class="link">Limpiar</button>
+      </div>
+
+      <label class="field">
+        <span>Buscar texto</span>
+        <input type="search" id="f-texto" placeholder="calle, edificio, barrio…" />
+      </label>
+
+      <label class="field">
+        <span>Total mensual máx. <strong id="f-precio-val"></strong></span>
+        <input type="range" id="f-precio" min="300000" max="1200000" step="25000" />
+        <small class="hint">Arriendo + gastos comunes (estimados si el aviso no los trae)</small>
+      </label>
+
+      <label class="field">
+        <span>Dormitorios mínimos</span>
+        <div class="seg" id="f-dorm">
+          <button data-v="0" class="active">Todos</button>
+          <button data-v="1">1+</button>
+          <button data-v="2">2+</button>
+          <button data-v="3">3+</button>
+        </div>
+      </label>
+
+      <fieldset class="field">
+        <span>Comuna</span>
+        <div class="chips" id="f-comuna"><!-- JS --></div>
+      </fieldset>
+
+      <fieldset class="field">
+        <span>Barrio objetivo</span>
+        <div class="chips" id="f-barrio"><!-- JS --></div>
+      </fieldset>
+
+      <fieldset class="field">
+        <span>Fuente</span>
+        <div class="chips" id="f-fuente"><!-- JS --></div>
+      </fieldset>
+
+      <div class="switches">
+        <label class="switch">
+          <input type="checkbox" id="f-presupuesto" />
+          <span>Solo dentro de presupuesto</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="f-barrio-obj" />
+          <span>Solo en barrios objetivo</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="f-ocultar-contactadas" />
+          <span>Ocultar contactadas</span>
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Ordenar por</span>
+        <select id="f-orden">
+          <option value="relevancia">Relevancia</option>
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+          <option value="m2-desc">Superficie: mayor</option>
+        </select>
+      </label>
+    </aside>
+
+    <!-- ====================== CONTENIDO ====================== -->
+    <main class="content">
+      <div class="result-bar">
+        <span id="count"></span>
+        <span class="legend">
+          <i class="dot good"></i> calza ·
+          <i class="dot mid"></i> parcial ·
+          <i class="dot bad"></i> fuera ·
+          <i class="dot done"></i> contactada
+        </span>
+      </div>
+
+      <section id="grid" class="grid"><!-- tarjetas --></section>
+      <section id="map" class="map hidden"></section>
+    </main>
+  </div>
+
+  <!-- los datos los genera consolidate.py -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
