@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
   <!-- ====================== ENCABEZADO ====================== -->
@@ -59,9 +59,21 @@
       </label>
 
       <label class="field">
+        <span>Arriendo máx. <strong id="f-arriendo-val"></strong></span>
+        <input type="range" id="f-arriendo" min="200000" max="1000000" step="25000" value="1000000" />
+        <small class="hint">Solo el arriendo (valor publicado, sin gastos comunes)</small>
+      </label>
+
+      <label class="field">
+        <span>Gastos comunes máx. <strong id="f-gc-val"></strong></span>
+        <input type="range" id="f-gc" min="0" max="400000" step="10000" value="400000" />
+        <small class="hint">Solo los gastos comunes (reales si el aviso los trae, si no estimados)</small>
+      </label>
+
+      <label class="field">
         <span>Total mensual máx. <strong id="f-precio-val"></strong></span>
         <input type="range" id="f-precio" min="300000" max="1200000" step="25000" />
-        <small class="hint">Arriendo + gastos comunes (estimados si el aviso no los trae)</small>
+        <small class="hint">Arriendo + gastos comunes (el valor sumado)</small>
       </label>
 
       <label class="field">
@@ -133,9 +145,11 @@
         <span>Ordenar por</span>
         <select id="f-orden">
           <option value="relevancia">Relevancia</option>
-          <option value="precio-asc">Precio: menor a mayor</option>
-          <option value="precio-desc">Precio: mayor a menor</option>
+          <option value="precio-asc">Total: menor a mayor</option>
+          <option value="precio-desc">Total: mayor a menor</option>
           <option value="m2-desc">Superficie: mayor</option>
+          <option value="metro-asc">Cercanía al metro</option>
+          <option value="antiguedad-desc">Antigüedad: mayor</option>
         </select>
       </label>
     </aside>
@@ -160,6 +174,6 @@
 
   <!-- los datos los genera consolidate.py -->
   <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

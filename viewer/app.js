@@ -35,7 +35,8 @@
   // ---------- estado de filtros ----------
   const PMAX = Math.max(META.presupuesto_max || 800000, 800000);
   const F = {
-    texto: "", precioMax: PMAX, dorm: 0, metroMax: 2000, antiguedad: "",
+    texto: "", precioMax: PMAX, arriendoMax: 1000000, gcMax: 400000,
+    dorm: 0, metroMax: 2000, antiguedad: "",
     comunas: new Set(), barrios: new Set(), fuentes: new Set(),
     soloPresupuesto: false, soloBarrio: false, mascotas: false,
     favoritos: false, ocultarContactadas: false, matchOnly: false,
@@ -75,6 +76,13 @@
         if (!h.includes(F.texto.toLowerCase())) return false;
       }
       if (l.total_estimado_clp != null && l.total_estimado_clp > F.precioMax) return false;
+      if (F.arriendoMax < 1000000 && l.precio_clp != null && l.precio_clp > F.arriendoMax) return false;
+      if (F.gcMax < 400000) {
+        // GC efectivo = total - arriendo (sirve igual si es real o estimado)
+        const gc = (l.total_estimado_clp != null && l.precio_clp != null)
+          ? l.total_estimado_clp - l.precio_clp : null;
+        if (gc != null && gc > F.gcMax) return false;
+      }
       if (F.dorm && (l.dormitorios || 0) < F.dorm) return false;
       if (F.metroMax < 2000 && (l.metro_dist_m == null || l.metro_dist_m > F.metroMax)) return false;
       if (F.antiguedad) {
@@ -347,6 +355,16 @@
     $("#f-precio-val").textContent = clp(F.precioMax);
     precio.oninput = () => { F.precioMax = +precio.value; $("#f-precio-val").textContent = clp(F.precioMax); render(); };
 
+    const arriendo = $("#f-arriendo");
+    const setArrLbl = () => $("#f-arriendo-val").textContent = F.arriendoMax >= 1000000 ? "sin límite" : clp(F.arriendoMax);
+    setArrLbl();
+    arriendo.oninput = () => { F.arriendoMax = +arriendo.value; setArrLbl(); render(); };
+
+    const gc = $("#f-gc");
+    const setGcLbl = () => $("#f-gc-val").textContent = F.gcMax >= 400000 ? "sin límite" : clp(F.gcMax);
+    setGcLbl();
+    gc.oninput = () => { F.gcMax = +gc.value; setGcLbl(); render(); };
+
     const metro = $("#f-metro");
     const setMetroLbl = () => $("#f-metro-val").textContent = F.metroMax >= 2000 ? "sin límite" : F.metroMax + " m";
     setMetroLbl();
@@ -381,12 +399,15 @@
     $("#reset").onclick = () => {
       Object.assign(F, {
         texto: "", dorm: 0, metroMax: 2000, antiguedad: "", precioMax: PMAX,
+        arriendoMax: 1000000, gcMax: 400000,
         soloPresupuesto: false, soloBarrio: false, mascotas: false, favoritos: false,
         ocultarContactadas: false, matchOnly: false, orden: "relevancia",
       });
       F.comunas.clear(); F.barrios.clear(); F.fuentes.clear();
       $$(".chip.active").forEach((c) => c.classList.remove("active"));
       $("#f-texto").value = ""; precio.value = PMAX; $("#f-precio-val").textContent = clp(PMAX);
+      arriendo.value = 1000000; setArrLbl();
+      gc.value = 400000; setGcLbl();
       metro.value = 2000; setMetroLbl();
       $("#f-antiguedad").value = "";
       $$("#f-dorm button").forEach((x, i) => x.classList.toggle("active", i === 0));
