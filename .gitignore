@@ -14,3 +14,4 @@ data/cron.out
 data/cron.err
 data/cron.log
 /*.html
+!index.html
