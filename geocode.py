@@ -32,6 +32,37 @@ COMUNA_CENTROIDES = {
     "nunoa":       (-33.4560, -70.5980),
 }
 
+# Centroides por BARRIO: fallback más preciso que la comuna cuando la dirección
+# no geocodifica pero sí menciona un barrio conocido (ej. "Barrio Lastarria").
+BARRIO_CENTROIDES = {
+    "lastarria": (-33.4375, -70.6403),
+    "jose victorino lastarria": (-33.4375, -70.6403),
+    "bellas artes": (-33.4360, -70.6415),
+    "barrio italia": (-33.4470, -70.6250),
+    "parque bustamante": (-33.4440, -70.6308),
+    "bustamante": (-33.4440, -70.6308),
+    "salvador": (-33.4267, -70.6281),
+    "manuel montt": (-33.4290, -70.6180),
+    "pedro de valdivia": (-33.4262, -70.6110),
+    "los leones": (-33.4220, -70.6035),
+    "santa isabel": (-33.4495, -70.6305),
+    "condell": (-33.4460, -70.6285),
+}
+
+
+def _sin_tildes(s: str) -> str:
+    import unicodedata
+    return unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode().lower()
+
+
+def _barrio_centroide(texto: str):
+    """Si el texto menciona un barrio conocido, devuelve su centroide."""
+    t = _sin_tildes(texto)
+    for barrio, coord in BARRIO_CENTROIDES.items():
+        if barrio in t:
+            return coord
+    return None
+
 
 def _norm_comuna(c: str) -> str:
     return (c or "").lower().replace("ñ", "n").strip()
@@ -79,6 +110,8 @@ def _limpiar_direccion(direccion: str, comuna: str) -> str:
     Quita rangos de numeración ('600 - 900' -> '600') que confunden a Nominatim.
     """
     primera = direccion.split(",")[0].strip()
+    # intersecciones: "X CON Y", "X ESQ Y", "X / Y" -> nos quedamos con la calle X
+    primera = re.split(r"\s+(?:con|esq\.?|esquina|c/|/)\s+", primera, flags=re.I)[0].strip()
     primera = re.sub(r"\s*-\s*\d+", "", primera)   # "Los Leones 600 - 900" -> "Los Leones 600"
     com = comuna or "Santiago"
     return f"{primera}, {com}, Región Metropolitana, Chile"
@@ -112,11 +145,13 @@ def geocodificar(listings: list[dict]) -> list[dict]:
             l["lat"], l["lng"] = coords[0], coords[1]
             l["ubicacion_aprox"] = False
 
-    # Fallback: lo que no geocodificó cae al centro de su comuna (aprox.)
+    # Fallback: lo que no geocodificó cae al centro de su BARRIO (si menciona uno
+    # conocido) o, si no, al centro de su comuna. Siempre marcado como aproximado.
     aprox = 0
     for l in listings:
         if not l.get("lat"):
-            cen = COMUNA_CENTROIDES.get(_norm_comuna(l.get("comuna", "")))
+            cen = _barrio_centroide(f"{l.get('direccion','')} {l.get('barrio','')}") \
+                or COMUNA_CENTROIDES.get(_norm_comuna(l.get("comuna", "")))
             if cen:
                 # pequeño desplazamiento determinístico para que no se apilen
                 h = int(l.get("id", "0")[:6] or "0", 16)

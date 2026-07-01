@@ -116,17 +116,25 @@ def enriquecer(listings: list[dict]) -> list[dict]:
             l["metro_cercano"] = ""
             l["metro_dist_m"] = None
 
+        # ¿Es "mariposa"? (best-effort desde el título, PI no lo trae estructurado)
+        l["es_mariposa"] = "mariposa" in (l.get("titulo", "") or "").lower()
+
         # ¿Calza con la búsqueda?
         dorm = l.get("dormitorios") or 0
+        sup = l.get("superficie_m2") or 0
         total = l.get("total_estimado_clp")
         l["calza_dormitorios"] = dorm >= config.DORMITORIOS_OBJETIVO
         l["dentro_presupuesto"] = bool(total and total <= config.PRESUPUESTO_MAX_CLP)
         l["en_barrio_objetivo"] = bool(l["barrio"])
 
-        # MATCH PERFECTO: lo que buscan tú y Pancho (3+ piezas, en barrio objetivo,
-        # total ≤ presupuesto). Antigüedad NO obliga (es preferencia, no requisito).
+        # Un 2D amplio (≥ SUPERFICIE_MIN_2D_M2) sirve como oficina y también califica.
+        sirve_layout = dorm >= config.DORMITORIOS_OBJETIVO or \
+            (dorm >= 2 and sup >= config.SUPERFICIE_MIN_2D_M2)
+
+        # MATCH PERFECTO: layout que nos sirve (3+ piezas, o 2D amplio) + en barrio
+        # objetivo + total ≤ presupuesto.
         l["match_perfecto"] = bool(
-            l["calza_dormitorios"] and l["dentro_presupuesto"] and l["en_barrio_objetivo"]
+            sirve_layout and l["dentro_presupuesto"] and l["en_barrio_objetivo"]
         )
 
         # Puntaje de relevancia para ordenar (0-100)
@@ -141,6 +149,8 @@ def enriquecer(listings: list[dict]) -> list[dict]:
             score += 25
         if l.get("metro_dist_m") is not None and l["metro_dist_m"] <= 500:
             score += 5
+        if l["match_perfecto"]:
+            score += 10
         l["relevancia"] = score
 
         # Link a Google Maps (para revisar el barrio)

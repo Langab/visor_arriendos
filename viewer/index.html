@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=9" />
+  <link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body>
   <!-- ====================== ENCABEZADO ====================== -->
@@ -52,7 +52,7 @@
         <span class="match-emoji">🎯</span>
         <span class="match-txt">
           <b>Match perfecto</b>
-          <small>3 piezas · barrio ideal · ≤ $800.000 total</small>
+          <small>3 piezas (o 2D amplio) · barrio ideal · ≤ $800.000</small>
         </span>
         <span class="match-count" id="match-count">0</span>
       </button>
@@ -107,6 +107,12 @@
       </label>
 
       <label class="field">
+        <span>Superficie mínima <strong id="f-sup-val"></strong></span>
+        <input type="range" id="f-sup" min="0" max="150" step="5" value="0" />
+        <small class="hint">m² (útiles o totales según el aviso)</small>
+      </label>
+
+      <label class="field">
         <span>Antigüedad del edificio</span>
         <select id="f-antiguedad">
           <option value="">Cualquiera</option>
@@ -148,6 +154,10 @@
         <label class="switch">
           <input type="checkbox" id="f-mascotas" />
           <span>Admite mascotas 🐾</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="f-mariposa" />
+          <span>Solo tipo mariposa 🦋</span>
         </label>
         <label class="switch">
           <input type="checkbox" id="f-favoritos" />
@@ -193,6 +203,6 @@
 
   <!-- los datos los genera consolidate.py -->
   <script src="data.js"></script>
-  <script src="app.js?v=9"></script>
+  <script src="app.js?v=10"></script>
 </body>
 </html>

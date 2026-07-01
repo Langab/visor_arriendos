@@ -16,15 +16,22 @@ COMUNAS = ["providencia", "santiago", "nunoa"]
 BARRIOS_OBJETIVO = [
     "Parque Bustamante",
     "Lastarria",
+    "José Victorino Lastarria",
     "Bellas Artes",
     "Salvador",
     "Barrio Italia",
     "Manuel Montt",
+    "Pedro de Valdivia",   # entorno Metro Pedro de Valdivia
+    "Los Leones",          # entorno Metro Los Leones
     "Bustamante",
     "Providencia",
     "Santa Isabel",
     "Condell",
 ]
+
+# Un 2 dormitorios amplio (con espacio para oficina) también nos sirve: si tiene
+# al menos esta superficie útil, cuenta como "match" aunque sea 2D.
+SUPERFICIE_MIN_2D_M2 = 68
 
 # Presupuesto máximo TOTAL en pesos chilenos (arriendo + gastos comunes).
 PRESUPUESTO_MAX_CLP = 800_000

@@ -285,6 +285,9 @@ input[type=range] { width: 100%; accent-color: var(--primary); }
   border: 2px solid #fff; box-shadow: var(--shadow-h); }
 .marker-pin.good { background: var(--good); } .marker-pin.mid { background: var(--mid); }
 .marker-pin.bad { background: var(--bad); } .marker-pin.done { background: var(--done); }
+/* MATCH perfecto = pin ROJO, más grande y encima del resto */
+.marker-pin.match { background: #e11d1d; width: 32px; height: 32px; border-width: 3px;
+  box-shadow: 0 0 0 3px rgba(225,29,29,.25), var(--shadow-h); z-index: 500; }
 
 /* ---------------------------- Métricas ---------------------------- */
 .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
@@ -313,6 +316,29 @@ input[type=range] { width: 100%; accent-color: var(--primary); }
 .kpi b { font-family: 'Fraunces', serif; font-size: 24px; display: block; line-height: 1; }
 .kpi span { font-size: 11px; color: var(--muted); margin-top: 5px; display: block; }
 .kpi.hl b { color: var(--primary); }
+
+/* --------------------- Tablas de precio (métricas) ---------------- */
+.tp-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.tp-table th { text-align: right; font-size: 10.5px; text-transform: uppercase; letter-spacing: .03em;
+  color: var(--muted); padding: 0 0 8px; font-weight: 600; }
+.tp-table th:first-child { text-align: left; }
+.tp-table td { text-align: right; padding: 6px 0; border-top: 1px solid var(--line);
+  font-variant-numeric: tabular-nums; font-weight: 600; }
+.tp-table td.tp-g { text-align: left; font-weight: 500; }
+.tp-table td.tp-sub { color: var(--muted); font-weight: 500; }
+.tp-n { color: var(--muted); font-size: 11px; font-weight: 400; }
+.tp-note { font-size: 10.5px; color: var(--muted); margin: 10px 0 0; }
+
+/* ------------------------- Comparador de días --------------------- */
+.cmp-controls { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.cmp-controls label { display: flex; flex-direction: column; gap: 5px; font-size: 12px;
+  font-weight: 600; color: var(--muted); }
+.cmp-controls select { font: inherit; font-size: 13px; font-weight: 600; color: var(--ink);
+  padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); cursor: pointer; }
+.cmp-arrow { font-size: 18px; color: var(--primary); padding-bottom: 8px; }
+.cmp-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 18px; }
+.cmp-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.cmp-lists h4 { font-size: 13px; margin: 0 0 6px; }
 
 /* ----------------------------- Vacío ------------------------------ */
 .empty { text-align: center; padding: 80px 20px; color: var(--muted); }

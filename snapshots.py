@@ -63,13 +63,16 @@ def _guardar_historia_viewer(listings: list[dict], fecha: str) -> list[str]:
     Devuelve la lista de fechas disponibles (desc, la más reciente primero).
     """
     os.makedirs(config.HISTORIA_DIR, exist_ok=True)
-    path = os.path.join(config.HISTORIA_DIR, f"{fecha}.js")
+    # Una foto por DÍA: el archivo del día se sobrescribe, así queda la última
+    # actualización de cada día (el "corte" que pidió el usuario).
+    dia = fecha[:10]  # YYYY-MM-DD
+    path = os.path.join(config.HISTORIA_DIR, f"{dia}.js")
     with open(path, "w", encoding="utf-8") as f:
         f.write("window.HISTORIA=window.HISTORIA||{};\n")
-        f.write(f'window.HISTORIA["{fecha}"]=' +
+        f.write(f'window.HISTORIA["{dia}"]=' +
                 json.dumps(listings, ensure_ascii=False) + ";\n")
 
-    # poda: deja solo las últimas N
+    # poda: deja solo los últimos N días
     fotos = sorted(glob.glob(os.path.join(config.HISTORIA_DIR, "20*.js")))
     for viejo in fotos[:-config.HISTORIA_MAX_DIAS]:
         try:
@@ -77,12 +80,12 @@ def _guardar_historia_viewer(listings: list[dict], fecha: str) -> list[str]:
         except OSError:
             pass
 
-    fechas = sorted(
+    dias = sorted(
         (os.path.splitext(os.path.basename(p))[0]
          for p in glob.glob(os.path.join(config.HISTORIA_DIR, "20*.js"))),
         reverse=True,
     )
-    return fechas
+    return dias
 
 
 def procesar(listings: list[dict]) -> dict:

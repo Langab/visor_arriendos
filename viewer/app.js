@@ -38,9 +38,9 @@
   const PMAX = Math.max(META.presupuesto_max || 800000, 800000);
   const F = {
     texto: "", precioMax: PMAX, arriendoMax: 1000000, gcMax: 400000,
-    dorm: 0, metroMax: 2000, antiguedad: "",
+    dorm: 0, metroMax: 2000, supMin: 0, antiguedad: "",
     comunas: new Set(), barrios: new Set(), fuentes: new Set(),
-    soloPresupuesto: false, soloBarrio: false, mascotas: false,
+    soloPresupuesto: false, soloBarrio: false, mascotas: false, mariposa: false,
     favoritos: false, ocultarContactadas: false, matchOnly: false,
     soloNuevas: false, soloBajaron: false,
     orden: "relevancia",
@@ -94,6 +94,8 @@
       }
       if (F.dorm && (l.dormitorios || 0) < F.dorm) return false;
       if (F.metroMax < 2000 && (l.metro_dist_m == null || l.metro_dist_m > F.metroMax)) return false;
+      if (F.supMin > 0 && (l.superficie_m2 == null || l.superficie_m2 < F.supMin)) return false;
+      if (F.mariposa && !l.es_mariposa) return false;
       if (F.antiguedad) {
         const a = l.antiguedad_anios;
         if (F.antiguedad === "dato" && a == null) return false;
@@ -145,6 +147,7 @@
     if (l.superficie_m2) specs.push(`📐 ${Math.round(l.superficie_m2)} m²`);
     if (l.antiguedad_anios != null) specs.push(`🏗 ${l.antiguedad_anios} años`);
     if (l.admite_mascotas === true) specs.push(`🐾 mascotas`);
+    if (l.es_mariposa) specs.push(`🦋 mariposa`);
     if (l.barrio) specs.push(`<span class="spec tag-barrio">📍 ${l.barrio}</span>`);
     if (l.metro_dist_m != null)
       specs.push(`<span class="spec tag-metro">Ⓜ ${l.metro_cercano} · ${l.metro_dist_m} m</span>`);
@@ -219,7 +222,7 @@
       const m = L.marker([l.lat, l.lng], { icon: pinIcon(nv), opacity: l.ubicacion_aprox ? 0.6 : 1 });
       const img = l.imagen ? `<img src="${l.imagen}" onerror="this.style.display='none'">` : "";
       const metro = l.metro_dist_m != null ? `<div class="pop-a">Ⓜ ${l.metro_cercano} a ${l.metro_dist_m} m</div>` : "";
-      const aprox = l.ubicacion_aprox ? `<div class="pop-aprox">📍 Ubicación aproximada (centro de comuna)</div>` : "";
+      const aprox = l.ubicacion_aprox ? `<div class="pop-aprox">📍 Ubicación aproximada (centro de barrio/comuna)</div>` : "";
       m.bindPopup(`
         <div class="pop">${img}
           <div class="pop-b">
@@ -308,6 +311,8 @@
           ${kpi(favoritos.size, "⭐ Tus favoritas")}
           ${kpi(gcReal, "Con gastos comunes reales")}
         </div>
+        ${tablaPrecios("💰 Precio promedio por barrio", "barrio")}
+        ${tablaPrecios("💰 Precio promedio por comuna", "comuna")}
         ${barras("Por comuna", porComuna)}
         ${barras("Por nº de dormitorios", porDorm)}
         ${barras("Total mensual estimado", porPrecio)}
@@ -321,6 +326,48 @@
     const m = {};
     arr.forEach((x) => { const k = fn(x) || "s/d"; m[k] = (m[k] || 0) + 1; });
     return Object.entries(m).sort((a, b) => b[1] - a[1]);
+  }
+
+  // Promedios de precio (total / arriendo / gastos comunes) por grupo (barrio o comuna).
+  // Solo considera avisos dentro del presupuesto, para ver qué zona conviene en NUESTRO rango.
+  function promediosPor(campo) {
+    const g = {};
+    LISTINGS.forEach((l) => {
+      if (!l.dentro_presupuesto) return;
+      const k = l[campo];
+      if (!k) return;
+      const gc = (l.total_estimado_clp != null && l.precio_clp != null)
+        ? l.total_estimado_clp - l.precio_clp : null;
+      (g[k] = g[k] || { total: 0, arr: 0, gc: 0, ngc: 0, n: 0 });
+      g[k].total += l.total_estimado_clp || 0;
+      g[k].arr += l.precio_clp || 0;
+      if (gc != null) { g[k].gc += gc; g[k].ngc++; }
+      g[k].n++;
+    });
+    return Object.entries(g).map(([k, v]) => ({
+      grupo: k, n: v.n,
+      total: v.total / v.n, arr: v.arr / v.n, gc: v.ngc ? v.gc / v.ngc : null,
+    })).sort((a, b) => b.total - a.total);
+  }
+
+  function tablaPrecios(titulo, campo) {
+    const filas = promediosPor(campo);
+    if (!filas.length) return "";
+    const rows = filas.map((f) => `
+      <tr>
+        <td class="tp-g">${f.grupo} <span class="tp-n">(${f.n})</span></td>
+        <td>${clp(Math.round(f.total))}</td>
+        <td class="tp-sub">${clp(Math.round(f.arr))}</td>
+        <td class="tp-sub">${f.gc != null ? clp(Math.round(f.gc)) : "—"}</td>
+      </tr>`).join("");
+    return `<div class="metric-card">
+      <h3>${titulo}</h3>
+      <table class="tp-table">
+        <thead><tr><th></th><th>Total</th><th>Arriendo</th><th>G. comunes</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p class="tp-note">Promedios de avisos dentro de presupuesto. Ordenado por total (más caro arriba).</p>
+    </div>`;
   }
 
   // ===================================================================
@@ -357,10 +404,13 @@
   // formatea "2026-06-30_2247" -> "30 jun 2026, 22:47"
   const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
   function fmtFecha(f) {
-    const m = /(\d{4})-(\d{2})-(\d{2})_(\d{2})(\d{2})/.exec(f || "");
-    if (!m) return f || "—";
-    return `${+m[3]} ${MESES[+m[2] - 1]} ${m[1]}, ${m[4]}:${m[5]}`;
+    let m = /(\d{4})-(\d{2})-(\d{2})_(\d{2})(\d{2})/.exec(f || "");
+    if (m) return `${+m[3]} ${MESES[+m[2] - 1]} ${m[1]}, ${m[4]}:${m[5]}`;
+    m = /(\d{4})-(\d{2})-(\d{2})/.exec(f || "");
+    if (m) return `${+m[3]} ${MESES[+m[2] - 1]} ${m[1]}`;
+    return f || "—";
   }
+  const DIAS = () => META.fechas_disponibles || [];
 
   function montarBannerActualizacion() {
     const bar = $("#update-bar");
@@ -389,7 +439,7 @@
   // Cambio de fecha (foto histórica)
   // ===================================================================
   function cargarDia(fecha) {
-    const esUltima = fecha === (META.fecha_actual || (META.fechas_disponibles || [])[0]);
+    const esUltima = fecha === DIAS()[0];
     if (esUltima) return aplicarDia(LATEST.slice(), true);
     if (window.HISTORIA && window.HISTORIA[fecha]) return aplicarDia(window.HISTORIA[fecha], false);
     // carga bajo demanda el archivo de esa fecha
@@ -430,56 +480,102 @@
   // ===================================================================
   function pintarTemporal() {
     const serie = META.serie_temporal || [];
+    const dias = DIAS();
     const cont = $("#temporal");
-    if (serie.length <= 1) {
-      cont.innerHTML = `
-        <div class="metric-card wide">
-          <h3>Análisis temporal</h3>
-          <p style="color:var(--muted);font-size:14px;line-height:1.6">
-            Esta es la <b>primera foto</b> de la base (${(META.ultima_actualizacion||"")}).
-            Cada vez que corras <code>python run_all.py</code> se guarda una nueva foto
-            fechada en <code>data/snapshots/</code>, y aquí verás la evolución:
-            cuántas propiedades nuevas aparecen, cuántas bajan de precio y cómo cambia
-            el precio mediano en el tiempo. Vuelve después de la próxima actualización.
-          </p>
-          ${serie.length === 1 ? tablaSerie(serie) : ""}
-        </div>`;
+    window.HISTORIA = window.HISTORIA || {};
+    if (dias[0]) window.HISTORIA[dias[0]] = window.HISTORIA[dias[0]] || LATEST;
+
+    const fechasBar = serie.map((s) => s.fecha.replace("_", " "));
+    const serieHTML = serie.length ? `
+      <div class="metric-card wide">
+        <h3>Evolución (cada punto es una actualización)</h3>
+        ${miniSerie("Total de avisos", serie.map((s) => s.total), fechasBar)}
+        ${miniSerie("Match perfecto 🎯", serie.map((s) => s.match_perfecto), fechasBar)}
+        ${miniSerie("3+ dormitorios", serie.map((s) => s.tres_dorms), fechasBar)}
+        ${miniSerie("Precio mediano (total)", serie.map((s) => s.precio_mediano), fechasBar, true)}
+      </div>` : "";
+
+    if (dias.length <= 1) {
+      cont.innerHTML = `<div class="metrics-grid">
+        <div class="metric-card wide"><h3>Comparación temporal</h3>
+          <p class="tp-note" style="font-size:13.5px">Por ahora hay una sola foto${dias[0] ? " (" + fmtFecha(dias[0]) + ")" : ""}.
+          La comparación entre días se habilita con al menos dos días; la actualización
+          automática de las 10:00 irá sumando una foto por día.</p>
+        </div>${serieHTML}</div>`;
       return;
     }
-    // series de tiempo (barras simples)
-    const fechas = serie.map((s) => s.fecha.replace("_", " "));
-    cont.innerHTML = `
-      <div class="metrics-grid">
-        <div class="metric-card wide">
-          <h3>Evolución (cada punto es una actualización)</h3>
-          ${miniSerie("Total de avisos", serie.map((s) => s.total), fechas)}
-          ${miniSerie("Match perfecto 🎯", serie.map((s) => s.match_perfecto), fechas)}
-          ${miniSerie("3+ dormitorios", serie.map((s) => s.tres_dorms), fechas)}
-          ${miniSerie("Precio mediano (total)", serie.map((s) => s.precio_mediano), fechas, true)}
+
+    const opts = (sel) => dias.map((d) =>
+      `<option value="${d}" ${d === sel ? "selected" : ""}>${fmtFecha(d)}${d === dias[0] ? " (última)" : ""}</option>`).join("");
+    cont.innerHTML = `<div class="metrics-grid">
+      <div class="metric-card wide cmp-card">
+        <h3>Comparar dos días</h3>
+        <div class="cmp-controls">
+          <label>Día A <select id="cmp-a">${opts(dias[1])}</select></label>
+          <span class="cmp-arrow">→</span>
+          <label>Día B <select id="cmp-b">${opts(dias[0])}</select></label>
         </div>
-        <div class="metric-card">
-          <h3>Novedades de la última actualización</h3>
-          ${kpi(META.nuevos_desde_anterior || 0, "✦ Avisos nuevos", "hl")}
-          ${kpi(META.desaparecidos || 0, "✕ Ya no están")}
-          ${kpi(META.bajaron_precio || 0, "▼ Bajaron de precio")}
-          ${kpi(META.subieron_precio || 0, "▲ Subieron de precio")}
-        </div>
-        <div class="metric-card">
-          <h3>✦ Avisos nuevos (${LISTINGS.filter((l) => l.es_nuevo).length})</h3>
-          ${listaNuevos()}
-        </div>
-        <div class="metric-card">
-          <h3>✕ Ya no están (${(META.desaparecidos_lista || []).length})</h3>
-          ${listaDesaparecidos()}
-        </div>
-        <div class="metric-card">
-          <h3>▼ Bajas de precio (top)</h3>
-          ${listaCambios(-1)}
-        </div>
-        <div class="metric-card">
-          <h3>▲ Subieron de precio (top)</h3>
-          ${listaCambios(1)}
-        </div>
+        <div id="cmp-result" class="cmp-result">Cargando…</div>
+      </div>
+      ${serieHTML}
+    </div>`;
+    $("#cmp-a").onchange = actualizarComparacion;
+    $("#cmp-b").onchange = actualizarComparacion;
+    actualizarComparacion();
+  }
+
+  function cargarHistoriaDia(dia) {
+    return new Promise((res) => {
+      window.HISTORIA = window.HISTORIA || {};
+      if (dia === DIAS()[0]) window.HISTORIA[dia] = window.HISTORIA[dia] || LATEST;
+      if (window.HISTORIA[dia]) return res(window.HISTORIA[dia]);
+      const s = document.createElement("script");
+      s.src = "historia/" + dia + ".js";
+      s.onload = () => res(window.HISTORIA[dia] || []);
+      s.onerror = () => res([]);
+      document.body.appendChild(s);
+    });
+  }
+
+  function actualizarComparacion() {
+    const a = $("#cmp-a").value, b = $("#cmp-b").value;
+    $("#cmp-result").innerHTML = "Cargando…";
+    Promise.all([cargarHistoriaDia(a), cargarHistoriaDia(b)])
+      .then(([la, lb]) => { $("#cmp-result").innerHTML = renderComparacion(a, b, la, lb); });
+  }
+
+  function renderComparacion(a, b, la, lb) {
+    const mapA = {}; la.forEach((l) => (mapA[l.id] = l));
+    const idsB = new Set(lb.map((l) => l.id));
+    const nuevos = lb.filter((l) => !mapA[l.id]);
+    const desap = la.filter((l) => !idsB.has(l.id));
+    const cambios = [];
+    lb.forEach((l) => {
+      const p = mapA[l.id];
+      if (p && p.precio_clp && l.precio_clp && p.precio_clp !== l.precio_clp)
+        cambios.push({ ...l, delta: l.precio_clp - p.precio_clp });
+    });
+    const bajas = cambios.filter((c) => c.delta < 0).sort((x, y) => x.delta - y.delta);
+    const subidas = cambios.filter((c) => c.delta > 0).sort((x, y) => y.delta - x.delta);
+    const filaTotal = (arr, cls) => arr.length ? arr.slice(0, 10).map((l) =>
+      `<a class="ts-row" href="${l.url}" target="_blank" rel="noopener"><span class="ts-t">${l.titulo || "Depto"}</span><span class="ts-d ${cls}">${clp(l.total_estimado_clp || l.precio_clp)}</span></a>`).join("") : `<p class="ts-empty">—</p>`;
+    const filaDelta = (arr) => arr.length ? arr.slice(0, 10).map((l) =>
+      `<a class="ts-row" href="${l.url}" target="_blank" rel="noopener"><span class="ts-t">${l.titulo || "Depto"}</span><span class="ts-d ${l.delta < 0 ? "baja" : "sube"}">${l.delta < 0 ? "▼" : "▲"} ${clp(Math.abs(l.delta))}</span></a>`).join("") : `<p class="ts-empty">—</p>`;
+
+    return `
+      <div class="cmp-kpis">
+        ${kpi(la.length, "avisos día A")}
+        ${kpi(lb.length, "avisos día B")}
+        ${kpi(nuevos.length, "✦ Nuevos en B", "hl")}
+        ${kpi(desap.length, "✕ Ya no están")}
+        ${kpi(bajas.length, "▼ Bajaron")}
+        ${kpi(subidas.length, "▲ Subieron")}
+      </div>
+      <div class="cmp-lists">
+        <div><h4>✦ Nuevos en B (${nuevos.length})</h4>${filaTotal(nuevos, "nuevo")}</div>
+        <div><h4>✕ Ya no están (${desap.length})</h4>${filaTotal(desap, "sube")}</div>
+        <div><h4>▼ Bajas de precio (${bajas.length})</h4>${filaDelta(bajas)}</div>
+        <div><h4>▲ Subidas de precio (${subidas.length})</h4>${filaDelta(subidas)}</div>
       </div>`;
   }
 
@@ -572,6 +668,11 @@
     setMetroLbl();
     metro.oninput = () => { F.metroMax = +metro.value; setMetroLbl(); render(); };
 
+    const sup = $("#f-sup");
+    const setSupLbl = () => $("#f-sup-val").textContent = F.supMin > 0 ? F.supMin + " m²" : "sin mín.";
+    setSupLbl();
+    sup.oninput = () => { F.supMin = +sup.value; setSupLbl(); render(); };
+
     $("#f-texto").oninput = (e) => { F.texto = e.target.value; render(); };
     $("#f-antiguedad").onchange = (e) => { F.antiguedad = e.target.value; render(); };
 
@@ -584,6 +685,7 @@
     $("#f-presupuesto").onchange = (e) => { F.soloPresupuesto = e.target.checked; render(); };
     $("#f-barrio-obj").onchange = (e) => { F.soloBarrio = e.target.checked; render(); };
     $("#f-mascotas").onchange = (e) => { F.mascotas = e.target.checked; render(); };
+    $("#f-mariposa").onchange = (e) => { F.mariposa = e.target.checked; render(); };
     $("#f-nuevas").onchange = (e) => { F.soloNuevas = e.target.checked; render(); };
     $("#f-bajaron").onchange = (e) => { F.soloBajaron = e.target.checked; render(); };
     $("#f-favoritos").onchange = (e) => { F.favoritos = e.target.checked; render(); };
@@ -601,9 +703,9 @@
 
     $("#reset").onclick = () => {
       Object.assign(F, {
-        texto: "", dorm: 0, metroMax: 2000, antiguedad: "", precioMax: PMAX,
+        texto: "", dorm: 0, metroMax: 2000, supMin: 0, antiguedad: "", precioMax: PMAX,
         arriendoMax: 1000000, gcMax: 400000,
-        soloPresupuesto: false, soloBarrio: false, mascotas: false, favoritos: false,
+        soloPresupuesto: false, soloBarrio: false, mascotas: false, mariposa: false, favoritos: false,
         ocultarContactadas: false, matchOnly: false, soloNuevas: false, soloBajaron: false,
         orden: "relevancia",
       });
@@ -613,9 +715,10 @@
       arriendo.value = 1000000; setArrLbl();
       gc.value = 400000; setGcLbl();
       metro.value = 2000; setMetroLbl();
+      sup.value = 0; setSupLbl();
       $("#f-antiguedad").value = "";
       $$("#f-dorm button").forEach((x, i) => x.classList.toggle("active", i === 0));
-      ["#f-presupuesto", "#f-barrio-obj", "#f-mascotas", "#f-nuevas", "#f-bajaron", "#f-favoritos", "#f-ocultar-contactadas"].forEach((s) => $(s).checked = false);
+      ["#f-presupuesto", "#f-barrio-obj", "#f-mascotas", "#f-mariposa", "#f-nuevas", "#f-bajaron", "#f-favoritos", "#f-ocultar-contactadas"].forEach((s) => $(s).checked = false);
       $("#f-orden").value = "relevancia";
       $("#match-btn").classList.remove("active");
       render();
