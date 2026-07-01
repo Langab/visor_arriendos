@@ -24,10 +24,11 @@ import consolidate
 
 # Orden de ejecución. Agrega aquí nuevos scrapers (deben exponer scrape() y main()).
 SCRAPERS = [
-    "portalinmobiliario",   # ← fuente principal que funciona
-    "yapo",                 # requiere Playwright (ver módulo)
-    "toctoc",               # requiere Playwright (ver módulo)
-    "goplaceit",            # requiere Playwright (ver módulo)
+    "portalinmobiliario",   # ✅ requests (fuente principal, agrega MercadoLibre)
+    "chilepropiedades",     # ✅ requests (dirección, precio, dorms, baños, m²)
+    "yapo",                 # ✅ Scrapling/Camoufox (anti-bot; lento)
+    "toctoc",               # ⚠ pendiente (reCAPTCHA + XHR)
+    "goplaceit",            # ⚠ pendiente (SPA + XHR con mapa Google)
     "facebook_marketplace", # import manual (manual/facebook_marketplace.csv)
 ]
 

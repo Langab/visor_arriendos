@@ -22,7 +22,8 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const clp = (n) => (n == null ? "—" : "$" + Math.round(n).toLocaleString("es-CL"));
   const FUENTE_NOMBRE = {
-    portalinmobiliario: "Portal Inmob.", yapo: "Yapo", toctoc: "TocToc",
+    portalinmobiliario: "Portal Inmob.", chilepropiedades: "Chilepropiedades",
+    yapo: "Yapo", toctoc: "TocToc",
     goplaceit: "GoPlaceIt", facebook_marketplace: "Facebook",
   };
 

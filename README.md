@@ -93,6 +93,7 @@ Si uno falla, los demás continúan.
 | Portal | Estado | Detalle |
 |---|---|---|
 | **Portal Inmobiliario** | ✅ Funciona | HTML estático con dirección, precio, dorms, baños, m², plazo. Agrega el real estate de MercadoLibre Chile. **Es la fuente principal.** |
+| **Chilepropiedades** | ✅ Funciona | HTML estático (`requests`, rápido): dirección completa, precio, dorms, baños, m². Segunda fuente grande. |
 | **Yapo** | ✅ Funciona (Scrapling) | Bloquea `requests`; se scrapea con **Scrapling/Camoufox** (navegador sigiloso). Trae avisos de particulares que no están en PI. Es lento (~40 s/página). |
 | **TocToc** | ⚠️ Pendiente | reCAPTCHA + datos por XHR. Base con Scrapling lista; falta interceptar su API. |
 | **GoPlaceIt** | ⚠️ Pendiente | SPA: las propiedades vienen por XHR de su API interna. Falta interceptarla. |

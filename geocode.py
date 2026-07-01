@@ -97,8 +97,8 @@ def geocodificar(listings: list[dict]) -> list[dict]:
     nuevas = 0
     for i, l in enumerate(pendientes, 1):
         q = _limpiar_direccion(l["direccion"], l.get("comuna", ""))
-        if q in cache and cache[q]:           # solo reusa cache con éxito
-            coords = cache[q]
+        if q in cache:                        # reusa cache (éxito o fallo previo)
+            coords = cache[q]                 # borra geocode_cache.json para reintentar fallos
         else:
             coords = _consulta(q)
             cache[q] = coords
