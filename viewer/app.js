@@ -41,6 +41,7 @@
     comunas: new Set(), barrios: new Set(), fuentes: new Set(),
     soloPresupuesto: false, soloBarrio: false, mascotas: false,
     favoritos: false, ocultarContactadas: false, matchOnly: false,
+    soloNuevas: false, soloBajaron: false,
     orden: "relevancia",
   };
 
@@ -99,6 +100,8 @@
       if (F.soloPresupuesto && !l.dentro_presupuesto) return false;
       if (F.soloBarrio && !l.en_barrio_objetivo) return false;
       if (F.mascotas && l.admite_mascotas !== true) return false;
+      if (F.soloNuevas && !l.es_nuevo) return false;
+      if (F.soloBajaron && !(l.precio_delta && l.precio_delta < 0)) return false;
       if (F.favoritos && !favoritos.has(l.id)) return false;
       if (F.ocultarContactadas && contactadas.has(l.id)) return false;
       return true;
@@ -396,19 +399,36 @@
         <div class="metric-card">
           <h3>Novedades de la última actualización</h3>
           ${kpi(META.nuevos_desde_anterior || 0, "✦ Avisos nuevos", "hl")}
+          ${kpi(META.desaparecidos || 0, "✕ Ya no están")}
           ${kpi(META.bajaron_precio || 0, "▼ Bajaron de precio")}
           ${kpi(META.subieron_precio || 0, "▲ Subieron de precio")}
-          ${kpi(META.desaparecidos || 0, "Desaparecieron")}
         </div>
         <div class="metric-card">
-          <h3>Bajas de precio (top)</h3>
+          <h3>✦ Avisos nuevos (${LISTINGS.filter((l) => l.es_nuevo).length})</h3>
+          ${listaNuevos()}
+        </div>
+        <div class="metric-card">
+          <h3>✕ Ya no están (${(META.desaparecidos_lista || []).length})</h3>
+          ${listaDesaparecidos()}
+        </div>
+        <div class="metric-card">
+          <h3>▼ Bajas de precio (top)</h3>
           ${listaCambios(-1)}
         </div>
         <div class="metric-card">
-          <h3>Avisos nuevos (últimos)</h3>
-          ${listaNuevos()}
+          <h3>▲ Subieron de precio (top)</h3>
+          ${listaCambios(1)}
         </div>
       </div>`;
+  }
+
+  function listaDesaparecidos() {
+    const items = (META.desaparecidos_lista || []).slice(0, 12);
+    if (!items.length) return `<p class="ts-empty">Ninguno desapareció en esta actualización.</p>`;
+    return items.map((l) => `<a class="ts-row" href="${l.url}" target="_blank" rel="noopener">
+      <span class="ts-t">${l.titulo || "Depto"}</span>
+      <span class="ts-d sube">✕ ${clp(l.total_estimado_clp || l.precio_clp)}</span>
+    </a>`).join("");
   }
 
   function miniSerie(titulo, valores, fechas, money) {
@@ -505,7 +525,14 @@
     $("#f-presupuesto").onchange = (e) => { F.soloPresupuesto = e.target.checked; render(); };
     $("#f-barrio-obj").onchange = (e) => { F.soloBarrio = e.target.checked; render(); };
     $("#f-mascotas").onchange = (e) => { F.mascotas = e.target.checked; render(); };
+    $("#f-nuevas").onchange = (e) => { F.soloNuevas = e.target.checked; render(); };
+    $("#f-bajaron").onchange = (e) => { F.soloBajaron = e.target.checked; render(); };
     $("#f-favoritos").onchange = (e) => { F.favoritos = e.target.checked; render(); };
+    // contadores junto a los filtros temporales
+    const nNuevas = LISTINGS.filter((l) => l.es_nuevo).length;
+    const nBaja = LISTINGS.filter((l) => l.precio_delta && l.precio_delta < 0).length;
+    $("#f-nuevas-n").textContent = nNuevas ? `(${nNuevas})` : "";
+    $("#f-bajaron-n").textContent = nBaja ? `(${nBaja})` : "";
     $("#f-ocultar-contactadas").onchange = (e) => { F.ocultarContactadas = e.target.checked; render(); };
     $("#f-orden").onchange = (e) => { F.orden = e.target.value; render(); };
 
@@ -522,7 +549,8 @@
         texto: "", dorm: 0, metroMax: 2000, antiguedad: "", precioMax: PMAX,
         arriendoMax: 1000000, gcMax: 400000,
         soloPresupuesto: false, soloBarrio: false, mascotas: false, favoritos: false,
-        ocultarContactadas: false, matchOnly: false, orden: "relevancia",
+        ocultarContactadas: false, matchOnly: false, soloNuevas: false, soloBajaron: false,
+        orden: "relevancia",
       });
       F.comunas.clear(); F.barrios.clear(); F.fuentes.clear();
       $$(".chip.active").forEach((c) => c.classList.remove("active"));
@@ -532,7 +560,7 @@
       metro.value = 2000; setMetroLbl();
       $("#f-antiguedad").value = "";
       $$("#f-dorm button").forEach((x, i) => x.classList.toggle("active", i === 0));
-      ["#f-presupuesto", "#f-barrio-obj", "#f-mascotas", "#f-favoritos", "#f-ocultar-contactadas"].forEach((s) => $(s).checked = false);
+      ["#f-presupuesto", "#f-barrio-obj", "#f-mascotas", "#f-nuevas", "#f-bajaron", "#f-favoritos", "#f-ocultar-contactadas"].forEach((s) => $(s).checked = false);
       $("#f-orden").value = "relevancia";
       $("#match-btn").classList.remove("active");
       render();

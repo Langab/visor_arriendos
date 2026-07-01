@@ -85,7 +85,9 @@ def procesar(listings: list[dict]) -> dict:
                     subieron += 1
 
     ids_ahora = {l["id"] for l in listings if l.get("id")}
-    desaparecidos = sum(1 for i in prev if i not in ids_ahora)
+    # avisos que estaban en la foto anterior y ya no están: guardamos su ficha
+    desaparecidos_lista = [prev[i] for i in prev if i not in ids_ahora]
+    desaparecidos = len(desaparecidos_lista)
 
     # Guarda la nueva foto
     foto_path = os.path.join(SNAP_DIR, f"{ahora}.json")
@@ -121,6 +123,7 @@ def procesar(listings: list[dict]) -> dict:
         "bajaron_precio": bajaron,
         "subieron_precio": subieron,
         "desaparecidos": desaparecidos,
+        "desaparecidos_lista": desaparecidos_lista[:60],  # para listarlos en el visor
         "es_primera_foto": fecha_prev is None,
         "serie_temporal": indice,
     }
