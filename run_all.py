@@ -62,8 +62,9 @@ def main():
     t0 = time.time()
     if not args.solo_consolidar:
         correr_scrapers()
-    # Primera consolidación (necesaria para que enrich_pi elija los relevantes)
-    consolidate.consolidar(geo=not args.sin_geo)
+    # Primera consolidación (necesaria para que enrich_pi elija los relevantes).
+    # Sin snapshot: la foto del día se saca en la consolidación final ya enriquecida.
+    consolidate.consolidar(geo=not args.sin_geo, snapshot=not args.enrich)
     if args.enrich:
         print("\n" + "=" * 60 + "\nENRIQUECIENDO FICHAS (Playwright)\n" + "=" * 60)
         try:

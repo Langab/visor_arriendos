@@ -204,7 +204,7 @@ def escribir_salidas(listings: list[dict], temporal: dict | None = None):
     print(f"✔ {config.VIEWER_DATA_JS}")
 
 
-def consolidar(geo: bool = True):
+def consolidar(geo: bool = True, snapshot: bool = True):
     print("\n=== Consolidando fuentes ===")
     listings = cargar_raw()
     print(f"Total bruto: {len(listings)}")
@@ -213,9 +213,13 @@ def consolidar(geo: bool = True):
     if geo:
         listings = geocode.geocodificar(listings)
     listings = enriquecer(listings)
-    # Foto fechada + comparación temporal (marca es_nuevo / precio_delta)
-    import snapshots
-    temporal = snapshots.procesar(listings)
+    # Foto fechada + comparación temporal (marca es_nuevo / precio_delta).
+    # snapshot=False en la consolidación intermedia de run_all --enrich, para que
+    # cada actualización genere UNA sola foto (la final, ya enriquecida).
+    temporal = None
+    if snapshot:
+        import snapshots
+        temporal = snapshots.procesar(listings)
     escribir_salidas(listings, temporal)
     # Resumen útil
     calzan = [l for l in listings if l["dentro_presupuesto"] and l["calza_dormitorios"]]

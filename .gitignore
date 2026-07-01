@@ -10,3 +10,6 @@ manual/facebook_marketplace.csv
 data/enrich.log
 data/*.log
 data/yapo.log
+data/cron.out
+data/cron.err
+data/cron.log
