@@ -64,7 +64,21 @@ USER_AGENT = (
 )
 REQUEST_TIMEOUT = 25          # segundos por request
 PAUSA_ENTRE_REQUESTS = 1.5    # segundos (cortesía / anti-bloqueo)
-MAX_PAGINAS_POR_COMUNA = 5    # páginas a recorrer por comuna y portal
+MAX_PAGINAS_POR_COMUNA = 5    # páginas por comuna (red amplia)
+MAX_PAGINAS_POR_BARRIO = 8    # páginas por barrio objetivo (cobertura fina)
+
+# Búsqueda por BARRIO en Portal Inmobiliario (slugs de sus facetas de ubicación).
+# La búsqueda por comuna sola se queda en las primeras páginas y pierde el resto;
+# buscar por barrio garantiza cubrir TODA tu zona. (slug, comuna)
+BARRIOS_PI = [
+    ("barrio-lastarria-santiago-santiago-metropolitana", "santiago"),
+    ("santa-isabel-santiago-santiago-metropolitana", "santiago"),
+    ("barrio-italia-providencia-santiago-metropolitana", "providencia"),
+    ("pedro-de-valdivia-providencia-santiago-metropolitana", "providencia"),
+    ("los-leones-providencia-santiago-metropolitana", "providencia"),
+    ("manuel-montt-providencia-santiago-metropolitana", "providencia"),
+    ("salvador-providencia-santiago-metropolitana", "providencia"),
+]
 
 # ---------------------------------------------------------------------------
 # Rutas

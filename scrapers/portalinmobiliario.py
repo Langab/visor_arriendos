@@ -23,13 +23,14 @@ FUENTE = "portalinmobiliario"
 BASE_URL = "https://www.portalinmobiliario.com"
 
 
-def _url_busqueda(comuna: str, desde: int) -> str:
+def _url_paginada(seccion: str, desde: int) -> str:
     """
-    Construye la URL de resultados para una comuna y un offset de paginación.
-    PI pagina con el sufijo _Desde_<n> (49 por página).
+    URL de resultados para una 'sección' (comuna o barrio) y un offset.
+    'seccion' es el segmento de ubicación (ej. 'santiago-metropolitana' o el slug
+    de barrio). PI pagina con el sufijo _Desde_<n> (49 por página).
     """
     precio = f"_PriceRange_0CLP-{config.PRECIO_MAX_SCRAPE_CLP}CLP"
-    base_path = f"{BASE_URL}/arriendo/departamento/{comuna}-metropolitana/{precio}"
+    base_path = f"{BASE_URL}/arriendo/departamento/{seccion}/{precio}"
     if desde > 1:
         base_path += f"_Desde_{desde}"
     return base_path
@@ -97,36 +98,45 @@ def _parse_card(card, comuna: str) -> Listing | None:
     return lst.fill_id()
 
 
+def _recorrer(seccion: str, comuna: str, max_pag: int, resultados: dict) -> None:
+    """Recorre las páginas de una sección (comuna o barrio) acumulando en resultados."""
+    for pagina in range(max_pag):
+        desde = 1 + pagina * 49
+        url = _url_paginada(seccion, desde)
+        log(f"  página {pagina + 1} ({url})")
+        r = get(url)
+        if not r:
+            break
+        soup = BeautifulSoup(r.text, "html.parser")
+        cards = soup.select("div.poly-card")
+        if not cards:
+            break
+        nuevos = 0
+        for c in cards:
+            try:
+                lst = _parse_card(c, comuna)
+            except Exception as e:  # una tarjeta rota no debe botar todo
+                log(f"  (tarjeta omitida: {e})")
+                continue
+            if lst and lst.id not in resultados:
+                resultados[lst.id] = lst
+                nuevos += 1
+        log(f"  +{nuevos} nuevas (total {len(resultados)})")
+        if nuevos == 0:
+            break
+        time.sleep(config.PAUSA_ENTRE_REQUESTS)
+
+
 def scrape() -> list[Listing]:
     resultados: dict[str, Listing] = {}
+    # 1) Red amplia por comuna (primeras páginas)
     for comuna in config.COMUNAS:
         log(f"\n› Portal Inmobiliario — comuna: {comuna}")
-        for pagina in range(config.MAX_PAGINAS_POR_COMUNA):
-            desde = 1 + pagina * 49
-            url = _url_busqueda(comuna, desde)
-            log(f"  página {pagina + 1} ({url})")
-            r = get(url)
-            if not r:
-                break
-            soup = BeautifulSoup(r.text, "html.parser")
-            cards = soup.select("div.poly-card")
-            if not cards:
-                log("  sin resultados en esta página, paso a la siguiente comuna")
-                break
-            nuevos = 0
-            for c in cards:
-                try:
-                    lst = _parse_card(c, comuna)
-                except Exception as e:  # una tarjeta rota no debe botar todo
-                    log(f"  (tarjeta omitida: {e})")
-                    continue
-                if lst and lst.id not in resultados:
-                    resultados[lst.id] = lst
-                    nuevos += 1
-            log(f"  +{nuevos} propiedades nuevas (total {len(resultados)})")
-            if nuevos == 0:
-                break
-            time.sleep(config.PAUSA_ENTRE_REQUESTS)
+        _recorrer(f"{comuna}-metropolitana", comuna, config.MAX_PAGINAS_POR_COMUNA, resultados)
+    # 2) Cobertura fina por BARRIO objetivo (para no perder el long tail de tu zona)
+    for slug, comuna in config.BARRIOS_PI:
+        log(f"\n› Portal Inmobiliario — barrio: {slug}")
+        _recorrer(slug, comuna, config.MAX_PAGINAS_POR_BARRIO, resultados)
     return list(resultados.values())
 
 
