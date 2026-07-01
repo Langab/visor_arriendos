@@ -109,6 +109,37 @@ propiedad) y corre `run_all.py`: se integran solos al visor.
 
 ---
 
+## Actualización automática diaria (macOS)
+
+Corre solo todos los días a las **10:00**, saca la foto del día y **sube los
+cambios a GitHub** (así revisas el visor sin correr nada). Usa `launchd`.
+
+- Script: `run_daily.sh` (pipeline + commit + push).
+- Agenda: `~/Library/LaunchAgents/com.visorarriendos.daily.plist`.
+
+```bash
+# activar / reactivar
+launchctl unload ~/Library/LaunchAgents/com.visorarriendos.daily.plist 2>/dev/null
+launchctl load  ~/Library/LaunchAgents/com.visorarriendos.daily.plist
+launchctl list | grep visorarriendos      # ver que está cargado
+bash run_daily.sh                          # probar a mano (deja log en data/cron.log)
+# desactivar
+launchctl unload ~/Library/LaunchAgents/com.visorarriendos.daily.plist
+```
+
+Notas:
+- Solo corre si el Mac está **encendido/despierto** a las 10:00 (si está dormido,
+  launchd lo ejecuta al despertar; si está apagado, se salta ese día).
+- El push usa el token de GitHub guardado en el **llavero de macOS** (osxkeychain).
+  Si la primera vez el llavero pide permiso, dale "Permitir siempre".
+- Log de cada corrida: `data/cron.log`.
+
+## Filtro por fecha de extracción
+
+Cada corrida guarda una **foto completa** del día en `viewer/historia/<fecha>.js`
+(se conservan las últimas 30). En el visor, el selector **"Fecha de extracción"**
+(arriba) parte en la más reciente y permite ver días anteriores tal cual estaban.
+
 ## Ajustar la búsqueda
 
 Edita `config.py`:

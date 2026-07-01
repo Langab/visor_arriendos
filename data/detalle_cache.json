@@ -2638,5 +2638,323 @@
     "superficie_util_m2": 44,
     "superficie_total_m2": 47,
     "corredor": true
+  },
+  "63abeb5e61c52be9": {
+    "gastos_comunes_clp": 15000,
+    "antiguedad_anios": 30,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 0,
+    "piso": 4,
+    "orientacion": "O",
+    "superficie_util_m2": 90,
+    "superficie_total_m2": 90,
+    "corredor": true
+  },
+  "2fd14da3f5e248a3": {
+    "gastos_comunes_clp": 120,
+    "admite_mascotas": false,
+    "estacionamientos": 1,
+    "bodegas": 0,
+    "orientacion": "NO",
+    "superficie_util_m2": 40,
+    "superficie_total_m2": 36,
+    "corredor": true
+  },
+  "f4c20f68f3a0ba20": {
+    "gastos_comunes_clp": 80000,
+    "antiguedad_anios": 18,
+    "admite_mascotas": false,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 6,
+    "orientacion": "O",
+    "superficie_util_m2": 34,
+    "superficie_total_m2": 38,
+    "corredor": true
+  },
+  "22f61c55136576e6": {
+    "gastos_comunes_clp": 150000,
+    "antiguedad_anios": 25,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 5,
+    "orientacion": "N",
+    "superficie_util_m2": 40,
+    "superficie_total_m2": 40,
+    "corredor": true
+  },
+  "c7a8ee071c04fd41": {
+    "gastos_comunes_clp": 60000,
+    "antiguedad_anios": 58,
+    "admite_mascotas": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 2,
+    "superficie_util_m2": 38,
+    "superficie_total_m2": 38,
+    "corredor": true
+  },
+  "fb42b254d5021c2b": {
+    "gastos_comunes_clp": 115000,
+    "antiguedad_anios": 30,
+    "admite_mascotas": false,
+    "estacionamientos": 1,
+    "bodegas": 0,
+    "piso": 3,
+    "orientacion": "S",
+    "superficie_util_m2": 41,
+    "superficie_total_m2": 44,
+    "corredor": true
+  },
+  "c019161039b5e969": {
+    "gastos_comunes_clp": 160000,
+    "antiguedad_anios": 30,
+    "admite_mascotas": false,
+    "estacionamientos": 1,
+    "bodegas": 0,
+    "piso": 4,
+    "orientacion": "SO",
+    "superficie_util_m2": 40,
+    "superficie_total_m2": 40,
+    "corredor": true
+  },
+  "ad8907bbfca34a9a": {
+    "gastos_comunes_clp": 120000,
+    "admite_mascotas": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "orientacion": "N",
+    "superficie_util_m2": 45,
+    "superficie_total_m2": 45,
+    "corredor": true
+  },
+  "6d7a4d8484e01c9a": {
+    "gastos_comunes_clp": 65000,
+    "antiguedad_anios": 45,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 1,
+    "orientacion": "O",
+    "superficie_util_m2": 60,
+    "superficie_total_m2": 60,
+    "corredor": true
+  },
+  "a6997bbb9807f2da": {
+    "gastos_comunes_clp": 50000,
+    "antiguedad_anios": 56,
+    "admite_mascotas": false,
+    "estacionamientos": 0,
+    "bodegas": 1,
+    "superficie_util_m2": 65,
+    "superficie_total_m2": 65,
+    "corredor": true
+  },
+  "68ca7a8ef48ecb3f": {
+    "gastos_comunes_clp": 80000,
+    "admite_mascotas": true,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 15,
+    "orientacion": "O",
+    "corredor": true
+  },
+  "b337fa1d08020e62": {
+    "gastos_comunes_clp": 170000,
+    "antiguedad_anios": 17,
+    "admite_mascotas": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 18,
+    "orientacion": "O",
+    "superficie_util_m2": 56,
+    "superficie_total_m2": 59,
+    "corredor": true
+  },
+  "5c4b80b5801bedc9": {
+    "gastos_comunes_clp": 80000,
+    "antiguedad_anios": 1,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 0,
+    "piso": 10,
+    "orientacion": "P",
+    "superficie_util_m2": 49,
+    "superficie_total_m2": 49,
+    "corredor": true
+  },
+  "2970eda9d8af90c9": {
+    "gastos_comunes_clp": 240000,
+    "antiguedad_anios": 26,
+    "admite_mascotas": true,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "orientacion": "P",
+    "superficie_util_m2": 90,
+    "superficie_total_m2": 100,
+    "corredor": true
+  },
+  "8792694ceb7a42e6": {
+    "gastos_comunes_clp": 110000,
+    "antiguedad_anios": 7,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 21,
+    "orientacion": "NP",
+    "superficie_util_m2": 54,
+    "superficie_total_m2": 56,
+    "corredor": true
+  },
+  "bd7e11fce6c5e679": {
+    "gastos_comunes_clp": 90000,
+    "antiguedad_anios": 0,
+    "admite_mascotas": true,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 20,
+    "orientacion": "S",
+    "superficie_util_m2": 48,
+    "superficie_total_m2": 50,
+    "corredor": true
+  },
+  "c27e46d2bdec4050": {
+    "gastos_comunes_clp": 112000,
+    "superficie_util_m2": 48,
+    "superficie_total_m2": 56
+  },
+  "f6888a9d74a4a001": {
+    "superficie_util_m2": 2665,
+    "superficie_total_m2": 2729,
+    "corredor": true
+  },
+  "83ad2e0159bed99b": {
+    "superficie_util_m2": 3374,
+    "superficie_total_m2": 3826
+  },
+  "bc5025f7bd609972": {
+    "gastos_comunes_clp": 100000,
+    "antiguedad_anios": 5,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 6,
+    "orientacion": "O",
+    "superficie_util_m2": 48,
+    "superficie_total_m2": 51,
+    "corredor": true
+  },
+  "2332c0cc1b43af7d": {
+    "gastos_comunes_clp": 140000,
+    "antiguedad_anios": 8,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 11,
+    "orientacion": "P",
+    "superficie_util_m2": 54,
+    "superficie_total_m2": 56,
+    "corredor": true
+  },
+  "a4ff137a659e6c27": {
+    "gastos_comunes_clp": 80000,
+    "antiguedad_anios": 14,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 6,
+    "orientacion": "S",
+    "superficie_util_m2": 50,
+    "superficie_total_m2": 54,
+    "corredor": true
+  },
+  "ed8a8fcedb0306ec": {
+    "gastos_comunes_clp": 125000,
+    "antiguedad_anios": 5,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 8,
+    "orientacion": "S",
+    "superficie_util_m2": 54,
+    "superficie_total_m2": 60,
+    "corredor": true
+  },
+  "3a4f60a4a5e8ff18": {
+    "gastos_comunes_clp": 124000,
+    "antiguedad_anios": 2,
+    "admite_mascotas": true,
+    "estacionamientos": 0,
+    "bodegas": 1,
+    "piso": 10,
+    "orientacion": "P",
+    "superficie_util_m2": 54,
+    "superficie_total_m2": 57,
+    "corredor": true
+  },
+  "2a669748bd55399b": {
+    "superficie_util_m2": 346,
+    "superficie_total_m2": 371
+  },
+  "82e6cd8a05d40365": {
+    "gastos_comunes_clp": 125000,
+    "antiguedad_anios": 3,
+    "admite_mascotas": false,
+    "estacionamientos": 0,
+    "bodegas": 1,
+    "piso": 7,
+    "orientacion": "N",
+    "superficie_util_m2": 52,
+    "superficie_total_m2": 55,
+    "corredor": true
+  },
+  "6362b331524d77bc": {
+    "gastos_comunes_clp": 90000,
+    "antiguedad_anios": 10,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 21,
+    "orientacion": "N",
+    "superficie_util_m2": 55,
+    "superficie_total_m2": 55,
+    "corredor": true
+  },
+  "bdc33ab168688106": {
+    "gastos_comunes_clp": 60000,
+    "antiguedad_anios": 45,
+    "admite_mascotas": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 4,
+    "orientacion": "N",
+    "superficie_util_m2": 54,
+    "superficie_total_m2": 60,
+    "corredor": true
+  },
+  "8680a0a2d78a84ea": {
+    "gastos_comunes_clp": 160000,
+    "antiguedad_anios": 19,
+    "admite_mascotas": true,
+    "estacionamientos": 1,
+    "bodegas": 1,
+    "piso": 7,
+    "orientacion": "NP",
+    "superficie_util_m2": 44,
+    "superficie_total_m2": 50,
+    "corredor": true
+  },
+  "6163e25d7b10bc9b": {
+    "gastos_comunes_clp": 120000,
+    "antiguedad_anios": 7,
+    "admite_mascotas": true,
+    "estacionamientos": 2,
+    "bodegas": 1,
+    "piso": 6,
+    "superficie_util_m2": 40,
+    "superficie_total_m2": 50,
+    "corredor": true
   }
 }

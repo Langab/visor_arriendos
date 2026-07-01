@@ -46,5 +46,29 @@
     "nuevos": 0,
     "bajaron_precio": 0,
     "subieron_precio": 0
+  },
+  {
+    "fecha": "2026-06-30_2313",
+    "total": 857,
+    "match_perfecto": 2,
+    "dentro_presupuesto": 629,
+    "tres_dorms": 58,
+    "en_barrio": 336,
+    "precio_mediano": 650000,
+    "nuevos": 1,
+    "bajaron_precio": 0,
+    "subieron_precio": 0
+  },
+  {
+    "fecha": "2026-06-30_2314",
+    "total": 857,
+    "match_perfecto": 3,
+    "dentro_presupuesto": 629,
+    "tres_dorms": 58,
+    "en_barrio": 336,
+    "precio_mediano": 650000,
+    "nuevos": 0,
+    "bajaron_precio": 0,
+    "subieron_precio": 0
   }
 ]
