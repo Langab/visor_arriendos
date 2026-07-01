@@ -71,3 +71,5 @@ GEOCODE_CACHE = os.path.join(DATA_DIR, "geocode_cache.json")
 MASTER_JSON = os.path.join(DATA_DIR, "master.json")
 MASTER_CSV = os.path.join(DATA_DIR, "master.csv")
 VIEWER_DATA_JS = os.path.join(BASE_DIR, "viewer", "data.js")
+HISTORIA_DIR = os.path.join(BASE_DIR, "viewer", "historia")  # fotos completas por fecha
+HISTORIA_MAX_DIAS = 30  # cuántas fotos completas conservar para el visor

@@ -1597,7 +1597,7 @@
     "match_perfecto": false,
     "relevancia": 80,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4599791,-70.6221377",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -3941,7 +3941,7 @@
     "match_perfecto": false,
     "relevancia": 70,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.422625,-70.611625",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -3977,7 +3977,7 @@
     "match_perfecto": false,
     "relevancia": 70,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.423875,-70.61575",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -4771,7 +4771,7 @@
     "match_perfecto": false,
     "relevancia": 70,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.42825,-70.61475",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -6567,7 +6567,7 @@
     "match_perfecto": false,
     "relevancia": 65,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4305,-70.610125",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -6989,7 +6989,7 @@
     "match_perfecto": false,
     "relevancia": 65,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4305,-70.608",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -7323,7 +7323,7 @@
     "match_perfecto": false,
     "relevancia": 65,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4275,-70.604625",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -7918,7 +7918,7 @@
     "match_perfecto": false,
     "relevancia": 65,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.430875,-70.61275",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -8042,7 +8042,7 @@
     "match_perfecto": false,
     "relevancia": 65,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.427625,-70.610375",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -8158,7 +8158,7 @@
     "match_perfecto": false,
     "relevancia": 65,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.423375,-70.606",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -8860,8 +8860,8 @@
     "relevancia": 60,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4717129,-70.6453405",
     "es_nuevo": false,
-    "precio_anterior": 415000,
-    "precio_delta": -15000
+    "precio_anterior": null,
+    "precio_delta": null
   },
   {
     "fuente": "portalinmobiliario",
@@ -9106,7 +9106,7 @@
     "match_perfecto": false,
     "relevancia": 60,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4525,-70.594875",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -9142,7 +9142,7 @@
     "match_perfecto": false,
     "relevancia": 60,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4423495,-70.6532902",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -9482,7 +9482,7 @@
     "match_perfecto": false,
     "relevancia": 60,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.440625,-70.649",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -13678,8 +13678,8 @@
     "relevancia": 55,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4740082,-70.6069022",
     "es_nuevo": false,
-    "precio_anterior": 560000,
-    "precio_delta": -20000
+    "precio_anterior": null,
+    "precio_delta": null
   },
   {
     "fuente": "portalinmobiliario",
@@ -16629,7 +16629,7 @@
     "match_perfecto": false,
     "relevancia": 45,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.44625,-70.655",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -18105,7 +18105,7 @@
     "match_perfecto": false,
     "relevancia": 45,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4537551,-70.6266712",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -19229,7 +19229,7 @@
     "match_perfecto": false,
     "relevancia": 45,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.43,-70.608875",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -20814,8 +20814,8 @@
     "relevancia": 40,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.44925,-70.64687500000001",
     "es_nuevo": false,
-    "precio_anterior": 290000,
-    "precio_delta": -10000
+    "precio_anterior": null,
+    "precio_delta": null
   },
   {
     "fuente": "portalinmobiliario",
@@ -20850,8 +20850,8 @@
     "relevancia": 40,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4523007,-70.6458966",
     "es_nuevo": false,
-    "precio_anterior": 300000,
-    "precio_delta": -20000
+    "precio_anterior": null,
+    "precio_delta": null
   },
   {
     "fuente": "chilepropiedades",
@@ -21497,7 +21497,7 @@
     "match_perfecto": false,
     "relevancia": 40,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4524755,-70.6486313",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -21641,7 +21641,7 @@
     "match_perfecto": false,
     "relevancia": 40,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.445875,-70.647875",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -24701,7 +24701,7 @@
     "match_perfecto": false,
     "relevancia": 40,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.453125,-70.603",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -25781,7 +25781,7 @@
     "match_perfecto": false,
     "relevancia": 40,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.458375000000004,-70.59224999999999",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -25889,7 +25889,7 @@
     "match_perfecto": false,
     "relevancia": 40,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.45825,-70.60425",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -26609,7 +26609,7 @@
     "match_perfecto": false,
     "relevancia": 40,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.460125000000005,-70.59325",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -27575,7 +27575,7 @@
     "match_perfecto": false,
     "relevancia": 40,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.4321835,-70.6095284",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -28691,7 +28691,7 @@
     "match_perfecto": false,
     "relevancia": 30,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.425625,-70.605125",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -31198,7 +31198,7 @@
     "match_perfecto": false,
     "relevancia": 20,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.454875,-70.59287499999999",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },
@@ -32206,7 +32206,7 @@
     "match_perfecto": false,
     "relevancia": 15,
     "google_maps": "https://www.google.com/maps/search/?api=1&query=-33.450875,-70.59224999999999",
-    "es_nuevo": true,
+    "es_nuevo": false,
     "precio_anterior": null,
     "precio_delta": null
   },

@@ -6,7 +6,8 @@
 (() => {
   "use strict";
 
-  const LISTINGS = (window.LISTINGS || []).slice();
+  const LATEST = (window.LISTINGS || []).slice();   // foto más reciente (default)
+  let LISTINGS = LATEST.slice();                     // dataset activo (cambia por fecha)
   const META = window.META || {};
 
   // ---------- estado persistido ----------
@@ -50,6 +51,12 @@
   // ===================================================================
   const valoresUnicos = (campo) =>
     [...new Set(LISTINGS.map((l) => l[campo]).filter(Boolean))].sort();
+
+  function construirChips() {
+    montarChips("f-comuna", valoresUnicos("comuna"), F.comunas);
+    montarChips("f-barrio", valoresUnicos("barrio"), F.barrios);
+    montarChips("f-fuente", valoresUnicos("fuente"), F.fuentes, (v) => FUENTE_NOMBRE[v] || v);
+  }
 
   function montarChips(id, valores, set, etiqueta) {
     const cont = $("#" + id);
@@ -347,21 +354,75 @@
   // ===================================================================
   // Banner de última actualización
   // ===================================================================
+  // formatea "2026-06-30_2247" -> "30 jun 2026, 22:47"
+  const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  function fmtFecha(f) {
+    const m = /(\d{4})-(\d{2})-(\d{2})_(\d{2})(\d{2})/.exec(f || "");
+    if (!m) return f || "—";
+    return `${+m[3]} ${MESES[+m[2] - 1]} ${m[1]}, ${m[4]}:${m[5]}`;
+  }
+
   function montarBannerActualizacion() {
     const bar = $("#update-bar");
     if (!bar) return;
-    const fecha = META.ultima_actualizacion || META.generado || "—";
+    const fechas = META.fechas_disponibles || (META.fecha_actual ? [META.fecha_actual] : []);
+    const opciones = fechas.map((f, i) =>
+      `<option value="${f}">${fmtFecha(f)}${i === 0 ? " (más reciente)" : ""}</option>`).join("");
     let extra = "";
     if (META.es_primera_foto) {
       extra = `<span class="ub-tag">primera foto — el análisis temporal se llena al re-ejecutar</span>`;
     } else {
-      const n = META.nuevos_desde_anterior || 0;
-      const baja = META.bajaron_precio || 0;
+      const n = META.nuevos_desde_anterior || 0, baja = META.bajaron_precio || 0;
       extra = `<span class="ub-tag nuevo">✦ ${n} nuevas</span>` +
-        (baja ? `<span class="ub-tag baja">▼ ${baja} bajaron de precio</span>` : "") +
-        `<span class="ub-since">desde ${(META.fecha_anterior || "").replace("_", " ")}</span>`;
+        (baja ? `<span class="ub-tag baja">▼ ${baja} bajaron</span>` : "");
     }
-    bar.innerHTML = `<span class="ub-date">🕒 Última actualización: <b>${fecha}</b></span>${extra}`;
+    bar.innerHTML =
+      `<span class="ub-date">🕒 Fecha de extracción:</span>` +
+      `<select id="f-fecha" class="ub-select">${opciones}</select>` +
+      `<span id="ub-extra">${extra}</span>`;
+
+    const sel = $("#f-fecha");
+    if (sel) sel.onchange = (e) => cargarDia(e.target.value);
+  }
+
+  // ===================================================================
+  // Cambio de fecha (foto histórica)
+  // ===================================================================
+  function cargarDia(fecha) {
+    const esUltima = fecha === (META.fecha_actual || (META.fechas_disponibles || [])[0]);
+    if (esUltima) return aplicarDia(LATEST.slice(), true);
+    if (window.HISTORIA && window.HISTORIA[fecha]) return aplicarDia(window.HISTORIA[fecha], false);
+    // carga bajo demanda el archivo de esa fecha
+    const s = document.createElement("script");
+    s.src = "historia/" + fecha + ".js";
+    s.onload = () => aplicarDia((window.HISTORIA || {})[fecha] || [], false);
+    s.onerror = () => aplicarDia([], false);
+    document.body.appendChild(s);
+  }
+
+  function aplicarDia(dataset, esUltima) {
+    LISTINGS = dataset;
+    // limpia selección de chips (los valores pueden cambiar entre fechas)
+    F.comunas.clear(); F.barrios.clear(); F.fuentes.clear();
+    $$(".chip.active").forEach((c) => c.classList.remove("active"));
+    construirChips();
+    montarStats();
+    actualizarContadores();
+    refrescarContadoresTemporales();
+    // aviso de que estás viendo una foto pasada
+    const extra = $("#ub-extra");
+    if (extra) extra.innerHTML = esUltima
+      ? (META.es_primera_foto ? `<span class="ub-tag">primera foto</span>`
+         : `<span class="ub-tag nuevo">✦ ${META.nuevos_desde_anterior || 0} nuevas</span>`)
+      : `<span class="ub-tag viendo-pasado">👁 viendo foto de ${fmtFecha($("#f-fecha").value)}</span>`;
+    render();
+  }
+
+  function refrescarContadoresTemporales() {
+    const nN = LISTINGS.filter((l) => l.es_nuevo).length;
+    const nB = LISTINGS.filter((l) => l.precio_delta && l.precio_delta < 0).length;
+    if ($("#f-nuevas-n")) $("#f-nuevas-n").textContent = nN ? `(${nN})` : "";
+    if ($("#f-bajaron-n")) $("#f-bajaron-n").textContent = nB ? `(${nB})` : "";
   }
 
   // ===================================================================
@@ -518,9 +579,7 @@
       b.onclick = () => { $$("#f-dorm button").forEach((x) => x.classList.remove("active")); b.classList.add("active"); F.dorm = +b.dataset.v; render(); };
     });
 
-    montarChips("f-comuna", valoresUnicos("comuna"), F.comunas);
-    montarChips("f-barrio", valoresUnicos("barrio"), F.barrios);
-    montarChips("f-fuente", valoresUnicos("fuente"), F.fuentes, (v) => FUENTE_NOMBRE[v] || v);
+    construirChips();
 
     $("#f-presupuesto").onchange = (e) => { F.soloPresupuesto = e.target.checked; render(); };
     $("#f-barrio-obj").onchange = (e) => { F.soloBarrio = e.target.checked; render(); };
@@ -528,11 +587,7 @@
     $("#f-nuevas").onchange = (e) => { F.soloNuevas = e.target.checked; render(); };
     $("#f-bajaron").onchange = (e) => { F.soloBajaron = e.target.checked; render(); };
     $("#f-favoritos").onchange = (e) => { F.favoritos = e.target.checked; render(); };
-    // contadores junto a los filtros temporales
-    const nNuevas = LISTINGS.filter((l) => l.es_nuevo).length;
-    const nBaja = LISTINGS.filter((l) => l.precio_delta && l.precio_delta < 0).length;
-    $("#f-nuevas-n").textContent = nNuevas ? `(${nNuevas})` : "";
-    $("#f-bajaron-n").textContent = nBaja ? `(${nBaja})` : "";
+    refrescarContadoresTemporales();  // contadores junto a los filtros temporales
     $("#f-ocultar-contactadas").onchange = (e) => { F.ocultarContactadas = e.target.checked; render(); };
     $("#f-orden").onchange = (e) => { F.orden = e.target.value; render(); };
 

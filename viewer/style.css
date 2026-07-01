@@ -82,6 +82,11 @@ body {
 .ub-tag.nuevo { background: rgba(47,111,99,.12); color: var(--accent); }
 .ub-tag.baja { background: rgba(47,143,111,.14); color: var(--good); }
 .update-bar .ub-since { font-size: 11.5px; opacity: .8; }
+.ub-select { font: inherit; font-size: 12.5px; font-weight: 600; color: var(--ink);
+  padding: 4px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface);
+  cursor: pointer; }
+.ub-select:focus { outline: none; border-color: var(--accent); }
+.ub-tag.viendo-pasado { background: rgba(217,154,43,.15); color: var(--mid); }
 
 /* ----------------------------- Layout ----------------------------- */
 .layout { display: grid; grid-template-columns: 290px 1fr; align-items: start; }

@@ -55,6 +55,36 @@ def _cargar_indice() -> list[dict]:
     return []
 
 
+def _guardar_historia_viewer(listings: list[dict], fecha: str) -> list[str]:
+    """
+    Guarda la foto COMPLETA del día en viewer/historia/<fecha>.js (con todos los
+    campos, para que el visor pueda mostrar ese día tal cual). El visor la carga
+    bajo demanda al elegir la fecha. Conserva solo las últimas HISTORIA_MAX_DIAS.
+    Devuelve la lista de fechas disponibles (desc, la más reciente primero).
+    """
+    os.makedirs(config.HISTORIA_DIR, exist_ok=True)
+    path = os.path.join(config.HISTORIA_DIR, f"{fecha}.js")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("window.HISTORIA=window.HISTORIA||{};\n")
+        f.write(f'window.HISTORIA["{fecha}"]=' +
+                json.dumps(listings, ensure_ascii=False) + ";\n")
+
+    # poda: deja solo las últimas N
+    fotos = sorted(glob.glob(os.path.join(config.HISTORIA_DIR, "20*.js")))
+    for viejo in fotos[:-config.HISTORIA_MAX_DIAS]:
+        try:
+            os.remove(viejo)
+        except OSError:
+            pass
+
+    fechas = sorted(
+        (os.path.splitext(os.path.basename(p))[0]
+         for p in glob.glob(os.path.join(config.HISTORIA_DIR, "20*.js"))),
+        reverse=True,
+    )
+    return fechas
+
+
 def procesar(listings: list[dict]) -> dict:
     """
     Compara los listings actuales con la última foto, marca cada aviso
@@ -112,12 +142,17 @@ def procesar(listings: list[dict]) -> dict:
     indice.append(resumen)
     json.dump(indice, open(INDICE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 
+    # Foto COMPLETA navegable para el visor (para el filtro "por fecha de extracción")
+    fechas_disponibles = _guardar_historia_viewer(listings, ahora)
+
     print(f"📸 Snapshot {ahora}: {nuevos} nuevos, {bajaron} bajaron, "
           f"{subieron} subieron de precio, {desaparecidos} desaparecieron "
           f"(vs {fecha_prev or 'primera foto'})")
 
     return {
         "ultima_actualizacion": time.strftime("%Y-%m-%d %H:%M"),
+        "fecha_actual": ahora,
+        "fechas_disponibles": fechas_disponibles,
         "fecha_anterior": fecha_prev,
         "nuevos_desde_anterior": nuevos,
         "bajaron_precio": bajaron,
