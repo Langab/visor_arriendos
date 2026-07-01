@@ -142,6 +142,14 @@
     const gcTxt = l.gastos_comunes_estimado
       ? `<span class="est">GC est.</span>` : `GC ${clp(l.gastos_comunes_clp)}`;
 
+    // cambio de precio vs. la foto anterior
+    let precioCambio = "";
+    if (l.precio_delta) {
+      const baja = l.precio_delta < 0;
+      precioCambio = `<span class="precio-cambio ${baja ? "baja" : "sube"}">${baja ? "▼" : "▲"} ${clp(Math.abs(l.precio_delta))} vs. antes</span>`;
+    }
+    const nuevoBadge = l.es_nuevo ? `<span class="nuevo-badge">✦ Nuevo</span>` : "";
+
     const img = l.imagen
       ? `<img loading="lazy" src="${l.imagen}" alt="" onerror="this.parentNode.innerHTML='<div class=ph>🏢</div>'">`
       : `<div class="ph">🏢</div>`;
@@ -149,12 +157,13 @@
     card.innerHTML = `
       <div class="thumb">
         <span class="badge-rel ${relCls}">${relTxt}</span>
+        ${nuevoBadge}
         <span class="src-chip">${FUENTE_NOMBRE[l.fuente] || l.fuente}</span>
         <button class="fav-btn ${esFav ? "on" : ""}" title="Marcar de interés" data-fav="${l.id}">${esFav ? "⭐" : "☆"}</button>
         ${img}
       </div>
       <div class="body">
-        <div class="price-row"><div class="price">${clp(l.precio_clp)} <small>/mes</small></div></div>
+        <div class="price-row"><div class="price">${clp(l.precio_clp)} <small>/mes</small></div>${precioCambio}</div>
         <div class="total">Total est. <b>${clp(l.total_estimado_clp)}</b> · ${gcTxt}</div>
         <h3 class="title">${l.titulo || "Departamento en arriendo"}</h3>
         <p class="addr">${l.direccion || ""}</p>
@@ -283,10 +292,10 @@
         ${funnel}
         <div class="kpis">
           ${kpi(match, "🎯 Match perfecto", "hl")}
+          ${kpi(META.nuevos_desde_anterior || 0, "✦ Nuevas desde la última act.")}
           ${kpi(cercaMetro, "≤ 500 m del metro")}
           ${kpi(mascotas, "Admiten mascotas 🐾")}
           ${kpi(favoritos.size, "⭐ Tus favoritas")}
-          ${kpi(contactadas.size, "✓ Contactadas")}
           ${kpi(gcReal, "Con gastos comunes reales")}
         </div>
         ${barras("Por comuna", porComuna)}
@@ -315,6 +324,7 @@
     count.innerHTML = `<b>${items.length}</b> propiedades · ${calzan} 🎯 match perfecto`;
 
     if (vista === "metricas") { pintarMetricas(); return; }
+    if (vista === "temporal") { pintarTemporal(); return; }
 
     const grid = $("#grid");
     grid.innerHTML = "";
@@ -329,6 +339,116 @@
       const n = pintarMapa(items);
       if (n < items.length) count.innerHTML += ` · <span style="color:var(--muted)">${n} en el mapa</span>`;
     }
+  }
+
+  // ===================================================================
+  // Banner de última actualización
+  // ===================================================================
+  function montarBannerActualizacion() {
+    const bar = $("#update-bar");
+    if (!bar) return;
+    const fecha = META.ultima_actualizacion || META.generado || "—";
+    let extra = "";
+    if (META.es_primera_foto) {
+      extra = `<span class="ub-tag">primera foto — el análisis temporal se llena al re-ejecutar</span>`;
+    } else {
+      const n = META.nuevos_desde_anterior || 0;
+      const baja = META.bajaron_precio || 0;
+      extra = `<span class="ub-tag nuevo">✦ ${n} nuevas</span>` +
+        (baja ? `<span class="ub-tag baja">▼ ${baja} bajaron de precio</span>` : "") +
+        `<span class="ub-since">desde ${(META.fecha_anterior || "").replace("_", " ")}</span>`;
+    }
+    bar.innerHTML = `<span class="ub-date">🕒 Última actualización: <b>${fecha}</b></span>${extra}`;
+  }
+
+  // ===================================================================
+  // Análisis temporal
+  // ===================================================================
+  function pintarTemporal() {
+    const serie = META.serie_temporal || [];
+    const cont = $("#temporal");
+    if (serie.length <= 1) {
+      cont.innerHTML = `
+        <div class="metric-card wide">
+          <h3>Análisis temporal</h3>
+          <p style="color:var(--muted);font-size:14px;line-height:1.6">
+            Esta es la <b>primera foto</b> de la base (${(META.ultima_actualizacion||"")}).
+            Cada vez que corras <code>python run_all.py</code> se guarda una nueva foto
+            fechada en <code>data/snapshots/</code>, y aquí verás la evolución:
+            cuántas propiedades nuevas aparecen, cuántas bajan de precio y cómo cambia
+            el precio mediano en el tiempo. Vuelve después de la próxima actualización.
+          </p>
+          ${serie.length === 1 ? tablaSerie(serie) : ""}
+        </div>`;
+      return;
+    }
+    // series de tiempo (barras simples)
+    const fechas = serie.map((s) => s.fecha.replace("_", " "));
+    cont.innerHTML = `
+      <div class="metrics-grid">
+        <div class="metric-card wide">
+          <h3>Evolución (cada punto es una actualización)</h3>
+          ${miniSerie("Total de avisos", serie.map((s) => s.total), fechas)}
+          ${miniSerie("Match perfecto 🎯", serie.map((s) => s.match_perfecto), fechas)}
+          ${miniSerie("3+ dormitorios", serie.map((s) => s.tres_dorms), fechas)}
+          ${miniSerie("Precio mediano (total)", serie.map((s) => s.precio_mediano), fechas, true)}
+        </div>
+        <div class="metric-card">
+          <h3>Novedades de la última actualización</h3>
+          ${kpi(META.nuevos_desde_anterior || 0, "✦ Avisos nuevos", "hl")}
+          ${kpi(META.bajaron_precio || 0, "▼ Bajaron de precio")}
+          ${kpi(META.subieron_precio || 0, "▲ Subieron de precio")}
+          ${kpi(META.desaparecidos || 0, "Desaparecieron")}
+        </div>
+        <div class="metric-card">
+          <h3>Bajas de precio (top)</h3>
+          ${listaCambios(-1)}
+        </div>
+        <div class="metric-card">
+          <h3>Avisos nuevos (últimos)</h3>
+          ${listaNuevos()}
+        </div>
+      </div>`;
+  }
+
+  function miniSerie(titulo, valores, fechas, money) {
+    const max = Math.max(1, ...valores.filter((v) => v != null));
+    const barras = valores.map((v, i) => {
+      const h = v == null ? 0 : (v / max) * 100;
+      const lbl = money ? clp(v) : (v ?? "—");
+      return `<div class="ts-col" title="${fechas[i]}: ${lbl}">
+        <span class="ts-val">${lbl}</span>
+        <span class="ts-bar" style="height:${Math.max(3, h)}%"></span>
+        <span class="ts-x">${fechas[i].slice(5)}</span>
+      </div>`;
+    }).join("");
+    return `<div class="ts-block"><div class="ts-title">${titulo}</div><div class="ts-chart">${barras}</div></div>`;
+  }
+
+  function tablaSerie(serie) {
+    const s = serie[serie.length - 1];
+    return `<div class="kpis" style="margin-top:14px">
+      ${kpi(s.total, "avisos")}${kpi(s.match_perfecto, "match perfecto", "hl")}
+      ${kpi(s.tres_dorms, "3+ dorms")}${kpi(s.precio_mediano ? clp(s.precio_mediano) : "—", "precio mediano")}</div>`;
+  }
+
+  function listaCambios(signo) {
+    const items = LISTINGS.filter((l) => l.precio_delta && Math.sign(l.precio_delta) === signo)
+      .sort((a, b) => Math.abs(b.precio_delta) - Math.abs(a.precio_delta)).slice(0, 8);
+    if (!items.length) return `<p class="ts-empty">Sin cambios registrados aún.</p>`;
+    return items.map((l) => `<a class="ts-row" href="${l.url}" target="_blank" rel="noopener">
+      <span class="ts-t">${l.titulo || "Depto"}</span>
+      <span class="ts-d ${signo < 0 ? "baja" : "sube"}">${signo < 0 ? "▼" : "▲"} ${clp(Math.abs(l.precio_delta))}</span>
+    </a>`).join("");
+  }
+
+  function listaNuevos() {
+    const items = LISTINGS.filter((l) => l.es_nuevo).slice(0, 8);
+    if (!items.length) return `<p class="ts-empty">No hay avisos nuevos en esta actualización.</p>`;
+    return items.map((l) => `<a class="ts-row" href="${l.url}" target="_blank" rel="noopener">
+      <span class="ts-t">${l.titulo || "Depto"}</span>
+      <span class="ts-d nuevo">${clp(l.total_estimado_clp)}</span>
+    </a>`).join("");
   }
 
   // ===================================================================
@@ -431,7 +551,8 @@
         $("#grid").classList.toggle("hidden", vista !== "lista");
         $("#map").classList.toggle("hidden", vista !== "mapa");
         $("#metrics").classList.toggle("hidden", vista !== "metricas");
-        $(".result-bar").classList.toggle("hidden", vista === "metricas");
+        $("#temporal").classList.toggle("hidden", vista !== "temporal");
+        $(".result-bar").classList.toggle("hidden", vista === "metricas" || vista === "temporal");
         if (vista === "mapa") { if (!map) initMapa(); setTimeout(() => { map.invalidateSize(); render(); }, 60); }
         else render();
       };
@@ -446,6 +567,7 @@
       $("#grid").innerHTML = `<div class="empty"><h3>No hay datos todavía</h3><p>Corre <code>python run_all.py</code> para generar la base.</p></div>`;
       return;
     }
+    montarBannerActualizacion();
     montarStats();
     actualizarContadores();
     montarFiltros();

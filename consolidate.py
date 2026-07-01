@@ -155,7 +155,7 @@ def enriquecer(listings: list[dict]) -> list[dict]:
     return listings
 
 
-def escribir_salidas(listings: list[dict]):
+def escribir_salidas(listings: list[dict], temporal: dict | None = None):
     os.makedirs(config.DATA_DIR, exist_ok=True)
     # ordena por relevancia desc y luego por total asc
     listings.sort(key=lambda l: (-l.get("relevancia", 0),
@@ -173,6 +173,7 @@ def escribir_salidas(listings: list[dict]):
               "direccion", "comuna", "barrio", "metro_cercano", "metro_dist_m",
               "corredor", "plazo_entrega", "lat", "lng", "relevancia",
               "match_perfecto", "dentro_presupuesto", "calza_dormitorios",
+              "es_nuevo", "precio_anterior", "precio_delta",
               "url", "google_maps"]
     with open(config.MASTER_CSV, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=campos, extrasaction="ignore")
@@ -194,6 +195,8 @@ def escribir_salidas(listings: list[dict]):
         "con_gastos_reales": sum(1 for l in listings if not l.get("gastos_comunes_estimado")),
         "con_antiguedad": sum(1 for l in listings if l.get("antiguedad_anios") is not None),
     }
+    if temporal:
+        meta.update(temporal)
     with open(config.VIEWER_DATA_JS, "w", encoding="utf-8") as f:
         f.write("// Generado automáticamente por consolidate.py — no editar a mano.\n")
         f.write("window.META = " + json.dumps(meta, ensure_ascii=False) + ";\n")
@@ -210,7 +213,10 @@ def consolidar(geo: bool = True):
     if geo:
         listings = geocode.geocodificar(listings)
     listings = enriquecer(listings)
-    escribir_salidas(listings)
+    # Foto fechada + comparación temporal (marca es_nuevo / precio_delta)
+    import snapshots
+    temporal = snapshots.procesar(listings)
+    escribir_salidas(listings, temporal)
     # Resumen útil
     calzan = [l for l in listings if l["dentro_presupuesto"] and l["calza_dormitorios"]]
     print(f"\n→ {len(calzan)} avisos calzan con TU búsqueda "

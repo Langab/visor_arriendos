@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
 </head>
 <body>
   <!-- ====================== ENCABEZADO ====================== -->
@@ -32,8 +32,12 @@
       <button id="btn-lista" class="active" data-view="lista">▤ Lista</button>
       <button id="btn-mapa" data-view="mapa">◉ Mapa</button>
       <button id="btn-metricas" data-view="metricas">▰ Métricas</button>
+      <button id="btn-temporal" data-view="temporal">↗ Análisis temporal</button>
     </div>
   </header>
+
+  <!-- Banner de última actualización -->
+  <div class="update-bar" id="update-bar"><!-- JS --></div>
 
   <div class="layout">
     <!-- ====================== FILTROS ====================== -->
@@ -169,11 +173,12 @@
       <section id="grid" class="grid"><!-- tarjetas --></section>
       <section id="map" class="map hidden"></section>
       <section id="metrics" class="metrics hidden"><!-- dashboard --></section>
+      <section id="temporal" class="temporal hidden"><!-- análisis temporal --></section>
     </main>
   </div>
 
   <!-- los datos los genera consolidate.py -->
   <script src="data.js"></script>
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>
