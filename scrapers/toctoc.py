@@ -1,34 +1,25 @@
 """
-Scraper de TocToc.com  —  ESTADO: requiere navegador con JavaScript.
+Scraper de TocToc.com  —  ESTADO: pendiente (reCAPTCHA + datos por XHR).
 
-TocToc responde 200 pero protege los resultados con reCAPTCHA y los carga vía
-llamadas a su API interna desde el navegador. No es extraíble de forma estable
-con `requests`. Misma interfaz que el resto; intenta y, si no hay datos
-utilizables, devuelve [] con un mensaje claro.
+TocToc responde 200 pero protege los resultados con reCAPTCHA y los carga vía su
+API interna. Con Scrapling/Camoufox se puede cargar la página, pero el reCAPTCHA
+y la API interna hacen la extracción frágil. Misma interfaz que el resto.
 
-Para activarlo de verdad: Playwright (ver scrapers/yapo.py para el patrón) o,
-si descubres su endpoint de API interno, replicar las cabeceras del navegador.
+Para activarlo: Scrapling con `page_action` que espere/scrollee y capture las
+respuestas XHR de su API, o replicar ese endpoint. Ver scrapers/yapo.py para el
+patrón base con Scrapling StealthyFetcher.
 """
 from __future__ import annotations
 
 import base
-from base import Listing, get, log
-import config
+from base import Listing, log
 
 FUENTE = "toctoc"
 
 
 def scrape() -> list[Listing]:
-    log("\n› TocToc.com")
-    url = "https://www.toctoc.com/resultados/arriendo-departamento/providencia/"
-    r = get(url, retries=1)
-    if not r:
-        log("  TocToc no respondió. Requiere Playwright.")
-        return []
-    if "recaptcha" in r.text.lower() or "__NEXT_DATA__" not in r.text:
-        log("  TocToc protege los resultados con reCAPTCHA / carga por JS. "
-            "Requiere Playwright o su API interna.")
-        return []
+    log("\n› TocToc.com — reCAPTCHA + datos por XHR, extracción frágil. "
+        "Pendiente (ver nota en el módulo).")
     return []
 
 

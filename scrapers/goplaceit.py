@@ -1,29 +1,26 @@
 """
-Scraper de GoPlaceIt.com  —  ESTADO: requiere navegador con JavaScript.
+Scraper de GoPlaceIt.com  —  ESTADO: pendiente (SPA con datos por XHR).
 
-GoPlaceIt es un agregador (incluye lat/lng nativas, ideal para mapa) pero es una
-SPA en React: el HTML inicial no trae las propiedades, se piden a su API interna
-con tokens generados en el cliente. Misma interfaz que el resto.
+GoPlaceIt es un agregador con lat/lng nativas (ideal para el mapa), pero es una
+SPA React: el HTML —incluso cargado con Scrapling/Camoufox— NO trae las
+propiedades; se piden a su API interna por XHR con tokens del cliente.
 
-Para activarlo: Playwright interceptando las respuestas XHR de su API de mapa,
-o ingeniería inversa de su endpoint (cambia seguido). Ver scrapers/yapo.py.
+Para activarlo hay que **interceptar las respuestas de red** de su API de mapa
+(Scrapling permite un `page_action` con Playwright para escuchar responses), o
+hacer ingeniería inversa del endpoint (cambia seguido). El scraper de Yapo
+(scrapers/yapo.py) muestra el patrón base con Scrapling StealthyFetcher.
 """
 from __future__ import annotations
 
 import base
-from base import Listing, get, log
+from base import Listing, log
 
 FUENTE = "goplaceit"
 
 
 def scrape() -> list[Listing]:
-    log("\n› GoPlaceIt.com")
-    r = get("https://www.goplaceit.com/cl/", retries=1)
-    if not r:
-        log("  GoPlaceIt no respondió. Requiere Playwright.")
-        return []
-    log("  GoPlaceIt es una SPA: las propiedades vienen de su API interna por XHR. "
-        "Requiere Playwright para capturarlas.")
+    log("\n› GoPlaceIt.com — SPA con datos por XHR, requiere interceptar la API interna. "
+        "Pendiente (ver nota en el módulo).")
     return []
 
 

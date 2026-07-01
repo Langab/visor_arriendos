@@ -93,14 +93,14 @@ Si uno falla, los demás continúan.
 | Portal | Estado | Detalle |
 |---|---|---|
 | **Portal Inmobiliario** | ✅ Funciona | HTML estático con dirección, precio, dorms, baños, m², plazo. Agrega el real estate de MercadoLibre Chile. **Es la fuente principal.** |
-| **Yapo** | ⚠️ Requiere Playwright | Bloquea peticiones directas (5xx) y carga por JS. |
-| **TocToc** | ⚠️ Requiere Playwright | Protegido con reCAPTCHA + API interna. |
-| **GoPlaceIt** | ⚠️ Requiere Playwright | SPA: las propiedades vienen por XHR de su API interna. |
+| **Yapo** | ✅ Funciona (Scrapling) | Bloquea `requests`; se scrapea con **Scrapling/Camoufox** (navegador sigiloso). Trae avisos de particulares que no están en PI. Es lento (~40 s/página). |
+| **TocToc** | ⚠️ Pendiente | reCAPTCHA + datos por XHR. Base con Scrapling lista; falta interceptar su API. |
+| **GoPlaceIt** | ⚠️ Pendiente | SPA: las propiedades vienen por XHR de su API interna. Falta interceptarla. |
 | **Facebook Marketplace** | ✋ Import manual | Exige login y su scraping viola los ToS. Usa la plantilla CSV. |
 
-**Activar los que requieren navegador:** `pip install playwright && playwright
-install chromium`, y completa la función `scrape_playwright()` de cada módulo
-(hay una plantilla en `scrapers/yapo.py`).
+**Scrapling** (para Yapo y base de TocToc/GoPlaceIt): `pip install scrapling &&
+scrapling install`. Usa un Firefox sigiloso (Camoufox) que salta el anti-bot.
+Ver el patrón en `scrapers/yapo.py`.
 
 **Facebook (manual):** copia `manual/facebook_marketplace_template.csv` a
 `manual/facebook_marketplace.csv`, pega los avisos interesantes (una fila por

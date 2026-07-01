@@ -1,7 +1,12 @@
 requests>=2.31
 beautifulsoup4>=4.12
 pandas>=2.0
-# Para enriquecer fichas (gastos comunes reales, antigüedad, mascotas) con run_all.py --enrich
-# y para los scrapers de Yapo/TocToc/GoPlaceIt con navegador:
+# Para enriquecer fichas de Portal Inmobiliario (gastos comunes reales, antigüedad,
+# mascotas) con run_all.py --enrich:
 playwright>=1.40
 # tras instalar:  python -m playwright install chromium
+
+# Para scrapear sitios con anti-bot (Yapo, y base para TocToc/GoPlaceIt):
+# Scrapling usa un navegador Firefox sigiloso (Camoufox) que salta el bloqueo.
+scrapling>=0.4
+# tras instalar:  scrapling install   (baja Camoufox + dependencias)

@@ -9,3 +9,4 @@ __pycache__/
 manual/facebook_marketplace.csv
 data/enrich.log
 data/*.log
+data/yapo.log
