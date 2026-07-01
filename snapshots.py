@@ -24,8 +24,15 @@ SNAP_DIR = os.path.join(config.DATA_DIR, "snapshots")
 INDICE = os.path.join(SNAP_DIR, "index.json")
 
 # Campos que guardamos por aviso en la foto (compacto)
-_CAMPOS = ("id", "titulo", "url", "fuente", "precio_clp", "total_estimado_clp",
-           "dormitorios", "barrio", "comuna", "match_perfecto")
+_CAMPOS = ("id", "titulo", "url", "fuente", "moneda", "precio_uf", "precio_clp",
+           "total_estimado_clp", "dormitorios", "barrio", "comuna", "match_perfecto")
+
+
+def _precio_nativo(e: dict):
+    """Precio en su moneda estable: (moneda, monto). UF si aplica, si no CLP."""
+    if e and e.get("moneda") == "UF" and e.get("precio_uf"):
+        return "UF", e["precio_uf"]
+    return "CLP", e.get("precio_clp") if e else None
 
 
 def _foto_compacta(listings: list[dict]) -> dict:
@@ -108,10 +115,15 @@ def procesar(listings: list[dict]) -> dict:
             l["es_nuevo"] = False
         l["precio_anterior"] = None
         l["precio_delta"] = None
-        if antes and antes.get("precio_clp") and l.get("precio_clp"):
-            if antes["precio_clp"] != l["precio_clp"]:
-                l["precio_anterior"] = antes["precio_clp"]
-                l["precio_delta"] = l["precio_clp"] - antes["precio_clp"]
+        # Comparación en MONEDA NATIVA: si el arriendo es en UF, comparamos UF con
+        # UF (que baje la UF del día NO es una baja de precio). Solo comparamos si
+        # ambas fotos están en la misma moneda.
+        if antes:
+            mA, pA = _precio_nativo(antes)
+            mB, pB = _precio_nativo(l)
+            if mA == mB and pA and pB and pA != pB:
+                l["precio_anterior"] = pA
+                l["precio_delta"] = round(pB - pA, 1)
                 if l["precio_delta"] < 0:
                     bajaron += 1
                 else:

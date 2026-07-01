@@ -38,7 +38,7 @@
   const PMAX = Math.max(META.presupuesto_max || 800000, 800000);
   const F = {
     texto: "", precioMax: PMAX, arriendoMax: 1000000, gcMax: 400000,
-    dorm: 0, metroMax: 2000, supMin: 0, antiguedad: "",
+    dorm: 0, metroMax: 2000, supMin: 0, antiguedad: "", moneda: "",
     comunas: new Set(), barrios: new Set(), fuentes: new Set(),
     soloPresupuesto: false, soloBarrio: false, mascotas: false, mariposa: false,
     favoritos: false, ocultarContactadas: false, matchOnly: false,
@@ -95,6 +95,7 @@
       if (F.dorm && (l.dormitorios || 0) < F.dorm) return false;
       if (F.metroMax < 2000 && (l.metro_dist_m == null || l.metro_dist_m > F.metroMax)) return false;
       if (F.supMin > 0 && (l.superficie_m2 == null || l.superficie_m2 < F.supMin)) return false;
+      if (F.moneda && (l.moneda || "CLP") !== F.moneda) return false;
       if (F.mariposa && !l.es_mariposa) return false;
       if (F.antiguedad) {
         const a = l.antiguedad_anios;
@@ -155,11 +156,12 @@
     const gcTxt = l.gastos_comunes_estimado
       ? `<span class="est">GC est.</span>` : `GC ${clp(l.gastos_comunes_clp)}`;
 
-    // cambio de precio vs. la foto anterior
+    // cambio de precio vs. la foto anterior (en la moneda del arriendo)
     let precioCambio = "";
     if (l.precio_delta) {
       const baja = l.precio_delta < 0;
-      precioCambio = `<span class="precio-cambio ${baja ? "baja" : "sube"}">${baja ? "▼" : "▲"} ${clp(Math.abs(l.precio_delta))} vs. antes</span>`;
+      const val = l.moneda === "UF" ? `${Math.abs(l.precio_delta)} UF` : clp(Math.abs(l.precio_delta));
+      precioCambio = `<span class="precio-cambio ${baja ? "baja" : "sube"}">${baja ? "▼" : "▲"} ${val} vs. antes</span>`;
     }
     const nuevoBadge = l.es_nuevo ? `<span class="nuevo-badge">✦ Nuevo</span>` : "";
 
@@ -176,7 +178,15 @@
         ${img}
       </div>
       <div class="body">
-        <div class="price-row"><div class="price">${clp(l.precio_clp)} <small>/mes</small></div>${precioCambio}</div>
+        <div class="price-row">
+          <div class="price-col">
+            ${l.moneda === "UF" && l.precio_uf != null
+              ? `<div class="price">UF ${l.precio_uf} <small>/mes</small></div>
+                 <div class="price-ref">≈ ${clp(l.precio_clp)} · UF del día ${clp(META.uf_valor)}</div>`
+              : `<div class="price">${clp(l.precio_clp)} <small>/mes</small></div>`}
+          </div>
+          ${precioCambio}
+        </div>
         <div class="total">Total est. <b>${clp(l.total_estimado_clp)}</b> · ${gcTxt}</div>
         <h3 class="title">${l.titulo || "Departamento en arriendo"}</h3>
         <p class="addr">${l.direccion || ""}</p>
@@ -226,7 +236,7 @@
       m.bindPopup(`
         <div class="pop">${img}
           <div class="pop-b">
-            <div class="pop-price">${clp(l.precio_clp)} <small style="font-size:11px;color:#7a736b">/mes · total ${clp(l.total_estimado_clp)}</small></div>
+            <div class="pop-price">${l.moneda === "UF" && l.precio_uf != null ? "UF " + l.precio_uf : clp(l.precio_clp)} <small style="font-size:11px;color:#7a736b">/mes · total ${clp(l.total_estimado_clp)}</small></div>
             <div class="pop-t">${l.titulo || "Departamento"}</div>
             <div class="pop-a">${l.direccion || ""}</div>${metro}${aprox}
             <a class="pop-link" href="${l.url}" target="_blank" rel="noopener">Ver propiedad y fotos ↗</a>
@@ -549,18 +559,21 @@
     const idsB = new Set(lb.map((l) => l.id));
     const nuevos = lb.filter((l) => !mapA[l.id]);
     const desap = la.filter((l) => !idsB.has(l.id));
+    const nativo = (e) => (e.moneda === "UF" && e.precio_uf) ? ["UF", e.precio_uf] : ["CLP", e.precio_clp];
     const cambios = [];
     lb.forEach((l) => {
       const p = mapA[l.id];
-      if (p && p.precio_clp && l.precio_clp && p.precio_clp !== l.precio_clp)
-        cambios.push({ ...l, delta: l.precio_clp - p.precio_clp });
+      if (!p) return;
+      const [mA, pA] = nativo(p), [mB, pB] = nativo(l);
+      if (mA === mB && pA && pB && pA !== pB) cambios.push({ ...l, delta: pB - pA, moneda: mB });
     });
     const bajas = cambios.filter((c) => c.delta < 0).sort((x, y) => x.delta - y.delta);
     const subidas = cambios.filter((c) => c.delta > 0).sort((x, y) => y.delta - x.delta);
+    const dval = (l) => l.moneda === "UF" ? `${Math.abs(l.delta)} UF` : clp(Math.abs(l.delta));
     const filaTotal = (arr, cls) => arr.length ? arr.slice(0, 10).map((l) =>
       `<a class="ts-row" href="${l.url}" target="_blank" rel="noopener"><span class="ts-t">${l.titulo || "Depto"}</span><span class="ts-d ${cls}">${clp(l.total_estimado_clp || l.precio_clp)}</span></a>`).join("") : `<p class="ts-empty">—</p>`;
     const filaDelta = (arr) => arr.length ? arr.slice(0, 10).map((l) =>
-      `<a class="ts-row" href="${l.url}" target="_blank" rel="noopener"><span class="ts-t">${l.titulo || "Depto"}</span><span class="ts-d ${l.delta < 0 ? "baja" : "sube"}">${l.delta < 0 ? "▼" : "▲"} ${clp(Math.abs(l.delta))}</span></a>`).join("") : `<p class="ts-empty">—</p>`;
+      `<a class="ts-row" href="${l.url}" target="_blank" rel="noopener"><span class="ts-t">${l.titulo || "Depto"}</span><span class="ts-d ${l.delta < 0 ? "baja" : "sube"}">${l.delta < 0 ? "▼" : "▲"} ${dval(l)}</span></a>`).join("") : `<p class="ts-empty">—</p>`;
 
     return `
       <div class="cmp-kpis">
@@ -679,6 +692,9 @@
     $$("#f-dorm button").forEach((b) => {
       b.onclick = () => { $$("#f-dorm button").forEach((x) => x.classList.remove("active")); b.classList.add("active"); F.dorm = +b.dataset.v; render(); };
     });
+    $$("#f-moneda button").forEach((b) => {
+      b.onclick = () => { $$("#f-moneda button").forEach((x) => x.classList.remove("active")); b.classList.add("active"); F.moneda = b.dataset.v; render(); };
+    });
 
     construirChips();
 
@@ -718,6 +734,7 @@
       sup.value = 0; setSupLbl();
       $("#f-antiguedad").value = "";
       $$("#f-dorm button").forEach((x, i) => x.classList.toggle("active", i === 0));
+      $$("#f-moneda button").forEach((x, i) => x.classList.toggle("active", i === 0));
       ["#f-presupuesto", "#f-barrio-obj", "#f-mascotas", "#f-mariposa", "#f-nuevas", "#f-bajaron", "#f-favoritos", "#f-ocultar-contactadas"].forEach((s) => $(s).checked = false);
       $("#f-orden").value = "relevancia";
       $("#match-btn").classList.remove("active");

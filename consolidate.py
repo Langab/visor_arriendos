@@ -17,6 +17,8 @@ import csv
 import glob
 import json
 import os
+import re
+import statistics
 import unicodedata
 
 import config
@@ -80,10 +82,26 @@ def deduplicar(listings: list[dict]) -> list[dict]:
     return out
 
 
+def _parse_moneda(precio_original: str):
+    """Del texto publicado deduce (moneda, monto_uf). 'UF 13,5' -> ('UF', 13.5)."""
+    t = (precio_original or "").upper()
+    if "UF" in t:
+        num = re.sub(r"[^\d,\.]", "", t).replace(".", "").replace(",", ".")
+        try:
+            return "UF", round(float(num), 1) if num else None
+        except ValueError:
+            return "UF", None
+    return "CLP", None
+
+
 def enriquecer(listings: list[dict]) -> list[dict]:
     detalle = _cargar_detalle()
     for l in listings:
         l["barrio"] = l.get("barrio") or _detectar_barrio(l.get("direccion", ""))
+
+        # Moneda del arriendo: UF o pesos. Si es UF guardamos el monto en UF, que
+        # es el valor ESTABLE (el CLP cambia solo porque cambia la UF del día).
+        l["moneda"], l["precio_uf"] = _parse_moneda(l.get("precio_original", ""))
 
         # Fusiona datos de la ficha de detalle (gastos comunes reales, antigüedad,
         # mascotas, estacionamientos, etc.) cuando existen.
@@ -165,6 +183,13 @@ def enriquecer(listings: list[dict]) -> list[dict]:
     return listings
 
 
+def _uf_valor_del_dia(listings: list[dict]) -> int:
+    """Valor UF usado en la extracción, derivado de los avisos en UF (clp/uf)."""
+    ratios = [l["precio_clp"] / l["precio_uf"] for l in listings
+              if l.get("moneda") == "UF" and l.get("precio_uf") and l.get("precio_clp")]
+    return int(round(statistics.median(ratios))) if ratios else config.UF_TO_CLP_FALLBACK
+
+
 def escribir_salidas(listings: list[dict], temporal: dict | None = None):
     os.makedirs(config.DATA_DIR, exist_ok=True)
     # ordena por relevancia desc y luego por total asc
@@ -176,7 +201,8 @@ def escribir_salidas(listings: list[dict], temporal: dict | None = None):
     print(f"✔ {config.MASTER_JSON} ({len(listings)} avisos)")
 
     # CSV
-    campos = ["id", "fuente", "titulo", "precio_clp", "gastos_comunes_clp",
+    campos = ["id", "fuente", "titulo", "moneda", "precio_uf", "precio_clp",
+              "gastos_comunes_clp",
               "gastos_comunes_estimado", "total_estimado_clp", "dormitorios",
               "banos", "superficie_m2", "antiguedad_anios", "admite_mascotas",
               "estacionamientos", "bodegas", "piso", "orientacion",
@@ -204,6 +230,8 @@ def escribir_salidas(listings: list[dict], temporal: dict | None = None):
         "match_perfecto": sum(1 for l in listings if l.get("match_perfecto")),
         "con_gastos_reales": sum(1 for l in listings if not l.get("gastos_comunes_estimado")),
         "con_antiguedad": sum(1 for l in listings if l.get("antiguedad_anios") is not None),
+        "en_uf": sum(1 for l in listings if l.get("moneda") == "UF"),
+        "uf_valor": _uf_valor_del_dia(listings),
     }
     if temporal:
         meta.update(temporal)
