@@ -331,6 +331,26 @@ input[type=range] { width: 100%; accent-color: var(--primary); }
 .tp-n { color: var(--muted); font-size: 11px; font-weight: 400; }
 .tp-note { font-size: 10.5px; color: var(--muted); margin: 10px 0 0; }
 
+/* ------------------- Ofertas (análisis por grupo) ----------------- */
+.grupo-badge { font-size: 11.5px; font-weight: 700; padding: 5px 9px; border-radius: 8px;
+  display: inline-flex; align-items: center; gap: 5px; width: fit-content; }
+.grupo-badge small { font-weight: 500; opacity: .8; }
+.grupo-badge.oferta { background: rgba(47,143,111,.13); color: var(--good); }
+.grupo-badge.caro { background: rgba(178,90,74,.12); color: var(--bad); }
+
+.of-row { display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 10px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+.of-row:last-child { border-bottom: 0; }
+.of-row:hover .of-title { color: var(--primary); }
+.of-info { min-width: 0; }
+.of-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.of-specs { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.of-price { text-align: right; flex: none; }
+.of-price b { font-size: 14px; font-variant-numeric: tabular-nums; display: block; }
+.of-delta { font-size: 11.5px; font-weight: 700; }
+.of-delta.oferta { color: var(--good); }
+.of-delta.caro { color: var(--bad); }
+
 /* ------------------------- Comparador de días --------------------- */
 .cmp-controls { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
 .cmp-controls label { display: flex; flex-direction: column; gap: 5px; font-size: 12px;

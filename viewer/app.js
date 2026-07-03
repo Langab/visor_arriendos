@@ -41,6 +41,7 @@
     dorm: 0, metroMax: 2000, supMin: 0, antiguedad: "", moneda: "",
     comunas: new Set(), barrios: new Set(), fuentes: new Set(),
     soloPresupuesto: false, soloBarrio: false, mascotas: false, mariposa: false,
+    soloOfertas: false,
     favoritos: false, ocultarContactadas: false, matchOnly: false,
     soloNuevas: false, soloBajaron: false,
     orden: "relevancia",
@@ -97,6 +98,7 @@
       if (F.supMin > 0 && (l.superficie_m2 == null || l.superficie_m2 < F.supMin)) return false;
       if (F.moneda && (l.moneda || "CLP") !== F.moneda) return false;
       if (F.mariposa && !l.es_mariposa) return false;
+      if (F.soloOfertas && l.etiqueta_precio !== "oferta") return false;
       if (F.antiguedad) {
         const a = l.antiguedad_anios;
         if (F.antiguedad === "dato" && a == null) return false;
@@ -125,6 +127,7 @@
       "m2-desc": (a, b) => (b.superficie_m2 || 0) - (a.superficie_m2 || 0),
       "metro-asc": (a, b) => (a.metro_dist_m ?? 9e9) - (b.metro_dist_m ?? 9e9),
       "antiguedad-desc": (a, b) => (b.antiguedad_anios ?? -1) - (a.antiguedad_anios ?? -1),
+      "oferta-asc": (a, b) => (a.delta_grupo_pct ?? 9e9) - (b.delta_grupo_pct ?? 9e9),
     };
     out.sort(ord[F.orden]);
     return out;
@@ -165,6 +168,16 @@
     }
     const nuevoBadge = l.es_nuevo ? `<span class="nuevo-badge">✦ Nuevo</span>` : "";
 
+    // comparación contra el promedio de su grupo de características
+    let grupoBadge = "";
+    if (l.delta_grupo_pct != null && Math.abs(l.delta_grupo_pct) >= 10) {
+      const esOferta = l.delta_grupo_pct < 0;
+      grupoBadge = `<div class="grupo-badge ${esOferta ? "oferta" : "caro"}"
+        title="Grupo: ${l.grupo_carac} (${l.grupo_n} avisos) · promedio ${clp(l.precio_grupo_prom)}">
+        ${esOferta ? "💎" : "▲"} ${Math.abs(Math.round(l.delta_grupo_pct))}% ${esOferta ? "bajo" : "sobre"} similares
+        <small>(prom. ${clp(l.precio_grupo_prom)})</small></div>`;
+    }
+
     const img = l.imagen
       ? `<img loading="lazy" src="${l.imagen}" alt="" onerror="this.parentNode.innerHTML='<div class=ph>🏢</div>'">`
       : `<div class="ph">🏢</div>`;
@@ -188,6 +201,7 @@
           ${precioCambio}
         </div>
         <div class="total">Total est. <b>${clp(l.total_estimado_clp)}</b> · ${gcTxt}</div>
+        ${grupoBadge}
         <h3 class="title">${l.titulo || "Departamento en arriendo"}</h3>
         <p class="addr">${l.direccion || ""}</p>
         <div class="specs">${specs.map((s) => (s.startsWith("<") ? s : `<span class="spec">${s}</span>`)).join("")}</div>
@@ -391,6 +405,7 @@
     count.innerHTML = `<b>${items.length}</b> propiedades · ${calzan} 🎯 match perfecto`;
 
     if (vista === "metricas") { pintarMetricas(); return; }
+    if (vista === "ofertas") { pintarOfertas(); return; }
     if (vista === "temporal") { pintarTemporal(); return; }
 
     const grid = $("#grid");
@@ -406,6 +421,83 @@
       const n = pintarMapa(items);
       if (n < items.length) count.innerHTML += ` · <span style="color:var(--muted)">${n} en el mapa</span>`;
     }
+  }
+
+  // ===================================================================
+  // Ofertas — análisis por características
+  // ===================================================================
+  function filaOferta(l) {
+    const esOferta = l.delta_grupo_pct < 0;
+    const specs = [l.dormitorios ? l.dormitorios + "D" : null,
+      l.banos ? l.banos + "B" : null,
+      l.superficie_m2 ? Math.round(l.superficie_m2) + " m²" : null,
+      l.barrio || l.comuna].filter(Boolean).join(" · ");
+    return `<a class="of-row" href="${l.url}" target="_blank" rel="noopener">
+      <div class="of-info">
+        <div class="of-title">${l.titulo || "Departamento"}</div>
+        <div class="of-specs">${specs} · típico del grupo ${clp(l.precio_grupo_prom)} (${l.grupo_n} avisos)</div>
+      </div>
+      <div class="of-price">
+        <b>${clp(l.precio_clp)}</b>
+        <span class="of-delta ${esOferta ? "oferta" : "caro"}">${esOferta ? "▼" : "▲"} ${Math.abs(Math.round(l.delta_grupo_pct))}%</span>
+      </div></a>`;
+  }
+
+  function pintarOfertas() {
+    const conDelta = LISTINGS.filter((l) => l.delta_grupo_pct != null);
+    const ofertas = conDelta.filter((l) => l.etiqueta_precio === "oferta")
+      .sort((a, b) => a.delta_grupo_pct - b.delta_grupo_pct);
+    const caros = conDelta.filter((l) => l.etiqueta_precio === "caro")
+      .sort((a, b) => b.delta_grupo_pct - a.delta_grupo_pct);
+    // ofertas dentro de lo que buscamos (en barrio + presupuesto)
+    const ofertasTop = ofertas.filter((l) => l.dentro_presupuesto);
+
+    // tabla de grupos (agregada desde los campos ya calculados)
+    const grupos = {};
+    conDelta.forEach((l) => {
+      if (!grupos[l.grupo_carac]) grupos[l.grupo_carac] = { n: l.grupo_n, prom: l.precio_grupo_prom, min: l.precio_clp, max: l.precio_clp };
+      const g = grupos[l.grupo_carac];
+      g.min = Math.min(g.min, l.precio_clp); g.max = Math.max(g.max, l.precio_clp);
+    });
+    const filasGrupos = Object.entries(grupos).sort((a, b) => b[1].n - a[1].n).slice(0, 18)
+      .map(([k, g]) => `<tr><td class="tp-g">${k} <span class="tp-n">(${g.n})</span></td>
+        <td>${clp(g.prom)}</td><td class="tp-sub">${clp(g.min)}</td><td class="tp-sub">${clp(g.max)}</td></tr>`).join("");
+
+    $("#ofertas").innerHTML = `
+      <div class="metrics-grid">
+        <div class="metric-card wide">
+          <h3>💎 ¿Está caro o barato? — comparación contra similares</h3>
+          <p class="tp-note" style="font-size:12.5px">Cada aviso se compara con el <b>arriendo típico de su grupo</b>
+          (misma zona, dormitorios, baños y tramo de m²; grupos con al menos 5 avisos; mediana, robusta a avisos mal publicados).
+          💎 oferta = 10%+ bajo su grupo · ▲ caro = 10%+ sobre su grupo. Se compara el arriendo sin gastos comunes.</p>
+          <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin-top:12px">
+            ${kpi(conDelta.length, "avisos comparables")}
+            ${kpi(ofertas.length, "💎 ofertas", "hl")}
+            ${kpi(caros.length, "▲ sobre precio")}
+            ${kpi(Object.keys(grupos).length, "grupos de características")}
+          </div>
+        </div>
+        <div class="metric-card wide">
+          <h3>💎 Mejores ofertas dentro del presupuesto (${ofertasTop.length})</h3>
+          ${ofertasTop.slice(0, 15).map(filaOferta).join("") || '<p class="ts-empty">Sin ofertas detectadas.</p>'}
+        </div>
+        <div class="metric-card">
+          <h3>💎 Todas las ofertas (top 12)</h3>
+          ${ofertas.slice(0, 12).map(filaOferta).join("") || '<p class="ts-empty">—</p>'}
+        </div>
+        <div class="metric-card">
+          <h3>▲ Los más sobre precio (top 12)</h3>
+          ${caros.slice(0, 12).map(filaOferta).join("") || '<p class="ts-empty">—</p>'}
+        </div>
+        <div class="metric-card wide">
+          <h3>Arriendo típico por grupo de características</h3>
+          <table class="tp-table">
+            <thead><tr><th></th><th>Típico</th><th>Mín</th><th>Máx</th></tr></thead>
+            <tbody>${filasGrupos}</tbody>
+          </table>
+          <p class="tp-note">Grupos con más avisos primero. Mín/Máx = rango de arriendos dentro del grupo.</p>
+        </div>
+      </div>`;
   }
 
   // ===================================================================
@@ -702,6 +794,9 @@
     $("#f-barrio-obj").onchange = (e) => { F.soloBarrio = e.target.checked; render(); };
     $("#f-mascotas").onchange = (e) => { F.mascotas = e.target.checked; render(); };
     $("#f-mariposa").onchange = (e) => { F.mariposa = e.target.checked; render(); };
+    $("#f-ofertas").onchange = (e) => { F.soloOfertas = e.target.checked; render(); };
+    const nOf = LISTINGS.filter((l) => l.etiqueta_precio === "oferta").length;
+    $("#f-ofertas-n").textContent = nOf ? `(${nOf})` : "";
     $("#f-nuevas").onchange = (e) => { F.soloNuevas = e.target.checked; render(); };
     $("#f-bajaron").onchange = (e) => { F.soloBajaron = e.target.checked; render(); };
     $("#f-favoritos").onchange = (e) => { F.favoritos = e.target.checked; render(); };
@@ -722,6 +817,7 @@
         texto: "", dorm: 0, metroMax: 2000, supMin: 0, antiguedad: "", precioMax: PMAX,
         arriendoMax: 1000000, gcMax: 400000,
         soloPresupuesto: false, soloBarrio: false, mascotas: false, mariposa: false, favoritos: false,
+        soloOfertas: false,
         ocultarContactadas: false, matchOnly: false, soloNuevas: false, soloBajaron: false,
         orden: "relevancia",
       });
@@ -735,7 +831,7 @@
       $("#f-antiguedad").value = "";
       $$("#f-dorm button").forEach((x, i) => x.classList.toggle("active", i === 0));
       $$("#f-moneda button").forEach((x, i) => x.classList.toggle("active", i === 0));
-      ["#f-presupuesto", "#f-barrio-obj", "#f-mascotas", "#f-mariposa", "#f-nuevas", "#f-bajaron", "#f-favoritos", "#f-ocultar-contactadas"].forEach((s) => $(s).checked = false);
+      ["#f-presupuesto", "#f-barrio-obj", "#f-mascotas", "#f-mariposa", "#f-ofertas", "#f-nuevas", "#f-bajaron", "#f-favoritos", "#f-ocultar-contactadas"].forEach((s) => $(s).checked = false);
       $("#f-orden").value = "relevancia";
       $("#match-btn").classList.remove("active");
       render();
@@ -754,8 +850,9 @@
         $("#grid").classList.toggle("hidden", vista !== "lista");
         $("#map").classList.toggle("hidden", vista !== "mapa");
         $("#metrics").classList.toggle("hidden", vista !== "metricas");
+        $("#ofertas").classList.toggle("hidden", vista !== "ofertas");
         $("#temporal").classList.toggle("hidden", vista !== "temporal");
-        $(".result-bar").classList.toggle("hidden", vista === "metricas" || vista === "temporal");
+        $(".result-bar").classList.toggle("hidden", vista !== "lista" && vista !== "mapa");
         if (vista === "mapa") { if (!map) initMapa(); setTimeout(() => { map.invalidateSize(); render(); }, 60); }
         else render();
       };

@@ -63,6 +63,16 @@ def cargar_raw() -> list[dict]:
     return listings
 
 
+def filtrar_invalidos(listings: list[dict]) -> list[dict]:
+    """Descarta avisos de VENTA colados en resultados de arriendo (precio
+    mensual imposible, ej. $158.000.000)."""
+    out = [l for l in listings
+           if not (l.get("precio_clp") and l["precio_clp"] > 5_000_000)]
+    if len(out) < len(listings):
+        print(f"  descartados {len(listings) - len(out)} avisos con precio de venta colado")
+    return out
+
+
 def deduplicar(listings: list[dict]) -> list[dict]:
     vistos_id: dict[str, dict] = {}
     vistos_clave: set[str] = set()
@@ -183,6 +193,103 @@ def enriquecer(listings: list[dict]) -> list[dict]:
     return listings
 
 
+def _m2_bucket(sup):
+    if not sup:
+        return None
+    if sup < 35:
+        return "<35 m²"
+    if sup < 50:
+        return "35-50 m²"
+    if sup < 65:
+        return "50-65 m²"
+    if sup < 80:
+        return "65-80 m²"
+    return "80+ m²"
+
+
+def analizar_precios(listings: list[dict]) -> list[dict]:
+    """
+    Análisis por características: agrupa los avisos por (ubicación × dormitorios
+    × baños × tramo de m²) y compara el ARRIENDO de cada uno contra el promedio
+    de su grupo. Así se detectan ofertas (bajo su grupo) y sobreprecios.
+
+    Si el grupo fino tiene pocos avisos, cae a grupos más gruesos:
+      1. barrio/comuna + dorms + baños + m²   (lo más comparable)
+      2. barrio/comuna + dorms + m²
+      3. comuna + dorms + m²
+      4. comuna + dorms
+    Se compara el arriendo solo (sin gastos comunes) porque los GC estimados
+    distorsionarían la comparación.
+    """
+    MIN_N = 5  # mínimo de avisos para que un grupo sea comparable
+
+    def ubic(l):
+        return l.get("barrio") or l.get("comuna") or ""
+
+    # (claves del nivel, formateador de etiqueta)
+    niveles = [
+        (lambda l: (ubic(l), l.get("dormitorios"), l.get("banos"),
+                    _m2_bucket(l.get("superficie_m2"))),
+         lambda k: f"{k[0]} · {k[1]}D {k[2]}B · {k[3]}"),
+        (lambda l: (ubic(l), l.get("dormitorios"),
+                    _m2_bucket(l.get("superficie_m2"))),
+         lambda k: f"{k[0]} · {k[1]}D · {k[2]}"),
+        (lambda l: (l.get("comuna"), l.get("dormitorios"),
+                    _m2_bucket(l.get("superficie_m2"))),
+         lambda k: f"{k[0]} · {k[1]}D · {k[2]}"),
+        (lambda l: (l.get("comuna"), l.get("dormitorios")),
+         lambda k: f"{k[0]} · {k[1]}D"),
+    ]
+
+    def valida(k):
+        return all(x not in (None, "") for x in k)
+
+    # 1) juntar precios por grupo en cada nivel
+    grupos = [dict() for _ in niveles]
+    for l in listings:
+        if not l.get("precio_clp") or not l.get("dormitorios"):
+            continue
+        for i, (kf, _) in enumerate(niveles):
+            k = kf(l)
+            if valida(k):
+                grupos[i].setdefault(k, []).append(l["precio_clp"])
+
+    # 2) asignar a cada aviso el grupo más fino con suficientes datos
+    con_delta = ofertas = caros = 0
+    for l in listings:
+        l["grupo_carac"] = None
+        l["precio_grupo_prom"] = None
+        l["grupo_n"] = None
+        l["delta_grupo_pct"] = None
+        l["etiqueta_precio"] = None
+        if not l.get("precio_clp") or not l.get("dormitorios"):
+            continue
+        for i, (kf, fmt) in enumerate(niveles):
+            k = kf(l)
+            if not valida(k):
+                continue
+            precios = grupos[i].get(k, [])
+            if len(precios) >= MIN_N:
+                # mediana: robusta a outliers (un aviso mal publicado no
+                # distorsiona el precio "típico" del grupo)
+                prom = statistics.median(precios)
+                delta = (l["precio_clp"] - prom) / prom * 100
+                l["grupo_carac"] = fmt(k)
+                l["precio_grupo_prom"] = int(round(prom))
+                l["grupo_n"] = len(precios)
+                l["delta_grupo_pct"] = round(delta, 1)
+                l["etiqueta_precio"] = ("oferta" if delta <= -10
+                                        else "caro" if delta >= 10 else "normal")
+                con_delta += 1
+                ofertas += l["etiqueta_precio"] == "oferta"
+                caros += l["etiqueta_precio"] == "caro"
+                break
+
+    print(f"Análisis de precios: {con_delta}/{len(listings)} comparables · "
+          f"{ofertas} ofertas (≤-10%) · {caros} caros (≥+10%)")
+    return listings
+
+
 def _uf_valor_del_dia(listings: list[dict]) -> int:
     """Valor UF usado en la extracción, derivado de los avisos en UF (clp/uf)."""
     ratios = [l["precio_clp"] / l["precio_uf"] for l in listings
@@ -210,6 +317,7 @@ def escribir_salidas(listings: list[dict], temporal: dict | None = None):
               "corredor", "plazo_entrega", "lat", "lng", "relevancia",
               "match_perfecto", "dentro_presupuesto", "calza_dormitorios",
               "es_nuevo", "precio_anterior", "precio_delta",
+              "grupo_carac", "precio_grupo_prom", "delta_grupo_pct", "etiqueta_precio",
               "url", "google_maps"]
     with open(config.MASTER_CSV, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=campos, extrasaction="ignore")
@@ -246,11 +354,13 @@ def consolidar(geo: bool = True, snapshot: bool = True):
     print("\n=== Consolidando fuentes ===")
     listings = cargar_raw()
     print(f"Total bruto: {len(listings)}")
+    listings = filtrar_invalidos(listings)
     listings = deduplicar(listings)
     print(f"Tras deduplicar: {len(listings)}")
     if geo:
         listings = geocode.geocodificar(listings)
     listings = enriquecer(listings)
+    listings = analizar_precios(listings)
     # Foto fechada + comparación temporal (marca es_nuevo / precio_delta).
     # snapshot=False en la consolidación intermedia de run_all --enrich, para que
     # cada actualización genere UNA sola foto (la final, ya enriquecida).
