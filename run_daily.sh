@@ -9,7 +9,7 @@
 # ---------------------------------------------------------------------------
 set -o pipefail
 
-PROY="/Users/langa/Desktop/visor_arriendos"
+PROY="/Users/langa/Library/Mobile Documents/com~apple~CloudDocs/Proyectos_propios/visor_arriendos"
 cd "$PROY" || exit 1
 
 # rutas necesarias (anaconda para python, homebrew para git/gh, camoufox, etc.)
