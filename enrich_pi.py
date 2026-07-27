@@ -49,6 +49,10 @@ def parse_detalle(txt: str) -> dict:
     if m:
         d["admite_mascotas"] = m.group(1).lower().startswith("s")
 
+    m = re.search(r"Amoblado\s*\n?\s*(S[íi]|No)", txt, re.I)
+    if m:
+        d["amoblado"] = m.group(1).lower().startswith("s")
+
     m = re.search(r"Estacionamientos\s*\n?\s*(\d+)", txt)
     if m:
         d["estacionamientos"] = int(m.group(1))
@@ -82,8 +86,8 @@ def seleccionar(listings, limit, todos):
     pi = [l for l in listings if l.get("fuente") == "portalinmobiliario" and "MLC" in l.get("url", "")]
     if todos:
         return pi
-    # relevantes: 2+ dorms y total acotado, o en barrio objetivo; ordenados por relevancia
-    rel = [l for l in pi if (l.get("dormitorios") or 0) >= 2
+    # relevantes: dorms mínimos y total acotado, o en barrio objetivo; por relevancia
+    rel = [l for l in pi if (l.get("dormitorios") or 0) >= config.DORMITORIOS_MIN
            and (l.get("total_estimado_clp") or 0) <= config.PRESUPUESTO_MAX_CLP + 150_000
            or l.get("en_barrio_objetivo")]
     rel.sort(key=lambda l: -(l.get("relevancia") or 0))

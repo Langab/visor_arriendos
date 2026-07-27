@@ -15,3 +15,6 @@ data/cron.err
 data/cron.log
 /*.html
 !index.html
+# Área Gris (mismos temporales que el visor principal)
+area_gris/data/raw/
+area_gris/data/*.log

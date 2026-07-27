@@ -65,11 +65,14 @@ def cargar_raw() -> list[dict]:
 
 def filtrar_invalidos(listings: list[dict]) -> list[dict]:
     """Descarta avisos de VENTA colados en resultados de arriendo (precio
-    mensual imposible, ej. $158.000.000)."""
+    mensual imposible, ej. $158.000.000). El tope es configurable por proyecto
+    (PRECIO_DESCARTE_CLP): Área Gris lo baja para descartar también arriendos
+    muy fuera de su rango."""
+    cap = getattr(config, "PRECIO_DESCARTE_CLP", 5_000_000)
     out = [l for l in listings
-           if not (l.get("precio_clp") and l["precio_clp"] > 5_000_000)]
+           if not (l.get("precio_clp") and l["precio_clp"] > cap)]
     if len(out) < len(listings):
-        print(f"  descartados {len(listings) - len(out)} avisos con precio de venta colado")
+        print(f"  descartados {len(listings) - len(out)} avisos sobre ${cap:,}".replace(",", "."))
     return out
 
 
@@ -106,6 +109,9 @@ def _parse_moneda(precio_original: str):
 
 def enriquecer(listings: list[dict]) -> list[dict]:
     detalle = _cargar_detalle()
+    # Hook opcional por proyecto: permite redefinir match/relevancia con otros
+    # criterios (Área Gris: sin amoblar, sin estacionamiento, sin bodega).
+    hook = getattr(config, "AJUSTAR_LISTING", None)
     for l in listings:
         l["barrio"] = l.get("barrio") or _detectar_barrio(l.get("direccion", ""))
 
@@ -117,8 +123,8 @@ def enriquecer(listings: list[dict]) -> list[dict]:
         # mascotas, estacionamientos, etc.) cuando existen.
         d = detalle.get(l.get("id", ""), {})
         for campo in ("antiguedad_anios", "admite_mascotas", "estacionamientos",
-                      "bodegas", "piso", "orientacion", "superficie_util_m2",
-                      "superficie_total_m2"):
+                      "bodegas", "amoblado", "piso", "orientacion",
+                      "superficie_util_m2", "superficie_total_m2"):
             if campo in d:
                 l[campo] = d[campo]
         if d.get("gastos_comunes_clp"):
@@ -190,6 +196,9 @@ def enriquecer(listings: list[dict]) -> list[dict]:
             l["google_maps"] = f"https://www.google.com/maps/search/?api=1&query={q}"
         else:
             l["google_maps"] = ""
+
+        if hook:
+            hook(l)
     return listings
 
 
@@ -312,7 +321,7 @@ def escribir_salidas(listings: list[dict], temporal: dict | None = None):
               "gastos_comunes_clp",
               "gastos_comunes_estimado", "total_estimado_clp", "dormitorios",
               "banos", "superficie_m2", "antiguedad_anios", "admite_mascotas",
-              "estacionamientos", "bodegas", "piso", "orientacion",
+              "estacionamientos", "bodegas", "amoblado", "piso", "orientacion",
               "direccion", "comuna", "barrio", "metro_cercano", "metro_dist_m",
               "corredor", "plazo_entrega", "lat", "lng", "relevancia",
               "match_perfecto", "dentro_presupuesto", "calza_dormitorios",

@@ -146,7 +146,8 @@ def procesar(listings: list[dict]) -> dict:
         "total": len(listings),
         "match_perfecto": sum(1 for l in listings if l.get("match_perfecto")),
         "dentro_presupuesto": sum(1 for l in listings if l.get("dentro_presupuesto")),
-        "tres_dorms": sum(1 for l in listings if (l.get("dormitorios") or 0) >= 3),
+        "tres_dorms": sum(1 for l in listings
+                          if (l.get("dormitorios") or 0) >= config.DORMITORIOS_OBJETIVO),
         "en_barrio": sum(1 for l in listings if l.get("en_barrio_objetivo")),
         "precio_mediano": int(statistics.median(totales)) if totales else None,
         "nuevos": nuevos,

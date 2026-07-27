@@ -23,6 +23,9 @@ echo "========== $(date '+%Y-%m-%d %H:%M:%S') ==========" >> "$LOG"
 #     cache, así solo enriquece lo nuevo. Quita --enrich si prefieres más rápido.)
 python3 run_all.py --enrich >> "$LOG" 2>&1
 
+# 1b) Visor ÁREA GRIS (variante 1 persona / ≤$350k): mismo pipeline, otro config.
+python3 area_gris/run_all.py --enrich >> "$LOG" 2>&1
+
 # 2) Commit + push (solo si hubo cambios). Usa el token del llavero (osxkeychain).
 git add -A >> "$LOG" 2>&1
 if git diff --cached --quiet; then

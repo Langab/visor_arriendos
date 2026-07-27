@@ -153,6 +153,18 @@ Edita `config.py`:
 
 ---
 
+## ◼ Variante "Área Gris" (`area_gris/`)
+
+Segundo visor con **otros criterios** (1 persona · studio/1D · **≤ $350.000
+total** · sin amoblar · sin estacionamiento ni bodega · mismos barrios) y diseño
+propio en escala de grises. **No duplica código**: `area_gris/run_all.py` reusa
+este mismo pipeline con `area_gris/config.py`, y `run_daily.sh` lo corre después
+del principal. Visor online:
+**https://langab.github.io/visor_arriendos/area_gris/** ·
+Detalles en [area_gris/README.md](area_gris/README.md).
+
+---
+
 ## Notas
 
 - **Gastos comunes**: casi nunca vienen en el listado. Cuando faltan, el visor
