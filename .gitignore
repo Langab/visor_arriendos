@@ -18,3 +18,6 @@ data/cron.log
 # Área Gris (mismos temporales que el visor principal)
 area_gris/data/raw/
 area_gris/data/*.log
+# Juan Rozas (mismos temporales que el visor principal)
+juan_rozas/data/raw/
+juan_rozas/data/*.log

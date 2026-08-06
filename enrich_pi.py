@@ -124,7 +124,14 @@ def main():
                 except Exception:
                     pg.wait_for_timeout(1500)
                 txt = pg.inner_text("body")
-                cache[l["id"]] = parse_detalle(txt)
+                d = parse_detalle(txt)
+                # Una ficha real tiene MUCHO texto; si vino corta y sin datos es
+                # el challenge anti-bot de ML: no cachear, para reintentar mañana.
+                if d or len(txt) > 2000:
+                    cache[l["id"]] = d
+                else:
+                    print(f"  [{i}] ficha sospechosa (¿challenge anti-bot?), "
+                          f"no se cachea {l['id']}")
             except Exception as e:
                 print(f"  [{i}] error {l['id']}: {e.__class__.__name__}")
                 cache[l["id"]] = {}

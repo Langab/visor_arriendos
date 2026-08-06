@@ -22,6 +22,55 @@ import config
 FUENTE = "portalinmobiliario"
 BASE_URL = "https://www.portalinmobiliario.com"
 
+# PI (MercadoLibre) empezó a mandar los `requests` a un muro anti-bot
+# ("/gz/account-verification" o una página de challenge con redirect por JS).
+# Cuando eso pasa, el resto de la corrida se hace con Scrapling/Camoufox
+# (mismo navegador sigiloso que usa yapo.py): más lento, pero pasa.
+_USAR_SCRAPLING = False
+
+
+def _es_muro(r) -> bool:
+    """¿La respuesta es el muro anti-bot y no la página de resultados?"""
+    if "account-verification" in (r.url or ""):
+        return True
+    # challenge liviano: página chica con script que redirige solo
+    return len(r.text) < 30_000 and "poly-card" not in r.text
+
+
+def _html_scrapling(url: str) -> str | None:
+    """Página de resultados vía Camoufox. El challenge de ML corre su JS y
+    redirige a los ~3 s, así que esperamos a que aparezcan las tarjetas
+    (wait_selector) en vez de confiar en network_idle."""
+    from scrapling.fetchers import StealthyFetcher
+    for intento in (1, 2):
+        try:
+            page = StealthyFetcher.fetch(
+                url, headless=True, disable_resources=True,
+                timeout=90_000, wait_selector="a.poly-component__title",
+                wait=800,
+            )
+            return page.html_content if hasattr(page, "html_content") else str(page.body)
+        except Exception as e:
+            nombre = e.__class__.__name__
+            log(f"  Scrapling {nombre}: {str(e)[:80]}")
+            # Timeout esperando tarjetas = página sin resultados: no reintentar
+            if "Timeout" in nombre or "timeout" in str(e).lower():
+                return None
+    return None
+
+
+def _obtener_html(url: str) -> str | None:
+    """HTML de resultados: requests primero (rápido); si aparece el muro
+    anti-bot, cambia a Scrapling para lo que queda de la corrida."""
+    global _USAR_SCRAPLING
+    if not _USAR_SCRAPLING:
+        r = get(url)
+        if r is not None and not _es_muro(r):
+            return r.text
+        log("  ⚠ PI bloqueó requests (muro anti-bot) → sigo con Scrapling/Camoufox")
+        _USAR_SCRAPLING = True
+    return _html_scrapling(url)
+
 
 def _url_paginada(seccion: str, desde: int) -> str:
     """
@@ -104,10 +153,10 @@ def _recorrer(seccion: str, comuna: str, max_pag: int, resultados: dict) -> None
         desde = 1 + pagina * 49
         url = _url_paginada(seccion, desde)
         log(f"  página {pagina + 1} ({url})")
-        r = get(url)
-        if not r:
+        html = _obtener_html(url)
+        if not html:
             break
-        soup = BeautifulSoup(r.text, "html.parser")
+        soup = BeautifulSoup(html, "html.parser")
         cards = soup.select("div.poly-card")
         if not cards:
             break

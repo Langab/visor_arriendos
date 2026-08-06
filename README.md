@@ -163,6 +163,18 @@ del principal. Visor online:
 **https://langab.github.io/visor_arriendos/area_gris/** ·
 Detalles en [area_gris/README.md](area_gris/README.md).
 
+## ❄ Variante "Juan Rozas" (`juan_rozas/`)
+
+Tercer visor, para Juan Rozas (1 persona · **2 dormitorios · 1 baño** ·
+**≤ $700.000 total** · mismos barrios), con estética homenaje a
+Electrodomésticos ("El Frío Misterio"): al abrirlo suena la canción. Incluye
+pestaña **Método** con las notas metodológicas del pipeline completo (scraping,
+deduplicación, oportunidades de precio, análisis temporal). Mismo esquema:
+`juan_rozas/run_all.py` reusa el pipeline con `juan_rozas/config.py`, y
+`run_daily.sh` lo corre al final. Visor online:
+**https://langab.github.io/visor_arriendos/juan_rozas/** ·
+Detalles en [juan_rozas/README.md](juan_rozas/README.md).
+
 ---
 
 ## Notas
