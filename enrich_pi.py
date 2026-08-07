@@ -113,10 +113,15 @@ def main():
     print(f"Enriqueciendo {len(pendientes)} fichas "
           f"({len(objetivo) - len(pendientes)} ya en cache)...")
 
+    challenges_seguidos = 0  # si ML nos randomiza con su challenge, abortar temprano
     with sync_playwright() as p:
         b = p.chromium.launch(headless=True)
         pg = b.new_page(user_agent=UA)
         for i, l in enumerate(pendientes, 1):
+            if challenges_seguidos >= 10:
+                print("  ⚠ 10 fichas seguidas con challenge anti-bot: aborto el "
+                      "enriquecimiento por hoy (se reintenta en la próxima corrida).")
+                break
             try:
                 pg.goto(l["url"], wait_until="domcontentloaded", timeout=35000)
                 try:
@@ -129,9 +134,11 @@ def main():
                 # el challenge anti-bot de ML: no cachear, para reintentar mañana.
                 if d or len(txt) > 2000:
                     cache[l["id"]] = d
+                    challenges_seguidos = 0
                 else:
                     print(f"  [{i}] ficha sospechosa (¿challenge anti-bot?), "
                           f"no se cachea {l['id']}")
+                    challenges_seguidos += 1
             except Exception as e:
                 print(f"  [{i}] error {l['id']}: {e.__class__.__name__}")
                 cache[l["id"]] = {}

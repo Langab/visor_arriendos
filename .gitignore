@@ -21,3 +21,7 @@ area_gris/data/*.log
 # Juan Rozas (mismos temporales que el visor principal)
 juan_rozas/data/raw/
 juan_rozas/data/*.log
+# perfiles de navegador del fallback anti-bot (no versionar)
+data/camoufox_profile/
+area_gris/data/camoufox_profile/
+juan_rozas/data/camoufox_profile/

@@ -10,6 +10,7 @@ Uso:
 """
 from __future__ import annotations
 
+import os
 import re
 import time
 
@@ -40,22 +41,32 @@ def _es_muro(r) -> bool:
 def _html_scrapling(url: str) -> str | None:
     """Página de resultados vía Camoufox. El challenge de ML corre su JS y
     redirige a los ~3 s, así que esperamos a que aparezcan las tarjetas
-    (wait_selector) en vez de confiar en network_idle."""
+    (wait_selector) en vez de confiar en network_idle.
+
+    Claves para que ML no nos cuelgue en páginas sucesivas:
+    - Perfil PERSISTENTE (user_data_dir): la cookie de bypass del challenge
+      dura ~5 min y se reutiliza entre páginas → el challenge se resuelve una
+      vez por tanda, no en cada página.
+    - El selector también acepta la página "sin resultados" (rescue) para que
+      el final de una sección no parezca un timeout.
+    """
     from scrapling.fetchers import StealthyFetcher
+    perfil = os.path.join(config.DATA_DIR, "camoufox_profile")
     for intento in (1, 2):
         try:
             page = StealthyFetcher.fetch(
                 url, headless=True, disable_resources=True,
-                timeout=90_000, wait_selector="a.poly-component__title",
-                wait=800,
+                timeout=100_000,
+                wait_selector="a.poly-component__title, [class*=rescue]",
+                wait=800, user_data_dir=perfil,
             )
-            return page.html_content if hasattr(page, "html_content") else str(page.body)
+            html = page.html_content if hasattr(page, "html_content") else str(page.body)
+            time.sleep(2.5)  # cortesía extra: ML rate-limitea si lo apuramos
+            return html
         except Exception as e:
-            nombre = e.__class__.__name__
-            log(f"  Scrapling {nombre}: {str(e)[:80]}")
-            # Timeout esperando tarjetas = página sin resultados: no reintentar
-            if "Timeout" in nombre or "timeout" in str(e).lower():
-                return None
+            log(f"  Scrapling intento {intento}: {e.__class__.__name__}: {str(e)[:70]}")
+            # un challenge colgado suele soltarse al reintentar con la cookie
+            # ya puesta; si el 2º intento también falla, la sección se corta
     return None
 
 

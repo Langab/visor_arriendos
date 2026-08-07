@@ -359,6 +359,28 @@ def escribir_salidas(listings: list[dict], temporal: dict | None = None):
     print(f"✔ {config.VIEWER_DATA_JS}")
 
 
+def _fuente_colapsada(listings: list[dict]) -> bool:
+    """True si Portal Inmobiliario (la fuente principal) trae MUCHO menos que
+    en el master anterior: eso es señal de bloqueo anti-bot, no de mercado.
+    En ese caso conviene conservar la base anterior antes que publicar una
+    foto rota (cientos de 'desaparecidos' falsos en el análisis temporal)."""
+    if not os.path.exists(config.MASTER_JSON):
+        return False
+    try:
+        prev = json.load(open(config.MASTER_JSON, encoding="utf-8"))
+    except Exception:
+        return False
+    prev_pi = sum(1 for l in prev if l.get("fuente") == "portalinmobiliario")
+    ahora_pi = sum(1 for l in listings if l.get("fuente") == "portalinmobiliario")
+    if prev_pi >= 50 and ahora_pi < prev_pi * 0.3:
+        print(f"⚠ Portal Inmobiliario trajo {ahora_pi} avisos y el master anterior "
+              f"tenía {prev_pi}: huele a bloqueo anti-bot, no a mercado.")
+        print("  Conservo la base anterior (no escribo salidas ni foto del día). "
+              "Se reintenta en la próxima corrida.")
+        return True
+    return False
+
+
 def consolidar(geo: bool = True, snapshot: bool = True):
     print("\n=== Consolidando fuentes ===")
     listings = cargar_raw()
@@ -366,6 +388,8 @@ def consolidar(geo: bool = True, snapshot: bool = True):
     listings = filtrar_invalidos(listings)
     listings = deduplicar(listings)
     print(f"Tras deduplicar: {len(listings)}")
+    if _fuente_colapsada(listings):
+        return []
     if geo:
         listings = geocode.geocodificar(listings)
     listings = enriquecer(listings)
