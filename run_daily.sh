@@ -9,7 +9,10 @@
 # ---------------------------------------------------------------------------
 set -o pipefail
 
-PROY="/Users/langa/Library/Mobile Documents/com~apple~CloudDocs/Proyectos_propios/visor_arriendos"
+# La carpeta del proyecto es donde vive ESTE script (funciona igual en la
+# copia de iCloud y en el clon de automatización ~/Proyectos_automaticos,
+# que existe porque launchd no puede ejecutar nada dentro de iCloud por TCC).
+PROY="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$PROY" || exit 1
 
 # rutas necesarias (anaconda para python, homebrew para git/gh, camoufox, etc.)
@@ -17,6 +20,11 @@ export PATH="/Users/langa/anaconda3/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbi
 
 LOG="$PROY/data/cron.log"
 echo "========== $(date '+%Y-%m-%d %H:%M:%S') ==========" >> "$LOG"
+
+# 0) Traer lo último pusheado (código y datos), para que el clon de
+#    automatización corra siempre la versión vigente del pipeline.
+git pull --ff-only origin master >> "$LOG" 2>&1 || \
+    echo "(pull falló o hay divergencia: sigo con lo local)" >> "$LOG"
 
 # 1) Pipeline: PI + Chilepropiedades + Yapo, consolida y saca la foto del día.
 #    (--enrich agrega gastos comunes/antigüedad reales a los avisos nuevos; usa

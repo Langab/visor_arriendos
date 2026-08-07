@@ -114,8 +114,15 @@ propiedad) y corre `run_all.py`: se integran solos al visor.
 Corre solo todos los días a las **10:00**, saca la foto del día y **sube los
 cambios a GitHub** (así revisas el visor sin correr nada). Usa `launchd`.
 
-- Script: `run_daily.sh` (pipeline + commit + push).
+- Script: `run_daily.sh` (pull + pipeline + commit + push).
 - Agenda: `~/Library/LaunchAgents/com.visorarriendos.daily.plist`.
+- **Ojo**: launchd NO puede ejecutar nada dentro de iCloud Drive (TCC de macOS
+  lo bloquea con "Operation not permitted"). Por eso el agente apunta a un
+  **clon de automatización** en `~/Proyectos_automaticos/visor_arriendos`, que
+  hace `git pull` al empezar cada corrida y luego pushea los datos del día.
+  Esta copia de iCloud sigue siendo tu copia de trabajo: edita aquí, haz
+  `git push`, y el clon recoge los cambios en la próxima corrida (o haz
+  `git pull` aquí para traerte los datos que el clon subió).
 
 ```bash
 # activar / reactivar
