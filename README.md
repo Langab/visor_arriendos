@@ -177,8 +177,9 @@ Tercer visor, para Juan Rozas (1 persona · **2 dormitorios · 1 baño** ·
 Electrodomésticos ("El Frío Misterio"): al abrirlo suena la canción. Incluye
 pestaña **Método** con las notas metodológicas del pipeline completo (scraping,
 deduplicación, oportunidades de precio, análisis temporal). Mismo esquema:
-`juan_rozas/run_all.py` reusa el pipeline con `juan_rozas/config.py`, y
-`run_daily.sh` lo corre al final. Visor online:
+`juan_rozas/run_all.py` reusa el pipeline con `juan_rozas/config.py`, pero
+NO va en la corrida diaria: se actualiza a mano cuando haga falta
+(`cd juan_rozas && python3 run_all.py --enrich` + commit y push). Visor online:
 **https://langab.github.io/visor_arriendos/juan_rozas/** ·
 Detalles en [juan_rozas/README.md](juan_rozas/README.md).
 

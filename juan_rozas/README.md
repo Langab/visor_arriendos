@@ -10,7 +10,8 @@ Lastarria · Salvador · Barrio Italia · Manuel Montt), con estos criterios:
 - Vive una persona
 
 **Visor online:** https://langab.github.io/visor_arriendos/juan_rozas/
-(se actualiza solo con la corrida diaria del proyecto principal)
+(se actualiza **a mano** cuando haga falta: `python3 run_all.py --enrich`
+y luego commit + push — no va en la corrida diaria de las 10:00)
 
 La estética (y la música que suena al abrirlo — sí, suena música) es un
 homenaje a **Electrodomésticos** y su *El Frío Misterio*: frío nocturno de
@@ -66,5 +67,5 @@ visores automáticamente.
   día), más la vista **Método** con las notas metodológicas completas.
 - ★ favoritas y ✓ contactadas se guardan en el navegador de quien lo mira
   (claves `juanrozas_*`, independientes de los otros visores).
-- La actualización diaria de las 10:00 (`../run_daily.sh`) corre también este
-  pipeline y sube el resultado a GitHub Pages.
+- Este visor NO va en la corrida diaria: se actualiza a mano cuando haga
+  falta (comando de arriba) y el push publica el resultado en GitHub Pages.
