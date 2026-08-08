@@ -70,7 +70,10 @@ USER_AGENT = (
 )
 REQUEST_TIMEOUT = 25
 PAUSA_ENTRE_REQUESTS = 1.5
-MAX_PAGINAS_POR_COMUNA = 5
+# Más profundo que los otros visores: Chilepropiedades se corta solo cuando
+# se acaban los avisos, y con PI a veces bloqueado conviene exprimir las
+# fuentes que sí responden. (También profundiza PI cuando está disponible.)
+MAX_PAGINAS_POR_COMUNA = 15
 MAX_PAGINAS_POR_BARRIO = 8
 
 # Búsqueda por BARRIO en Portal Inmobiliario (mismos slugs del visor principal).
