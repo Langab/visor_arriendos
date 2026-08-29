@@ -19093,5 +19093,14 @@
     "superficie_util_m2": 39,
     "superficie_total_m2": 39,
     "corredor": true
+  },
+  "0738c70da8c2fe05": {
+    "gastos_comunes_clp": 88000,
+    "admite_mascotas": true,
+    "amoblado": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "orientacion": "N",
+    "corredor": true
   }
 }
