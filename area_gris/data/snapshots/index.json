@@ -226,5 +226,17 @@
     "nuevos": 213,
     "bajaron_precio": 9,
     "subieron_precio": 14
+  },
+  {
+    "fecha": "2026-08-30_1405",
+    "total": 832,
+    "match_perfecto": 38,
+    "dentro_presupuesto": 94,
+    "tres_dorms": 804,
+    "en_barrio": 417,
+    "precio_mediano": 420000,
+    "nuevos": 117,
+    "bajaron_precio": 7,
+    "subieron_precio": 14
   }
 ]
