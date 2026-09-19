@@ -26906,5 +26906,97 @@
     "superficie_util_m2": 29,
     "superficie_total_m2": 29,
     "corredor": true
+  },
+  "a451ffc306511f21": {
+    "gastos_comunes_clp": 40000,
+    "admite_mascotas": false,
+    "amoblado": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "orientacion": "SO",
+    "corredor": true
+  },
+  "8f6d2108c7b94b96": {
+    "gastos_comunes_clp": 65000,
+    "admite_mascotas": true,
+    "amoblado": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "orientacion": "P",
+    "superficie_util_m2": 22,
+    "superficie_total_m2": 22,
+    "corredor": true
+  },
+  "898f06f10901c7bc": {
+    "gastos_comunes_clp": 55000,
+    "admite_mascotas": true,
+    "amoblado": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 21,
+    "orientacion": "O",
+    "superficie_util_m2": 23,
+    "superficie_total_m2": 23,
+    "corredor": true
+  },
+  "759512c68542b3b1": {
+    "gastos_comunes_clp": 70000,
+    "antiguedad_anios": 0,
+    "admite_mascotas": false,
+    "amoblado": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 5,
+    "orientacion": "SP",
+    "superficie_util_m2": 24,
+    "superficie_total_m2": 28,
+    "corredor": true
+  },
+  "19681aff51db6591": {
+    "gastos_comunes_clp": 45000,
+    "admite_mascotas": false,
+    "amoblado": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "orientacion": "P",
+    "corredor": true
+  },
+  "1670415f7b7c88c3": {
+    "gastos_comunes_clp": 70000,
+    "antiguedad_anios": 24,
+    "admite_mascotas": true,
+    "amoblado": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 18,
+    "orientacion": "P",
+    "superficie_util_m2": 30,
+    "superficie_total_m2": 30,
+    "corredor": true
+  },
+  "8615eeda28789d84": {
+    "gastos_comunes_clp": 75000,
+    "antiguedad_anios": 10,
+    "admite_mascotas": false,
+    "amoblado": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 7,
+    "orientacion": "O",
+    "superficie_util_m2": 27,
+    "superficie_total_m2": 32,
+    "corredor": true
+  },
+  "e2c1cb821cfc606f": {
+    "gastos_comunes_clp": 90000,
+    "admite_mascotas": true,
+    "amoblado": false,
+    "estacionamientos": 0,
+    "bodegas": 0,
+    "piso": 1,
+    "orientacion": "N",
+    "superficie_util_m2": 38,
+    "superficie_total_m2": 39,
+    "corredor": true
   }
 }
