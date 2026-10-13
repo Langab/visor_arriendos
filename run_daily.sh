@@ -50,4 +50,7 @@ else
         echo "✔ Subido a GitHub." >> "$LOG" || \
         echo "⚠ Falló el push (revisa credenciales del llavero)." >> "$LOG"
 fi
+# 3c) Visor principal también en Cloudflare Pages: https://visorarriendos.pages.dev
+bash publicar.sh >> "$LOG" 2>&1 || \
+    echo "⚠ Falló la publicación del visor principal en Cloudflare." >> "$LOG"
 echo "Fin: $(date '+%H:%M:%S')" >> "$LOG"

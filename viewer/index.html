@@ -2,223 +2,310 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Visor de Arriendos · Santiago</title>
-
-  <!-- Leaflet (mapa con OpenStreetMap, sin API key) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="style.css?v=12" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Visor de Arriendos · Bustamante a Manuel Montt</title>
+  <meta name="description" content="Departamentos de 3 dormitorios en arriendo en Parque Bustamante, Lastarria, Salvador, Barrio Italia y Manuel Montt: hasta $800.000 con gastos comunes, actualizado todos los días." />
+  <meta name="theme-color" content="#203f33" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='14' fill='%23203f33'/%3E%3Cpath d='M20 50V30a12 12 0 0 1 24 0v20z' fill='%23c4623f'/%3E%3C/svg%3E" />
+  <link rel="preload" href="fuentes/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fuentes/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css?v=13" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <!-- los datos los genera consolidate.py -->
+  <script defer src="data.js"></script>
+  <script defer src="app.js?v=13"></script>
 </head>
 <body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><path d="M7 7h.01"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+  </svg>
+  <a class="skip" href="#resultados">Saltar a los resultados</a>
+
   <!-- ====================== ENCABEZADO ====================== -->
   <header class="topbar">
     <div class="brand">
-      <div class="logo">🏠</div>
+      <div class="logo" aria-hidden="true"></div>
       <div>
         <h1>Visor de Arriendos</h1>
-        <p class="sub">Santiago · Bustamante · Lastarria · Salvador · Barrio Italia · Manuel Montt</p>
+        <p class="sub">Bustamante · Lastarria · Salvador · Barrio Italia · Manuel Montt</p>
       </div>
     </div>
-
-    <div class="stats" id="stats"><!-- inyectado por JS --></div>
-
-    <div class="view-toggle" id="view-toggle">
-      <button id="btn-lista" class="active" data-view="lista">▤ Lista</button>
-      <button id="btn-mapa" data-view="mapa">◉ Mapa</button>
-      <button id="btn-metricas" data-view="metricas">▰ Métricas</button>
-      <button id="btn-ofertas" data-view="ofertas">💎 Ofertas</button>
-      <button id="btn-temporal" data-view="temporal">↗ Análisis temporal</button>
-    </div>
+    <p class="busqueda">
+      <span>3 dormitorios <small>o 2 amplios</small></span>
+      <span>hasta $800.000 <small>con gastos comunes</small></span>
+    </p>
+    <div class="stats" id="stats" aria-label="Resumen"></div>
   </header>
 
-  <!-- Banner de última actualización -->
-  <div class="update-bar" id="update-bar"><!-- JS --></div>
+  <div class="tabs-row">
+    <div class="tabs" id="view-toggle" role="tablist" aria-label="Vistas">
+      <button type="button" class="tab" role="tab" id="tab-lista" data-view="lista" aria-controls="grid" aria-selected="true"><svg class="i" aria-hidden="true"><use href="#i-list"/></svg>Lista</button>
+      <button type="button" class="tab" role="tab" id="tab-mapa" data-view="mapa" aria-controls="map" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-map"/></svg>Mapa</button>
+      <button type="button" class="tab" role="tab" id="tab-metricas" data-view="metricas" aria-controls="metrics" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-chart"/></svg>Métricas</button>
+      <button type="button" class="tab" role="tab" id="tab-ofertas" data-view="ofertas" aria-controls="ofertas" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-tag"/></svg>Ofertas</button>
+      <button type="button" class="tab" role="tab" id="tab-temporal" data-view="temporal" aria-controls="temporal" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-trend"/></svg>Día a día</button>
+      <button type="button" class="tab" role="tab" id="tab-metodo" data-view="metodo" aria-controls="metodo" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-book"/></svg>Método</button>
+    </div>
+  </div>
+
+  <div class="update-bar" id="update-bar"></div>
 
   <div class="layout">
+    <div class="velo hidden" id="velo"></div>
+
     <!-- ====================== FILTROS ====================== -->
-    <aside class="filters" id="filters">
+    <aside class="filters" id="filters" aria-labelledby="filtros-titulo">
       <div class="filters-head">
-        <h2>Filtros</h2>
-        <button id="reset" class="link">Limpiar</button>
+        <h2 id="filtros-titulo">Filtros</h2>
+        <button type="button" id="reset" class="link">Limpiar</button>
+        <button type="button" class="icon-btn cerrar" id="cerrar-filtros" aria-label="Cerrar filtros"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></button>
       </div>
 
-      <!-- BOTÓN MATCH PERFECTO: aplica todo lo que buscamos de un golpe -->
-      <button id="match-btn" class="match-btn">
-        <span class="match-emoji">🎯</span>
-        <span class="match-txt">
-          <b>Match perfecto</b>
-          <small>3 piezas (o 2D amplio) · barrio ideal · ≤ $800.000</small>
-        </span>
-        <span class="match-count" id="match-count">0</span>
-      </button>
+      <div class="filters-body">
+        <!-- MATCH PERFECTO: aplica todo lo que buscamos de un golpe -->
+        <button type="button" id="match-btn" class="match-btn" aria-pressed="false">
+          <span class="match-mark" aria-hidden="true"></span>
+          <span class="match-txt">
+            <b>Match perfecto</b>
+            <small>3 piezas (o 2D de 68 m² o más) · barrio objetivo · hasta $800.000 total</small>
+          </span>
+          <span class="match-count" id="match-count">0</span>
+        </button>
 
-      <label class="field">
-        <span>Buscar texto</span>
-        <input type="search" id="f-texto" placeholder="calle, edificio, barrio…" />
-      </label>
+        <label class="field">
+          <span>Buscar</span>
+          <input type="search" id="f-texto" placeholder="calle, edificio, barrio…" autocomplete="off" enterkeyhint="search" />
+        </label>
 
-      <label class="field">
-        <span>Arriendo máx. <strong id="f-arriendo-val"></strong></span>
-        <input type="range" id="f-arriendo" min="200000" max="1000000" step="25000" value="1000000" />
-        <small class="hint">Solo el arriendo (valor publicado, sin gastos comunes)</small>
-      </label>
-
-      <label class="field">
-        <span>Gastos comunes máx. <strong id="f-gc-val"></strong></span>
-        <input type="range" id="f-gc" min="0" max="400000" step="10000" value="400000" />
-        <small class="hint">Solo los gastos comunes (reales si el aviso los trae, si no estimados)</small>
-      </label>
-
-      <label class="field">
-        <span>Total mensual máx. <strong id="f-precio-val"></strong></span>
-        <input type="range" id="f-precio" min="300000" max="1200000" step="25000" />
-        <small class="hint">Arriendo + gastos comunes (el valor sumado)</small>
-      </label>
-
-      <label class="field">
-        <span>Dormitorios mínimos</span>
-        <div class="seg" id="f-dorm">
-          <button data-v="0" class="active">Todos</button>
-          <button data-v="1">1+</button>
-          <button data-v="2">2+</button>
-          <button data-v="3">3+</button>
-        </div>
-      </label>
-
-      <label class="field">
-        <span>Formato de precio del arriendo</span>
-        <div class="seg" id="f-moneda">
-          <button data-v="" class="active">Todos</button>
-          <button data-v="UF">UF</button>
-          <button data-v="CLP">Pesos $</button>
-        </div>
-      </label>
-
-      <fieldset class="field">
-        <span>Comuna</span>
-        <div class="chips" id="f-comuna"><!-- JS --></div>
-      </fieldset>
-
-      <fieldset class="field">
-        <span>Barrio objetivo</span>
-        <div class="chips" id="f-barrio"><!-- JS --></div>
-      </fieldset>
-
-      <label class="field">
-        <span>Distancia máx. al metro <strong id="f-metro-val"></strong></span>
-        <input type="range" id="f-metro" min="200" max="2000" step="100" value="2000" />
-        <small class="hint">Caminando a la estación más cercana</small>
-      </label>
-
-      <label class="field">
-        <span>Superficie mínima <strong id="f-sup-val"></strong></span>
-        <input type="range" id="f-sup" min="0" max="150" step="5" value="0" />
-        <small class="hint">m² (útiles o totales según el aviso)</small>
-      </label>
-
-      <label class="field">
-        <span>Antigüedad del edificio</span>
-        <select id="f-antiguedad">
-          <option value="">Cualquiera</option>
-          <option value="30+">Más de 30 años (lo que buscan)</option>
-          <option value="20+">Más de 20 años</option>
-          <option value="0-10">Nuevo (menos de 10 años)</option>
-          <option value="dato">Solo con dato de antigüedad</option>
-        </select>
-      </label>
-
-      <fieldset class="field">
-        <span>Fuente</span>
-        <div class="chips" id="f-fuente"><!-- JS --></div>
-      </fieldset>
-
-      <fieldset class="field temporal-filters">
-        <span>↗ Análisis temporal</span>
-        <div class="switches">
-          <label class="switch">
-            <input type="checkbox" id="f-nuevas" />
-            <span>Solo nuevas ✦ <em id="f-nuevas-n"></em></span>
+        <p class="grupo-titulo">Precio</p>
+        <div class="grupo-filtros">
+          <label class="field">
+            <span>Total mensual máx.: <strong class="val" id="f-precio-val"></strong></span>
+            <input type="range" id="f-precio" min="300000" max="1200000" step="25000" value="800000" />
+            <small class="hint">Arriendo + gastos comunes. El tope de la búsqueda es $800.000.</small>
           </label>
-          <label class="switch">
-            <input type="checkbox" id="f-bajaron" />
-            <span>Solo con baja de precio ▼ <em id="f-bajaron-n"></em></span>
+          <label class="field">
+            <span>Arriendo máx.: <strong class="val" id="f-arriendo-val"></strong></span>
+            <input type="range" id="f-arriendo" min="200000" max="1000000" step="25000" value="1000000" />
+            <small class="hint">Solo el valor publicado, sin gastos comunes.</small>
+          </label>
+          <label class="field">
+            <span>Gastos comunes máx.: <strong class="val" id="f-gc-val"></strong></span>
+            <input type="range" id="f-gc" min="0" max="400000" step="10000" value="400000" />
+            <small class="hint">Reales si el aviso los trae; si no, se estiman en $120.000.</small>
+          </label>
+          <fieldset class="field">
+            <legend>Moneda del arriendo</legend>
+            <div class="seg seg-3" id="f-moneda">
+              <button type="button" data-v="" aria-pressed="true" data-default>Todas</button>
+              <button type="button" data-v="UF" aria-pressed="false">UF</button>
+              <button type="button" data-v="CLP" aria-pressed="false">Pesos</button>
+            </div>
+          </fieldset>
+        </div>
+
+        <p class="grupo-titulo">El departamento</p>
+        <div class="grupo-filtros">
+          <fieldset class="field">
+            <legend>Dormitorios mínimos</legend>
+            <div class="seg" id="f-dorm">
+              <button type="button" data-v="" aria-pressed="true" data-default>Todos</button>
+              <button type="button" data-v="1" aria-pressed="false">1+</button>
+              <button type="button" data-v="2" aria-pressed="false">2+</button>
+              <button type="button" data-v="3" aria-pressed="false">3+</button>
+            </div>
+          </fieldset>
+          <div class="switches">
+            <label class="switch"><input type="checkbox" id="f-mascotas" /><span>Admite mascotas</span></label>
+            <label class="switch"><input type="checkbox" id="f-mariposa" /><span>Solo tipo mariposa</span></label>
+          </div>
+          <label class="field">
+            <span>Superficie mínima: <strong class="val" id="f-sup-val"></strong></span>
+            <input type="range" id="f-sup" min="0" max="150" step="5" value="0" />
+            <small class="hint">m² útiles o totales, según lo que publique el aviso.</small>
+          </label>
+          <label class="field">
+            <span>Antigüedad del edificio</span>
+            <select id="f-antiguedad">
+              <option value="" selected>Cualquiera</option>
+              <option value="30+">Más de 30 años (lo que buscamos)</option>
+              <option value="20+">Más de 20 años</option>
+              <option value="0-10">Nuevo (menos de 10 años)</option>
+              <option value="dato">Solo con dato de antigüedad</option>
+            </select>
           </label>
         </div>
-      </fieldset>
 
-      <div class="switches">
-        <label class="switch">
-          <input type="checkbox" id="f-presupuesto" />
-          <span>Solo dentro de presupuesto</span>
-        </label>
-        <label class="switch">
-          <input type="checkbox" id="f-barrio-obj" />
-          <span>Solo en barrios objetivo</span>
-        </label>
-        <label class="switch">
-          <input type="checkbox" id="f-mascotas" />
-          <span>Admite mascotas 🐾</span>
-        </label>
-        <label class="switch">
-          <input type="checkbox" id="f-mariposa" />
-          <span>Solo tipo mariposa 🦋</span>
-        </label>
-        <label class="switch">
-          <input type="checkbox" id="f-ofertas" />
-          <span>Solo ofertas 💎 (bajo su grupo) <em id="f-ofertas-n"></em></span>
-        </label>
-        <label class="switch">
-          <input type="checkbox" id="f-favoritos" />
-          <span>Solo favoritas ⭐</span>
-        </label>
-        <label class="switch">
-          <input type="checkbox" id="f-ocultar-contactadas" />
-          <span>Ocultar contactadas</span>
+        <p class="grupo-titulo">Ubicación</p>
+        <div class="grupo-filtros">
+          <div class="switches">
+            <label class="switch"><input type="checkbox" id="f-barrio-obj" /><span>Solo en barrios objetivo</span></label>
+          </div>
+          <fieldset class="field"><legend>Barrio</legend><div class="chips" id="f-barrio"></div></fieldset>
+          <fieldset class="field"><legend>Comuna</legend><div class="chips" id="f-comuna"></div></fieldset>
+          <label class="field">
+            <span>Distancia máx. al metro: <strong class="val" id="f-metro-val"></strong></span>
+            <input type="range" id="f-metro" min="200" max="2000" step="100" value="2000" />
+            <small class="hint">En línea recta a la estación más cercana.</small>
+          </label>
+        </div>
+
+        <p class="grupo-titulo">Seguimiento</p>
+        <div class="grupo-filtros">
+          <fieldset class="field temporal-filters">
+            <legend>Desde la última actualización</legend>
+            <div class="switches">
+              <label class="switch"><input type="checkbox" id="f-nuevas" /><span>Solo nuevas <em id="f-nuevas-n"></em></span></label>
+              <label class="switch"><input type="checkbox" id="f-bajaron" /><span>Solo las que bajaron de precio <em id="f-bajaron-n"></em></span></label>
+            </div>
+          </fieldset>
+          <div class="switches">
+            <label class="switch"><input type="checkbox" id="f-presupuesto" /><span>Solo dentro de presupuesto</span></label>
+            <label class="switch"><input type="checkbox" id="f-ofertas" /><span>Solo ofertas (bajo sus similares) <em id="f-ofertas-n"></em></span></label>
+            <label class="switch"><input type="checkbox" id="f-favoritos" /><span>Solo favoritas</span></label>
+            <label class="switch"><input type="checkbox" id="f-ocultar-contactadas" /><span>Ocultar contactadas</span></label>
+          </div>
+          <fieldset class="field"><legend>Portal</legend><div class="chips" id="f-fuente"></div></fieldset>
+        </div>
+
+        <label class="field">
+          <span>Ordenar por</span>
+          <select id="f-orden">
+            <option value="relevancia" selected>Lo que más calza</option>
+            <option value="precio-asc">Total: menor a mayor</option>
+            <option value="precio-desc">Total: mayor a menor</option>
+            <option value="nuevas">Nuevas primero</option>
+            <option value="oferta-asc">Más baratas que sus similares</option>
+            <option value="metro-asc">Más cerca del metro</option>
+            <option value="m2-desc">Más grandes</option>
+            <option value="antiguedad-desc">Edificio más antiguo</option>
+          </select>
         </label>
       </div>
 
-      <label class="field">
-        <span>Ordenar por</span>
-        <select id="f-orden">
-          <option value="relevancia">Relevancia</option>
-          <option value="precio-asc">Total: menor a mayor</option>
-          <option value="precio-desc">Total: mayor a menor</option>
-          <option value="m2-desc">Superficie: mayor</option>
-          <option value="metro-asc">Cercanía al metro</option>
-          <option value="antiguedad-desc">Antigüedad: mayor</option>
-          <option value="oferta-asc">💎 Más baratas vs su grupo</option>
-        </select>
-      </label>
+      <div class="filters-foot">
+        <button type="button" class="btn primary" id="ver-resultados">Ver resultados</button>
+      </div>
     </aside>
 
     <!-- ====================== CONTENIDO ====================== -->
-    <main class="content">
+    <main class="content" id="resultados" tabindex="-1">
       <div class="result-bar">
-        <span id="count"></span>
-        <span class="legend">
-          <i class="dot good"></i> calza ·
-          <i class="dot mid"></i> parcial ·
-          <i class="dot bad"></i> fuera ·
-          <i class="dot done"></i> contactada
+        <span id="count" aria-live="polite"></span>
+        <span class="legend" aria-hidden="true">
+          <span><i class="dot match"></i>match</span>
+          <span><i class="dot good"></i>calza</span>
+          <span><i class="dot mid"></i>parcial</span>
+          <span><i class="dot bad"></i>fuera</span>
+          <span><i class="dot done"></i>contactada</span>
         </span>
       </div>
-
-      <section id="grid" class="grid"><!-- tarjetas --></section>
-      <section id="map" class="map hidden"></section>
-      <section id="metrics" class="metrics hidden"><!-- dashboard --></section>
-      <section id="ofertas" class="metrics hidden"><!-- análisis por características --></section>
-      <section id="temporal" class="temporal hidden"><!-- análisis temporal --></section>
+      <section id="grid" class="grid" role="tabpanel" aria-labelledby="tab-lista"></section>
+      <section id="map" class="map hidden" role="tabpanel" aria-labelledby="tab-mapa"></section>
+      <section id="metrics" class="hidden" role="tabpanel" aria-labelledby="tab-metricas"></section>
+      <section id="ofertas" class="hidden" role="tabpanel" aria-labelledby="tab-ofertas"></section>
+      <section id="temporal" class="hidden" role="tabpanel" aria-labelledby="tab-temporal"></section>
+      <section id="metodo" class="hidden" role="tabpanel" aria-labelledby="tab-metodo"></section>
     </main>
   </div>
 
-  <!-- los datos los genera consolidate.py -->
-  <script src="data.js"></script>
-  <script src="app.js?v=12"></script>
+  <!-- barra inferior en el celular -->
+  <div class="dock" id="dock">
+    <button type="button" id="abrir-filtros" aria-controls="filters" aria-expanded="false">
+      <svg class="i" aria-hidden="true"><use href="#i-sliders"/></svg>Filtros <span class="dock-n" id="dock-n"></span>
+    </button>
+    <button type="button" id="dock-match" aria-pressed="false">Match <span class="dock-n" id="dock-match-n"></span></button>
+  </div>
+
+  <template id="tpl-metodo">
+    <div class="metrics-grid">
+      <div class="metric-card wide">
+        <span class="met-tag">cómo se arma</span>
+        <h3>Qué es esto y de dónde salen los datos</h3>
+        <p class="met-intro">Este visor busca un departamento con <b>3 dormitorios</b> (2 grandes y 1 oficina) o un
+          2 dormitorios amplio, con tope de <b>$800.000 al mes con gastos comunes</b>, en el eje Parque Bustamante ·
+          Lastarria · Salvador · Barrio Italia · Manuel Montt. Un robot recorre los portales todos los días a las
+          10:00, junta todo en una base y la analiza. Lo que ves es la foto del <b data-meta="generado"></b>.</p>
+      </div>
+      <div class="metric-card">
+        <h3>1 · Fuentes</h3>
+        <ul class="met">
+          <li><b>Portal Inmobiliario</b> (incluye lo de MercadoLibre): la fuente principal. Se recorren Providencia,
+            Santiago y Ñuñoa, más los barrios objetivo uno por uno. Cuando aparece su muro anti-robots, la lectura
+            sigue con un navegador sigiloso.</li>
+          <li><b>Chilepropiedades</b>: segunda fuente, HTML simple.</li>
+          <li><b>Yapo</b>: hoy no entrega avisos (cambió su sitio).</li>
+          <li><b>TocToc, GoPlaceIt</b>: pendientes. <b>Facebook</b>: solo a mano, por planilla.</li>
+        </ul>
+        <p class="met">Pausa de 1,5 s entre páginas. Se piden arriendos de hasta $850.000.</p>
+      </div>
+      <div class="metric-card">
+        <h3>2 · El total y los gastos comunes</h3>
+        <p class="met">El tope se compara siempre contra <b>arriendo + gastos comunes</b>. Casi ningún listado
+          publica los GC: cuando la ficha los trae se usan los reales; si no, se estiman en <b>$120.000</b> y la
+          tarjeta dice «GC estimado».</p>
+        <p class="met">Los avisos en UF guardan el monto en UF y su equivalente en pesos con la UF del día
+          (<b data-meta="uf_valor"></b>).</p>
+      </div>
+      <div class="metric-card">
+        <h3>3 · El match perfecto</h3>
+        <div class="met-formula">3+ dormitorios (o 2D de 68 m² o más) · barrio objetivo · total ≤ $800.000</div>
+        <p class="met">Un 2 dormitorios de 68 m² o más cuenta porque el living alcanza para armar la oficina.</p>
+        <p class="met"><b>Calza</b> = presupuesto y 3+ dormitorios · <b>parcial</b> = solo presupuesto, o 2+
+          dormitorios aunque se pase · <b>fuera</b> = ni lo uno ni lo otro.</p>
+      </div>
+      <div class="metric-card">
+        <h3>4 · Mapa y metro</h3>
+        <p class="met">Las direcciones se ubican con OpenStreetMap, a nivel de calle. Si no se puede, el pin queda
+          en el centro del barrio y se ve translúcido. La distancia al metro es en línea recta a la estación más
+          cercana: una referencia, no la ruta caminando.</p>
+      </div>
+      <div class="metric-card wide">
+        <h3>5 · Ofertas: cuándo algo «está barato»</h3>
+        <ol class="met">
+          <li>Cada aviso entra a un grupo: <b>zona × dormitorios × baños × tramo de m²</b>.</li>
+          <li>El grupo necesita al menos 5 avisos; si no llega, se usa uno más amplio:
+            <div class="met-formula">barrio·D·B·m² → barrio·D·m² → comuna·D·m² → comuna·D</div></li>
+          <li>El precio típico es la <b>mediana</b> del grupo: un aviso mal publicado no la mueve.</li>
+          <li><b>Oferta</b> si está 10% o más bajo la mediana; <b>caro</b> si está 10% o más sobre. Se compara el
+            arriendo sin gastos comunes, porque muchos GC son estimados.</li>
+        </ol>
+        <p class="met">Una «oferta» del 25% a veces es un error de publicación o un interior oscuro: sirve para
+          saber dónde mirar primero, no para tasar.</p>
+      </div>
+      <div class="metric-card">
+        <h3>6 · Día a día</h3>
+        <p class="met">Cada corrida guarda una foto fechada (las últimas 30). Al compararla con la anterior se
+          marcan los <b>nuevos</b>, los que <b>bajaron o subieron</b> y los que <b>ya no están</b> (se arrendaron o
+          se bajaron). «Datos del» permite ver cualquier día guardado tal cual estaba.</p>
+      </div>
+      <div class="metric-card">
+        <h3>7 · Letra chica</h3>
+        <ul class="met">
+          <li>No es exhaustivo: faltan Yapo, TocToc y lo que solo está en Facebook.</li>
+          <li>Los avisos exageran: m², fotos viejas, «luminoso».</li>
+          <li>El precio publicado se negocia.</li>
+          <li>Si el computador que corre el robot está apagado a las 10:00, ese día no hay foto (arriba avisa si
+            los datos tienen más de un día).</li>
+          <li>Favoritas y contactadas quedan en este navegador: no se comparten entre teléfonos.</li>
+        </ul>
+      </div>
+    </div>
+  </template>
 </body>
 </html>
