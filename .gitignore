@@ -25,3 +25,6 @@ juan_rozas/data/*.log
 data/camoufox_profile/
 area_gris/data/camoufox_profile/
 juan_rozas/data/camoufox_profile/
+# caché local de wrangler (publicación en Cloudflare)
+.wrangler/
+**/.wrangler/
