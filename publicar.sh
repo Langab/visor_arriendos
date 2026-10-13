@@ -25,9 +25,10 @@ if [ -n "$DUPLICADOS" ]; then
 fi
 [ -s "$SITIO/data.js" ] || { echo "⚠ Falta $SITIO/data.js: corre la extracción antes de publicar."; exit 1; }
 
-# el proyecto de Pages se crea la primera vez
+# el proyecto de Pages se crea la primera vez (--force: si no, wrangler 4.14x
+# lo manda a Workers y falla; una vez creado, todo lo demás va directo a Pages)
 if ! npx --yes "$WRANGLER" pages project list 2>/dev/null | grep -qw "$PROYECTO"; then
-    npx --yes "$WRANGLER" pages project create "$PROYECTO" --production-branch main
+    npx --yes "$WRANGLER" pages project create "$PROYECTO" --production-branch main --force
 fi
 
 npx --yes "$WRANGLER" pages deploy "$SITIO" \
