@@ -22,5 +22,17 @@
     "nuevos": 0,
     "bajaron_precio": 0,
     "subieron_precio": 0
+  },
+  {
+    "fecha": "2026-11-14_2004",
+    "total": 1201,
+    "match_perfecto": 33,
+    "dentro_presupuesto": 680,
+    "tres_dorms": 440,
+    "en_barrio": 713,
+    "precio_mediano": 570000,
+    "nuevos": 0,
+    "bajaron_precio": 0,
+    "subieron_precio": 0
   }
 ]

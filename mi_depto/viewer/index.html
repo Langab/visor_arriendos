@@ -13,11 +13,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=3" />
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
   <script defer src="data.js"></script>
-  <script defer src="app.js?v=2"></script>
+  <script defer src="app.js?v=3"></script>
 </head>
 <body data-modo="mio">
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -207,6 +207,7 @@
           <span>Ordenar por</span>
           <select id="f-orden">
             <option value="relevancia" selected>Lo que más calza</option>
+            <option value="ejemplo">Parecidos al ejemplo primero</option>
             <option value="precio-asc">Total: menor a mayor</option>
             <option value="zona-asc">Más cerca de Lastarria o Diag. Paraguay</option>
             <option value="nuevas">Nuevas primero</option>
@@ -272,6 +273,15 @@
         </ul>
         <p class="met">Lo que ves es la foto del <b data-meta="generado"></b>.</p>
       </div>
+      <div class="metric-card wide">
+        <h3>El ejemplo: Ismael Valdés Vergara 514</h3>
+        <p class="met">El aviso de referencia: 2 dormitorios (uno en suite), 2 baños, 50 m², segundo piso de un edificio
+          usado frente a Bellas Artes, $470.000 + unos $60.000 de gastos comunes. Las tarjetas que se le parecen
+          llevan <b>★ como el ejemplo</b>: son match (2D, ≤ $600.000, a ≤ 600 m de Lastarria o Diag. Paraguay) y además
+          tienen <b>2 baños y 45 m² o más</b>. «Ordenar por» tiene la opción de verlas primero.</p>
+        <p class="met">Ese aviso enseñó algo: Chilepropiedades no publica los gastos comunes en el listado, pero muchos
+          los dicen en la descripción. Ahora se abre la ficha de los que podrían calzar y se usa el valor real.</p>
+      </div>
       <div class="metric-card">
         <h3>1 · La zona ideal</h3>
         <p class="met">Del mapa de OpenStreetMap se sacaron dos trazados: la <b>calle Lastarria</b> desde la Alameda
@@ -290,14 +300,14 @@
           <b>Calza</b> = 2D dentro del tope pero lejos · <b>parcial</b> = dentro del tope con menos de 2 dormitorios ·
           <b>fuera</b> = se pasa del tope.</p>
         <p class="met">«Lo que más calza» ordena por puntaje: presupuesto (35), 2+ dormitorios (30), zona ideal (20, +4 si es a
-          ≤ 300 m; cerca, 12; otro barrio, 8), metro a ≤ 500 m (3) y match (8).</p>
+          ≤ 300 m; cerca, 12; otro barrio, 8), 2 baños (3), 45+ m² (3), metro a ≤ 500 m (3) y match (8).</p>
         <p class="met">Ojo con los edificios de renta que publican «1 a 3 dormitorios, desde $X»: ese precio es el
           de la unidad más chica (la tarjeta dice «precio desde»).</p>
       </div>
       <div class="metric-card">
         <h3>3 · Fuentes y gastos comunes</h3>
         <p class="met">Usa lo que scrapea el visor principal (Portal Inmobiliario con MercadoLibre y
-          Chilepropiedades, arriendos de hasta $850.000). Cuando el aviso no publica gastos comunes se estiman en
+          Chilepropiedades, arriendos de hasta $850.000). En Chilepropiedades se leen de la descripción de la ficha. Cuando no aparecen en ningún lado se estiman en
           <b>$100.000</b> (típico de un 2D en la zona) y la tarjeta dice «GC estimado». UF del día: <b data-meta="uf_valor"></b>.</p>
       </div>
       <div class="metric-card wide">

@@ -203,6 +203,7 @@
       const d = l.dormitorios;
       if (l.tipologias_dudosas) s.push(["tag-warn", `${dormTxt(l) || "?"} · dormitorios dudosos`]);
       else if (d != null) s.push(d >= 2 ? ["tag-ok", d + "D ✓"] : ["tag-no", fmtDorm(d)]);
+      if (l.parecido_ejemplo) s.push(["tag-zona", "★ como el ejemplo"]);
       if (l.sin_living) s.push(["tag-warn", "¿sin living?"]);
       if (l.banos) s.push(["", l.banos + "B"]);
       if (l.rango_tipologias && !l.tipologias_dudosas) s.push(["tag-warn", "precio «desde»"]);
@@ -235,7 +236,7 @@
         [m.length, "Match (Lastarria o Diag. Paraguay)", "hl"],
         [L.filter((x) => x.plan_b).length, "Plan B (otros barrios de siempre)"],
         [m.filter((x) => x.zona_dist_m <= 300).length, "Match a ≤ 300 m"],
-        [m.filter((x) => (x.banos || 0) >= 2).length, "Match con 2 baños"],
+        [m.filter((x) => x.parecido_ejemplo).length, "Como el ejemplo (2B · 45+ m²)"],
         [META.nuevos_desde_anterior || 0, "Nuevas desde la última actualización"],
         [L.filter((x) => x.admite_mascotas === true).length, "Admiten mascotas"],
       ];
@@ -368,6 +369,8 @@
       "precio-asc": (a, b) => tot(a) - tot(b),
       "precio-desc": (a, b) => (n0(b.total_estimado_clp) || 0) - (n0(a.total_estimado_clp) || 0),
       "pieza-asc": (a, b) => (a.por_pieza_clp ?? 9e9) - (b.por_pieza_clp ?? 9e9),
+      "ejemplo": (a, b) => (b.parecido_ejemplo ? 1 : 0) - (a.parecido_ejemplo ? 1 : 0)
+        || (b.relevancia || 0) - (a.relevancia || 0) || tot(a) - tot(b),
       "zona-asc": (a, b) => (a.zona_dist_m ?? 9e9) - (b.zona_dist_m ?? 9e9),
       "m2-desc": (a, b) => (b.superficie_m2 || 0) - (a.superficie_m2 || 0),
       "metro-asc": (a, b) => (a.metro_dist_m ?? 9e9) - (b.metro_dist_m ?? 9e9),

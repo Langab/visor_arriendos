@@ -158,6 +158,13 @@ def main():
     if not args.solo_consolidar:
         if not (args.desde_raiz and copiar_raw_de_la_raiz()):
             correr_scrapers()
+    # gastos comunes reales de Chilepropiedades (los dice la descripción)
+    try:
+        import enrich_cp
+        enrich_cp.main()
+    except Exception:
+        print("⚠ enrich_cp falló (sigo con GC estimados):")
+        traceback.print_exc()
     consolidate.consolidar(geo=not args.sin_geo, snapshot=not args.enrich)
     if args.enrich:
         print("\n" + "=" * 60 + "\nENRIQUECIENDO FICHAS (Playwright)\n" + "=" * 60)

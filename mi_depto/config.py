@@ -177,7 +177,11 @@ _RE_TITULO_1D = _re.compile(r"\b1\s*d\b|\b1\s*dorm|\b1\s*hab|\bestudio\b|\bstudi
 
 def AJUSTAR_LISTING(l: dict) -> None:
     """Match: 2+ dormitorios, ≤ $600.000 total y a ≤ 600 m de Lastarria o
-    Diagonal Paraguay. Plan B: lo mismo en otro barrio de siempre."""
+    Diagonal Paraguay. Plan B: lo mismo en otro barrio de siempre.
+
+    «Parecido al ejemplo» (el que mandó como referencia: Ismael Valdés
+    Vergara 514 — 2D, 2B, 50 m², $470.000 + GC $60.000, frente a Bellas
+    Artes): match con 2+ baños y 45 m² o más."""
     ref, dist = distancia_zona_ideal(l.get("lat"), l.get("lng"))
     if l.get("ubicacion_aprox"):
         ref, dist = None, None      # pin en el centro de la comuna: no sirve
@@ -208,6 +212,10 @@ def AJUSTAR_LISTING(l: dict) -> None:
     l["match_perfecto"] = base and l["zona_ideal"]
     l["plan_b"] = base and not l["zona_ideal"] and l["en_sector"]
 
+    banos2 = not l["tipologias_dudosas"] and (l.get("banos") or 0) >= 2
+    grande = (sup or 0) >= 45
+    l["parecido_ejemplo"] = bool(l["match_perfecto"] and banos2 and grande)
+
     score = 0
     if pres:
         score += 35
@@ -222,6 +230,10 @@ def AJUSTAR_LISTING(l: dict) -> None:
     elif l.get("en_barrio_objetivo"):
         score += 8
     if l.get("metro_dist_m") is not None and l["metro_dist_m"] <= 500:
+        score += 3
+    if banos2:
+        score += 3
+    if grande:
         score += 3
     if l["match_perfecto"]:
         score += 8

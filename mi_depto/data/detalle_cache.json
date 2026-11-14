@@ -73086,5 +73086,105 @@
     "superficie_util_m2": 40,
     "superficie_total_m2": 44,
     "corredor": true
+  },
+  "bc9aecc8deefdf24": {
+    "cp_revisado": true,
+    "gastos_comunes_clp": 110000
+  },
+  "9596e3d9e6001289": {
+    "cp_revisado": true,
+    "gastos_comunes_clp": 90000
+  },
+  "54e04d6ff2a31825": {
+    "cp_revisado": true
+  },
+  "55d009cd59d02725": {
+    "cp_revisado": true
+  },
+  "6bc36219a951ac85": {
+    "cp_revisado": true
+  },
+  "2b8fd42bb8a7905b": {
+    "cp_revisado": true,
+    "gastos_comunes_clp": 90000
+  },
+  "107dba89819b86f7": {
+    "cp_revisado": true,
+    "piso": 4
+  },
+  "bd3453f4d88156b2": {
+    "cp_revisado": true,
+    "gastos_comunes_clp": 60000,
+    "piso": 2
+  },
+  "75e688c84e2d9513": {
+    "cp_revisado": true
+  },
+  "8528632acbf9c0fb": {
+    "cp_revisado": true
+  },
+  "4f9e840622f62aba": {
+    "cp_revisado": true
+  },
+  "bf5a3696aa66ba97": {
+    "cp_revisado": true
+  },
+  "7d0cdfcdf32177ce": {
+    "cp_revisado": true
+  },
+  "88782a39aad08ee7": {
+    "cp_revisado": true,
+    "gastos_comunes_clp": 47000
+  },
+  "3cbab24e308c6aef": {
+    "cp_revisado": true
+  },
+  "e25d26a33906cbae": {
+    "cp_revisado": true
+  },
+  "706c0c06888b326e": {
+    "cp_revisado": true
+  },
+  "f0ebedd8a66e8a84": {
+    "cp_revisado": true,
+    "piso": 1
+  },
+  "87f237c227f4dec4": {
+    "cp_revisado": true
+  },
+  "3cbde62025551cb9": {
+    "cp_revisado": true
+  },
+  "2c584b08834b2c27": {
+    "cp_revisado": true
+  },
+  "370b32d69b20dc3c": {
+    "cp_revisado": true,
+    "gastos_comunes_clp": 70000
+  },
+  "895cbf103b3a9ff8": {
+    "cp_revisado": true
+  },
+  "b3d54999e865912e": {
+    "cp_revisado": true,
+    "gastos_comunes_clp": 90000
+  },
+  "2829e96e0de7a826": {
+    "cp_revisado": true
+  },
+  "1d83ead2843cccab": {
+    "cp_revisado": true
+  },
+  "39bdcafcb010b0cd": {
+    "cp_revisado": true
+  },
+  "51754beed3a28370": {
+    "cp_revisado": true
+  },
+  "6e2d4d97a6cb352d": {
+    "cp_revisado": true
+  },
+  "d0a9f0935ce75086": {
+    "cp_revisado": true
   }
 }
