@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Mi depto · Lastarria</title>
-  <meta name="description" content="Departamentos en arriendo cerca de Lastarria y Diagonal Paraguay: hasta $600.000 con gastos comunes, actualizado todos los días." />
+  <meta name="description" content="Departamentos con living y dos piezas cerca de Lastarria y Diagonal Paraguay: hasta $600.000 con gastos comunes, actualizado todos los días." />
   <meta name="theme-color" content="#ebe7e3" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='14' fill='%233a2b25'/%3E%3Crect x='20' y='18' width='24' height='28' rx='6' fill='%23c9a89a'/%3E%3C/svg%3E" />
@@ -13,11 +13,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=1" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
   <script defer src="data.js"></script>
-  <script defer src="app.js?v=1"></script>
+  <script defer src="app.js?v=2"></script>
 </head>
 <body data-modo="mio">
   <svg class="sprite" aria-hidden="true" focusable="false">
@@ -44,7 +44,7 @@
       <div class="logo" aria-hidden="true"></div>
       <div>
         <h1>MI DEPTO</h1>
-        <p class="sub">hasta $600.000 con GC · ideal Lastarria o Diagonal Paraguay</p>
+        <p class="sub">living + 2 piezas · hasta $600.000 con GC · ideal Lastarria o Diag. Paraguay</p>
       </div>
     </div>
     <div class="stats" id="stats" aria-label="Resumen"></div>
@@ -80,7 +80,7 @@
             <span class="match-emoji" aria-hidden="true"></span>
             <span class="match-txt">
               <b>Match</b>
-              <small>hasta $600.000 total · a 600 m o menos de Lastarria o Diagonal Paraguay</small>
+              <small>2+ dormitorios · hasta $600.000 total · a 600 m o menos de Lastarria o Diagonal Paraguay</small>
             </span>
             <span class="match-count" id="match-count">0</span>
           </button>
@@ -88,7 +88,7 @@
             <span class="match-emoji" aria-hidden="true"></span>
             <span class="match-txt">
               <b>Plan B · otros barrios</b>
-              <small>hasta $600.000 en los barrios de siempre (Bustamante, B. Italia, Providencia…)</small>
+              <small>2+ dormitorios · hasta $600.000 en los barrios de siempre (Bustamante, B. Italia, Providencia…)</small>
             </span>
             <span class="match-count" id="planb-count">0</span>
           </button>
@@ -114,7 +114,7 @@
           <label class="field">
             <span>Gastos comunes máx.: <strong class="val" id="f-gc-val"></strong></span>
             <input type="range" id="f-gc" min="0" max="200000" step="10000" value="200000" />
-            <small class="hint">Reales si el aviso los trae; si no, se estiman en $90.000.</small>
+            <small class="hint">Reales si el aviso los trae; si no, se estiman en $100.000.</small>
           </label>
           <fieldset class="field">
             <legend>Moneda del arriendo</legend>
@@ -131,10 +131,11 @@
           <fieldset class="field">
             <legend>Dormitorios</legend>
             <div class="seg" id="f-dorm">
-              <button type="button" data-v="" aria-pressed="true" data-default>Todos</button>
-              <button type="button" data-v="solo1" aria-pressed="false">Studio o 1D</button>
-              <button type="button" data-v="2mas" aria-pressed="false">2 o más</button>
+              <button type="button" data-v="2mas" aria-pressed="true" data-default>2 o más</button>
+              <button type="button" data-v="2" aria-pressed="false">Solo 2</button>
+              <button type="button" data-v="" aria-pressed="false">Todos</button>
             </div>
+            <small class="hint">Living + dos piezas: parte en «2 o más». Los portales no traen el living como dato; los avisos que dicen loft o «2 ambientes» quedan marcados.</small>
           </fieldset>
           <fieldset class="field">
             <legend>Baños</legend>
@@ -258,13 +259,16 @@
         <span class="met-tag">cómo se arma</span>
         <h3>Qué busco y cómo se tradujo</h3>
         <ul class="met">
+          <li><b>Living y dos piezas</b> → 2 dormitorios o más. El living no viene como dato en los portales
+            (todo 2D lo tiene salvo rarezas); si el título dice loft, «sin living» o «2 ambientes», queda marcado
+            y no es match. Si el título dice «1D» o «estudio» pero el portal dice 2D, se marca como dudoso.</li>
           <li><b>Máximo $600.000 con gastos comunes</b> → el tope se compara contra arriendo + gastos comunes.</li>
           <li><b>Idealmente Lastarria o Diagonal Paraguay</b> → se mide la distancia de cada depto a esas dos
             calles; a 600 m o menos es match.</li>
           <li><b>Los mismos barrios de los otros visores</b> → todo lo demás dentro del tope y en esos barrios
             (Bellas Artes, Santa Isabel, Portugal, Bustamante, Barrio Italia, Salvador, Manuel Montt, Pedro de
             Valdivia, Los Leones) es «Plan B».</li>
-          <li>No se pidió número de dormitorios ni amoblado: no se filtra por eso, pero los filtros están a mano.</li>
+          <li>Amoblado no se pidió: no se filtra, pero el filtro está a mano.</li>
         </ul>
         <p class="met">Lo que ves es la foto del <b data-meta="generado"></b>.</p>
       </div>
@@ -281,11 +285,12 @@
       </div>
       <div class="metric-card">
         <h3>2 · El match y el semáforo</h3>
-        <div class="met-formula">total ≤ $600.000 · a ≤ 600 m de Lastarria o Diagonal Paraguay</div>
-        <p class="met"><b>Plan B</b> = dentro del tope en otro de los barrios de siempre (o a ≤ 1,2 km).
-          <b>Parcial</b> = dentro del tope pero fuera de la zona · <b>fuera</b> = se pasa del tope.</p>
-        <p class="met">«Lo que más calza» ordena por puntaje: presupuesto (45), zona ideal (30, +5 si es a ≤ 300 m;
-          cerca, 18; otro barrio, 12), metro a ≤ 500 m (5), 1+ dormitorio (5) y match (10).</p>
+        <div class="met-formula">2+ dormitorios · total ≤ $600.000 · a ≤ 600 m de Lastarria o Diagonal Paraguay</div>
+        <p class="met"><b>Plan B</b> = 2D dentro del tope en otro de los barrios de siempre (o a ≤ 1,2 km).
+          <b>Calza</b> = 2D dentro del tope pero lejos · <b>parcial</b> = dentro del tope con menos de 2 dormitorios ·
+          <b>fuera</b> = se pasa del tope.</p>
+        <p class="met">«Lo que más calza» ordena por puntaje: presupuesto (35), 2+ dormitorios (30), zona ideal (20, +4 si es a
+          ≤ 300 m; cerca, 12; otro barrio, 8), metro a ≤ 500 m (3) y match (8).</p>
         <p class="met">Ojo con los edificios de renta que publican «1 a 3 dormitorios, desde $X»: ese precio es el
           de la unidad más chica (la tarjeta dice «precio desde»).</p>
       </div>
@@ -293,7 +298,7 @@
         <h3>3 · Fuentes y gastos comunes</h3>
         <p class="met">Usa lo que scrapea el visor principal (Portal Inmobiliario con MercadoLibre y
           Chilepropiedades, arriendos de hasta $850.000). Cuando el aviso no publica gastos comunes se estiman en
-          <b>$90.000</b> y la tarjeta dice «GC estimado». UF del día: <b data-meta="uf_valor"></b>.</p>
+          <b>$100.000</b> (típico de un 2D en la zona) y la tarjeta dice «GC estimado». UF del día: <b data-meta="uf_valor"></b>.</p>
       </div>
       <div class="metric-card wide">
         <h3>4 · Ofertas: cuándo algo «está barato»</h3>

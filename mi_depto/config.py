@@ -13,11 +13,15 @@ Traducido a criterios:
     Manuel Montt, Pedro de Valdivia, Los Leones…)
   - lo ideal: cerca de calle Lastarria o de Diagonal Paraguay (distancia en
     línea recta a esos dos trazados de OpenStreetMap)
-  - no se pidió número de dormitorios ni amoblado: no se filtra por eso
-    (el visor tiene los filtros a mano)
+  - (14-11-2026, después) «quiero que tenga living y dos piezas» → 2
+    dormitorios o más. El living no viene como dato en los portales: todo
+    depto de 2D lo tiene salvo rarezas (loft, «2 ambientes»), así que se
+    exige 2D y se avisa en la tarjeta si el título dice loft/sin living.
+  - amoblado: no se pidió, no se filtra (el visor tiene el filtro a mano)
 
-Match  = ≤ $600.000 total y a ≤ 600 m de Lastarria o Diagonal Paraguay.
-Plan B = ≤ $600.000 total, en otro de los barrios de siempre.
+Match  = 2+ dormitorios, ≤ $600.000 total y a ≤ 600 m de Lastarria o
+         Diagonal Paraguay.
+Plan B = 2+ dormitorios, ≤ $600.000 total, en otro de los barrios de siempre.
 
 El pipeline completo se comparte con la raíz del proyecto (../scrapers,
 ../consolidate.py, etc.): run_all.py de esta carpeta lo importa con ESTE
@@ -25,6 +29,7 @@ config y todas las salidas quedan dentro de mi_depto/.
 """
 import math as _math
 import os
+import re as _re
 
 # ---------------------------------------------------------------------------
 # Criterios de búsqueda
@@ -63,11 +68,11 @@ PRECIO_MAX_SCRAPE_CLP = 650_000
 # Arriendos sobre esto se descartan al consolidar (aliviana el visor).
 PRECIO_DESCARTE_CLP = 800_000
 
-DORMITORIOS_MIN = 0
-DORMITORIOS_OBJETIVO = 1
+DORMITORIOS_MIN = 2          # living + dos piezas
+DORMITORIOS_OBJETIVO = 2
 
-# Gastos comunes estimados cuando el aviso no los publica (1–2D en la zona).
-GASTOS_COMUNES_ESTIMADO_CLP = 90_000
+# Gastos comunes estimados cuando el aviso no los publica (2D en la zona).
+GASTOS_COMUNES_ESTIMADO_CLP = 100_000
 
 # ---------------------------------------------------------------------------
 # Zona ideal: calle Lastarria y Diagonal Paraguay
@@ -165,9 +170,14 @@ def distancia_zona_ideal(lat, lng):
     return mejor[0], int(round(mejor[1]))
 
 
+_RE_SIN_LIVING = _re.compile(r"\bloft\b|sin\s+living|2\s+ambientes", _re.I)
+# el título contradice los dormitorios del portal ("2D" con título "1d 1b")
+_RE_TITULO_1D = _re.compile(r"\b1\s*d\b|\b1\s*dorm|\b1\s*hab|\bestudio\b|\bstudio\b", _re.I)
+
+
 def AJUSTAR_LISTING(l: dict) -> None:
-    """Match: ≤ $600.000 total y a ≤ 600 m de Lastarria o Diagonal Paraguay.
-    Plan B: ≤ $600.000 total en otro barrio de siempre."""
+    """Match: 2+ dormitorios, ≤ $600.000 total y a ≤ 600 m de Lastarria o
+    Diagonal Paraguay. Plan B: lo mismo en otro barrio de siempre."""
     ref, dist = distancia_zona_ideal(l.get("lat"), l.get("lng"))
     if l.get("ubicacion_aprox"):
         ref, dist = None, None      # pin en el centro de la comuna: no sirve
@@ -177,28 +187,42 @@ def AJUSTAR_LISTING(l: dict) -> None:
     l["zona_cerca"] = dist is not None and dist <= ZONA_CERCA_M
     l["en_sector"] = bool(l.get("en_barrio_objetivo") or l["zona_cerca"])
 
-    # precio «desde» de un edificio con varias tipologías: se avisa en la tarjeta
-    l["tipologias_dudosas"] = bool(l.get("rango_tipologias"))
+    # Edificios de renta con varias tipologías ("1 a 3 dormitorios, desde $X"):
+    # el precio publicado es el de la unidad más chica, así que cuenta esa.
+    dorm = l.get("dormitorios")
+    if l.get("rango_tipologias"):
+        dorm = l.get("dormitorios_min", dorm)
+    # un 2D en menos de 30 m² no existe: es el "desde" de un edificio con studios
+    sup = l.get("superficie_m2")
+    raro = bool(sup and dorm == 2 and sup < 30)
+    if dorm is not None and dorm >= 2 and _RE_TITULO_1D.search(l.get("titulo") or ""):
+        raro = True
+    l["tipologias_dudosas"] = raro or bool(l.get("rango_tipologias") and dorm != l.get("dormitorios"))
+
+    l["sin_living"] = bool(_RE_SIN_LIVING.search(l.get("titulo") or ""))
+    l["dos_piezas"] = (not l["tipologias_dudosas"] and dorm is not None
+                       and dorm >= DORMITORIOS_MIN and not l["sin_living"])
 
     pres = bool(l.get("dentro_presupuesto"))
-    l["match_perfecto"] = pres and l["zona_ideal"]
-    l["plan_b"] = pres and not l["zona_ideal"] and l["en_sector"]
+    base = pres and l["dos_piezas"]
+    l["match_perfecto"] = base and l["zona_ideal"]
+    l["plan_b"] = base and not l["zona_ideal"] and l["en_sector"]
 
     score = 0
     if pres:
-        score += 45
-    if l["zona_ideal"]:
+        score += 35
+    if l["dos_piezas"]:
         score += 30
+    if l["zona_ideal"]:
+        score += 20
         if dist <= 300:
-            score += 5
+            score += 4
     elif l["zona_cerca"]:
-        score += 18
-    elif l.get("en_barrio_objetivo"):
         score += 12
+    elif l.get("en_barrio_objetivo"):
+        score += 8
     if l.get("metro_dist_m") is not None and l["metro_dist_m"] <= 500:
-        score += 5
-    if l.get("dormitorios") and l["dormitorios"] >= 1:
-        score += 5
+        score += 3
     if l["match_perfecto"]:
-        score += 10
+        score += 8
     l["relevancia"] = min(score, 100)

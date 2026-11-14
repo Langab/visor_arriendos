@@ -99,7 +99,7 @@
     },
     bins: [250000, 300000, 350000],
     barrasExtra: () => [],
-    serieDorm: "Con 1+ dormitorios",
+    serieDorm: "Con 2+ dormitorios",
     vacio: "Prueba subiendo el total máximo o quitando algún filtro.",
   };
 
@@ -190,20 +190,22 @@
     serieDorm: "Con 3+ dormitorios",
     vacio: "Prueba con el plan B (2 dormitorios), sube el total máximo o quita algún filtro.",
   };
-  // Mi depto: tope $600.000 total · ideal cerca de Lastarria o Diagonal Paraguay
+  // Mi depto: living + 2 piezas · tope $600.000 total · ideal Lastarria o Diagonal Paraguay
   const MIO = {
     ls: "midepto_",
     match: "match",
     presupuesto: META.presupuesto_max || 600000,
-    nivel: (l) => (l.dentro_presupuesto ? "mid" : "bad"),
-    enRango: (l) => !!l.dentro_presupuesto,
-    rangoTxt: "dentro de presupuesto",
+    nivel: (l) => (l.dentro_presupuesto && l.dos_piezas ? "good" : l.dentro_presupuesto ? "mid" : "bad"),
+    enRango: (l) => !!(l.dentro_presupuesto && l.dos_piezas),
+    rangoTxt: "dentro de presupuesto y con 2+ dormitorios",
     specs(l) {
       const s = [];
-      const d = dormTxt(l);
-      if (d) s.push(["", d]);
+      const d = l.dormitorios;
+      if (l.tipologias_dudosas) s.push(["tag-warn", `${dormTxt(l) || "?"} · dormitorios dudosos`]);
+      else if (d != null) s.push(d >= 2 ? ["tag-ok", d + "D ✓"] : ["tag-no", fmtDorm(d)]);
+      if (l.sin_living) s.push(["tag-warn", "¿sin living?"]);
       if (l.banos) s.push(["", l.banos + "B"]);
-      if (l.rango_tipologias) s.push(["tag-warn", "precio «desde»"]);
+      if (l.rango_tipologias && !l.tipologias_dudosas) s.push(["tag-warn", "precio «desde»"]);
       if (l.zona_dist_m != null) {
         const ref = ZONA_CORTA[l.zona_ref] || l.zona_ref || "";
         const cls = l.zona_ideal ? "tag-zona" : l.zona_cerca ? "tag-zona cerca" : "";
@@ -216,13 +218,15 @@
     extraPrecio: () => "",
     funnel(L) {
       const a = L.filter((x) => x.dentro_presupuesto);
-      const b = a.filter((x) => x.en_sector);
-      const c = a.filter((x) => x.zona_ideal);
+      const b = a.filter((x) => x.dos_piezas);
+      const c = b.filter((x) => x.en_sector || x.zona_ideal);
+      const d = b.filter((x) => x.zona_ideal);
       return [
         [L.length, "avisos totales"],
         [a.length, `≤ ${clp(this.presupuesto)} total`],
-        [b.length, "y en los barrios de siempre"],
-        [c.length, "y a ≤ 600 m de Lastarria o Diag. Paraguay = match", "hl"],
+        [b.length, "y con living + 2 piezas"],
+        [c.length, "y en los barrios de siempre"],
+        [d.length, "y a ≤ 600 m de Lastarria o Diag. Paraguay = match", "hl"],
       ];
     },
     kpis(L) {
@@ -231,23 +235,23 @@
         [m.length, "Match (Lastarria o Diag. Paraguay)", "hl"],
         [L.filter((x) => x.plan_b).length, "Plan B (otros barrios de siempre)"],
         [m.filter((x) => x.zona_dist_m <= 300).length, "Match a ≤ 300 m"],
-        [m.filter((x) => (x.dormitorios || 0) >= 2).length, "Match con 2+ dormitorios"],
+        [m.filter((x) => (x.banos || 0) >= 2).length, "Match con 2 baños"],
         [META.nuevos_desde_anterior || 0, "Nuevas desde la última actualización"],
         [L.filter((x) => x.admite_mascotas === true).length, "Admiten mascotas"],
       ];
     },
     bins: [450000, 525000, 600000],
     barrasExtra(L) {
-      const conZona = L.filter((x) => x.zona_dist_m != null && x.dentro_presupuesto);
+      const conZona = L.filter((x) => x.zona_dist_m != null && x.dentro_presupuesto && x.dos_piezas);
       const porZona = [
         ["≤ 300 m", conZona.filter((x) => x.zona_dist_m <= 300).length],
         ["300–600 m", conZona.filter((x) => x.zona_dist_m > 300 && x.zona_dist_m <= 600).length],
         ["600 m–1,2 km", conZona.filter((x) => x.zona_dist_m > 600 && x.zona_dist_m <= 1200).length],
         ["> 1,2 km", conZona.filter((x) => x.zona_dist_m > 1200).length],
       ];
-      return [barras("Distancia a Lastarria o Diag. Paraguay (≤ $600.000)", porZona)];
+      return [barras("Distancia a Lastarria o Diag. Paraguay (2D, ≤ $600.000)", porZona)];
     },
-    serieDorm: "Con 1+ dormitorios",
+    serieDorm: "Con 2+ dormitorios",
     vacio: "Prueba con el plan B (otros barrios), sube el total máximo o quita algún filtro.",
   };
   const CFG = MODO === "roomies" ? ROOMIES : MODO === "mio" ? MIO : SOLO;
