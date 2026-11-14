@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Mi depto · Lastarria</title>
+  <meta name="description" content="Departamentos en arriendo cerca de Lastarria y Diagonal Paraguay: hasta $600.000 con gastos comunes, actualizado todos los días." />
+  <meta name="theme-color" content="#ebe7e3" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='14' fill='%233a2b25'/%3E%3Crect x='20' y='18' width='24' height='28' rx='6' fill='%23c9a89a'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=1" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <script defer src="data.js"></script>
+  <script defer src="app.js?v=1"></script>
+</head>
+<body data-modo="mio">
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><path d="M7 7h.01"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+  </svg>
+  <a class="skip" href="#resultados">Saltar a los resultados</a>
+
+  <!-- ====================== ENCABEZADO ====================== -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>MI DEPTO</h1>
+        <p class="sub">hasta $600.000 con GC · ideal Lastarria o Diagonal Paraguay</p>
+      </div>
+    </div>
+    <div class="stats" id="stats" aria-label="Resumen"></div>
+  </header>
+
+  <div class="tabs-row">
+    <div class="tabs" id="view-toggle" role="tablist" aria-label="Vistas">
+      <button type="button" class="tab" role="tab" id="tab-lista" data-view="lista" aria-controls="grid" aria-selected="true"><svg class="i" aria-hidden="true"><use href="#i-list"/></svg>Lista</button>
+      <button type="button" class="tab" role="tab" id="tab-mapa" data-view="mapa" aria-controls="map" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-map"/></svg>Mapa</button>
+      <button type="button" class="tab" role="tab" id="tab-metricas" data-view="metricas" aria-controls="metrics" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-chart"/></svg>Métricas</button>
+      <button type="button" class="tab" role="tab" id="tab-ofertas" data-view="ofertas" aria-controls="ofertas" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-tag"/></svg>Ofertas</button>
+      <button type="button" class="tab" role="tab" id="tab-temporal" data-view="temporal" aria-controls="temporal" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-trend"/></svg>Temporal</button>
+      <button type="button" class="tab" role="tab" id="tab-metodo" data-view="metodo" aria-controls="metodo" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true"><use href="#i-book"/></svg>Método</button>
+    </div>
+  </div>
+
+  <div class="update-bar" id="update-bar"></div>
+
+  <div class="layout">
+    <div class="velo hidden" id="velo"></div>
+
+    <!-- ====================== FILTROS ====================== -->
+    <aside class="filters" id="filters" aria-labelledby="filtros-titulo">
+      <div class="filters-head">
+        <h2 id="filtros-titulo">Filtros</h2>
+        <button type="button" id="reset" class="link">Limpiar</button>
+        <button type="button" class="icon-btn cerrar" id="cerrar-filtros" aria-label="Cerrar filtros"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+
+      <div class="filters-body">
+        <div class="match-grupo">
+          <button type="button" id="match-btn" class="match-btn" aria-pressed="false">
+            <span class="match-emoji" aria-hidden="true"></span>
+            <span class="match-txt">
+              <b>Match</b>
+              <small>hasta $600.000 total · a 600 m o menos de Lastarria o Diagonal Paraguay</small>
+            </span>
+            <span class="match-count" id="match-count">0</span>
+          </button>
+          <button type="button" id="planb-btn" class="match-btn planb" aria-pressed="false">
+            <span class="match-emoji" aria-hidden="true"></span>
+            <span class="match-txt">
+              <b>Plan B · otros barrios</b>
+              <small>hasta $600.000 en los barrios de siempre (Bustamante, B. Italia, Providencia…)</small>
+            </span>
+            <span class="match-count" id="planb-count">0</span>
+          </button>
+        </div>
+
+        <label class="field">
+          <span>Buscar</span>
+          <input type="search" id="f-texto" placeholder="calle, edificio, barrio…" autocomplete="off" enterkeyhint="search" />
+        </label>
+
+        <p class="grupo-titulo">Precio</p>
+        <div class="grupo-filtros">
+          <label class="field">
+            <span>Total mensual máx.: <strong class="val" id="f-precio-val"></strong></span>
+            <input type="range" id="f-precio" min="300000" max="800000" step="25000" value="600000" />
+            <small class="hint">Arriendo + gastos comunes. El tope de la búsqueda es $600.000.</small>
+          </label>
+          <label class="field">
+            <span>Arriendo máx.: <strong class="val" id="f-arriendo-val"></strong></span>
+            <input type="range" id="f-arriendo" min="200000" max="800000" step="25000" value="800000" />
+            <small class="hint">Solo el valor publicado, sin gastos comunes.</small>
+          </label>
+          <label class="field">
+            <span>Gastos comunes máx.: <strong class="val" id="f-gc-val"></strong></span>
+            <input type="range" id="f-gc" min="0" max="200000" step="10000" value="200000" />
+            <small class="hint">Reales si el aviso los trae; si no, se estiman en $90.000.</small>
+          </label>
+          <fieldset class="field">
+            <legend>Moneda del arriendo</legend>
+            <div class="seg seg-3" id="f-moneda">
+              <button type="button" data-v="" aria-pressed="true" data-default>Todas</button>
+              <button type="button" data-v="UF" aria-pressed="false">UF</button>
+              <button type="button" data-v="CLP" aria-pressed="false">Pesos</button>
+            </div>
+          </fieldset>
+        </div>
+
+        <p class="grupo-titulo">El departamento</p>
+        <div class="grupo-filtros">
+          <fieldset class="field">
+            <legend>Dormitorios</legend>
+            <div class="seg" id="f-dorm">
+              <button type="button" data-v="" aria-pressed="true" data-default>Todos</button>
+              <button type="button" data-v="solo1" aria-pressed="false">Studio o 1D</button>
+              <button type="button" data-v="2mas" aria-pressed="false">2 o más</button>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Baños</legend>
+            <div class="seg seg-3" id="f-banos">
+              <button type="button" data-v="" aria-pressed="true" data-default>Todos</button>
+              <button type="button" data-v="1" aria-pressed="false">1</button>
+              <button type="button" data-v="2mas" aria-pressed="false">2 o más</button>
+            </div>
+          </fieldset>
+          <div class="switches">
+            <label class="switch"><input type="checkbox" id="f-sinamoblar" /><span>Sin amoblar</span></label>
+            <label class="switch"><input type="checkbox" id="f-sinestac" /><span>Sin estacionamiento</span></label>
+            <label class="switch"><input type="checkbox" id="f-mascotas" /><span>Admite mascotas</span></label>
+          </div>
+          <label class="field">
+            <span>Superficie mínima: <strong class="val" id="f-sup-val"></strong></span>
+            <input type="range" id="f-sup" min="0" max="150" step="5" value="0" />
+          </label>
+          <label class="field">
+            <span>Antigüedad del edificio</span>
+            <select id="f-antiguedad">
+              <option value="" selected>Cualquiera</option>
+              <option value="0-10">Nuevo (menos de 10 años)</option>
+              <option value="20+">Más de 20 años</option>
+              <option value="30+">Más de 30 años</option>
+              <option value="dato">Solo con dato de antigüedad</option>
+            </select>
+          </label>
+        </div>
+
+        <p class="grupo-titulo">Ubicación</p>
+        <div class="grupo-filtros">
+          <label class="field">
+            <span>Distancia máx. a Lastarria o Diag. Paraguay: <strong class="val" id="f-zona-val"></strong></span>
+            <input type="range" id="f-zona" min="100" max="3000" step="100" value="3000" />
+            <small class="hint">En línea recta a la calle Lastarria o a Diagonal Paraguay. 600 m ≈ 5 cuadras.</small>
+          </label>
+          <div class="switches">
+            <label class="switch"><input type="checkbox" id="f-sector" /><span>Solo en el sector (barrio objetivo o a 1,2 km o menos)</span></label>
+          </div>
+          <fieldset class="field"><legend>Barrio</legend><div class="chips" id="f-barrio"></div></fieldset>
+          <fieldset class="field"><legend>Comuna</legend><div class="chips" id="f-comuna"></div></fieldset>
+          <label class="field">
+            <span>Distancia máx. al metro: <strong class="val" id="f-metro-val"></strong></span>
+            <input type="range" id="f-metro" min="200" max="2000" step="100" value="2000" />
+            <small class="hint">En línea recta a la estación más cercana.</small>
+          </label>
+        </div>
+
+        <p class="grupo-titulo">Seguimiento</p>
+        <div class="grupo-filtros">
+          <fieldset class="field temporal-filters">
+            <legend>Desde la última actualización</legend>
+            <div class="switches">
+              <label class="switch"><input type="checkbox" id="f-nuevas" /><span>Solo nuevas <em id="f-nuevas-n"></em></span></label>
+              <label class="switch"><input type="checkbox" id="f-bajaron" /><span>Solo las que bajaron de precio <em id="f-bajaron-n"></em></span></label>
+            </div>
+          </fieldset>
+          <div class="switches">
+            <label class="switch"><input type="checkbox" id="f-presupuesto" /><span>Solo dentro de presupuesto ($600.000)</span></label>
+            <label class="switch"><input type="checkbox" id="f-ofertas" /><span>Solo ofertas (bajo su grupo) <em id="f-ofertas-n"></em></span></label>
+            <label class="switch"><input type="checkbox" id="f-favoritos" /><span>Solo favoritas</span></label>
+            <label class="switch"><input type="checkbox" id="f-ocultar-contactadas" /><span>Ocultar contactadas</span></label>
+          </div>
+          <fieldset class="field"><legend>Portal</legend><div class="chips" id="f-fuente"></div></fieldset>
+        </div>
+
+        <label class="field">
+          <span>Ordenar por</span>
+          <select id="f-orden">
+            <option value="relevancia" selected>Lo que más calza</option>
+            <option value="precio-asc">Total: menor a mayor</option>
+            <option value="zona-asc">Más cerca de Lastarria o Diag. Paraguay</option>
+            <option value="nuevas">Nuevas primero</option>
+            <option value="oferta-asc">Más baratas que sus similares</option>
+            <option value="metro-asc">Más cerca del metro</option>
+            <option value="m2-desc">Más grandes</option>
+            <option value="precio-desc">Total: mayor a menor</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="filters-foot">
+        <button type="button" class="btn primary" id="ver-resultados">Ver resultados</button>
+      </div>
+    </aside>
+
+    <!-- ====================== CONTENIDO ====================== -->
+    <main class="content" id="resultados" tabindex="-1">
+      <div class="result-bar">
+        <span id="count" aria-live="polite"></span>
+        <span class="legend" aria-hidden="true">
+          <span><i class="dot match"></i>match</span>
+          <span><i class="dot planb"></i>plan B</span>
+          <span><i class="dot good"></i>calza</span>
+          <span><i class="dot mid"></i>parcial</span>
+          <span><i class="dot bad"></i>fuera</span>
+          <span><i class="dot done"></i>contactada</span>
+        </span>
+      </div>
+      <section id="grid" class="grid" role="tabpanel" aria-labelledby="tab-lista"></section>
+      <section id="map" class="map hidden" role="tabpanel" aria-labelledby="tab-mapa"></section>
+      <section id="metrics" class="hidden" role="tabpanel" aria-labelledby="tab-metricas"></section>
+      <section id="ofertas" class="hidden" role="tabpanel" aria-labelledby="tab-ofertas"></section>
+      <section id="temporal" class="hidden" role="tabpanel" aria-labelledby="tab-temporal"></section>
+      <section id="metodo" class="hidden" role="tabpanel" aria-labelledby="tab-metodo"></section>
+    </main>
+  </div>
+
+  <!-- barra inferior en el celular -->
+  <div class="dock" id="dock">
+    <button type="button" id="abrir-filtros" aria-controls="filters" aria-expanded="false">
+      <svg class="i" aria-hidden="true"><use href="#i-sliders"/></svg>Filtros <span class="dock-n" id="dock-n"></span>
+    </button>
+    <button type="button" id="dock-match" aria-pressed="false">Match <span class="dock-n" id="dock-match-n"></span></button>
+  </div>
+
+  <template id="tpl-metodo">
+    <div class="metrics-grid">
+      <div class="metric-card wide">
+        <span class="met-tag">cómo se arma</span>
+        <h3>Qué busco y cómo se tradujo</h3>
+        <ul class="met">
+          <li><b>Máximo $600.000 con gastos comunes</b> → el tope se compara contra arriendo + gastos comunes.</li>
+          <li><b>Idealmente Lastarria o Diagonal Paraguay</b> → se mide la distancia de cada depto a esas dos
+            calles; a 600 m o menos es match.</li>
+          <li><b>Los mismos barrios de los otros visores</b> → todo lo demás dentro del tope y en esos barrios
+            (Bellas Artes, Santa Isabel, Portugal, Bustamante, Barrio Italia, Salvador, Manuel Montt, Pedro de
+            Valdivia, Los Leones) es «Plan B».</li>
+          <li>No se pidió número de dormitorios ni amoblado: no se filtra por eso, pero los filtros están a mano.</li>
+        </ul>
+        <p class="met">Lo que ves es la foto del <b data-meta="generado"></b>.</p>
+      </div>
+      <div class="metric-card">
+        <h3>1 · La zona ideal</h3>
+        <p class="met">Del mapa de OpenStreetMap se sacaron dos trazados: la <b>calle Lastarria</b> desde la Alameda
+          (Metro U. Católica) hasta el Parque Forestal, y <b>Diagonal Paraguay</b> desde Santa Rosa hasta Vicuña
+          Mackenna. Para cada departamento se calcula la distancia en línea recta a la más cercana:</p>
+        <ul class="met">
+          <li><b>hasta 600 m</b>: en la zona (etiqueta oscura) · <b>hasta 1,2 km</b>: cerca (unos 15 minutos a pie).</li>
+          <li>En el mapa, las dos líneas punteadas son esas calles.</li>
+          <li>Si la dirección solo se pudo ubicar en el centro de la comuna, no se calcula: sería inventar.</li>
+        </ul>
+      </div>
+      <div class="metric-card">
+        <h3>2 · El match y el semáforo</h3>
+        <div class="met-formula">total ≤ $600.000 · a ≤ 600 m de Lastarria o Diagonal Paraguay</div>
+        <p class="met"><b>Plan B</b> = dentro del tope en otro de los barrios de siempre (o a ≤ 1,2 km).
+          <b>Parcial</b> = dentro del tope pero fuera de la zona · <b>fuera</b> = se pasa del tope.</p>
+        <p class="met">«Lo que más calza» ordena por puntaje: presupuesto (45), zona ideal (30, +5 si es a ≤ 300 m;
+          cerca, 18; otro barrio, 12), metro a ≤ 500 m (5), 1+ dormitorio (5) y match (10).</p>
+        <p class="met">Ojo con los edificios de renta que publican «1 a 3 dormitorios, desde $X»: ese precio es el
+          de la unidad más chica (la tarjeta dice «precio desde»).</p>
+      </div>
+      <div class="metric-card">
+        <h3>3 · Fuentes y gastos comunes</h3>
+        <p class="met">Usa lo que scrapea el visor principal (Portal Inmobiliario con MercadoLibre y
+          Chilepropiedades, arriendos de hasta $850.000). Cuando el aviso no publica gastos comunes se estiman en
+          <b>$90.000</b> y la tarjeta dice «GC estimado». UF del día: <b data-meta="uf_valor"></b>.</p>
+      </div>
+      <div class="metric-card wide">
+        <h3>4 · Ofertas: cuándo algo «está barato»</h3>
+        <p class="met">Cada aviso se compara con la <b>mediana</b> de su grupo (zona × dormitorios × baños × tramo
+          de m², con al menos 5 avisos; si no alcanza, un grupo más amplio). Oferta = 10% o más bajo; caro = 10% o
+          más sobre. Una «oferta» del 25% a veces es un error de publicación.</p>
+      </div>
+      <div class="metric-card">
+        <h3>5 · Día a día</h3>
+        <p class="met">Cada corrida guarda una foto fechada (las últimas 30) y se compara con la anterior:
+          nuevos, los que bajaron o subieron y los que ya no están.</p>
+      </div>
+      <div class="metric-card">
+        <h3>6 · Letra chica</h3>
+        <ul class="met">
+          <li>Las distancias son en línea recta, no caminando.</li>
+          <li>No es exhaustivo: faltan Yapo, TocToc y lo que solo está en Facebook.</li>
+          <li>Favoritas y contactadas quedan en este navegador.</li>
+        </ul>
+      </div>
+    </div>
+  </template>
+</body>
+</html>

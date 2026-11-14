@@ -34,6 +34,10 @@ python3 run_all.py --enrich >> "$LOG" 2>&1
 # 1b) Visor ÁREA GRIS (variante 1 persona / ≤$350k): mismo pipeline, otro config.
 python3 area_gris/run_all.py --enrich >> "$LOG" 2>&1
 
+# 1b') MI DEPTO (≤ $600.000 con GC · ideal Lastarria / Diagonal Paraguay).
+#      --desde-raiz reutiliza lo que el visor principal acaba de scrapear.
+python3 mi_depto/run_all.py --enrich --desde-raiz >> "$LOG" 2>&1
+
 # 1c) Visor JUAN ROZAS: se actualiza A MANO cuando haga falta (no en el cron,
 #     para que la corrida diaria sea más corta y no caliente la IP con ML):
 #         cd juan_rozas && python3 run_all.py --enrich
@@ -53,4 +57,7 @@ fi
 # 3c) Visor principal también en Cloudflare Pages: https://visorarriendos.pages.dev
 bash publicar.sh >> "$LOG" 2>&1 || \
     echo "⚠ Falló la publicación del visor principal en Cloudflare." >> "$LOG"
+# 3d) Mi Depto en Cloudflare Pages: https://midepto.pages.dev
+bash mi_depto/publicar.sh >> "$LOG" 2>&1 || \
+    echo "⚠ Falló la publicación de Mi Depto en Cloudflare." >> "$LOG"
 echo "Fin: $(date '+%H:%M:%S')" >> "$LOG"
