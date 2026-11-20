@@ -76405,5 +76405,24 @@
     "superficie_util_m2": 72,
     "superficie_total_m2": 75,
     "corredor": true
+  },
+  "4af3fecda2aeebc8": {
+    "cp_revisado": true
+  },
+  "28601edbd3b4df8c": {
+    "cp_revisado": true,
+    "gastos_comunes_clp": 120000
+  },
+  "000adf7516323a56": {
+    "cp_revisado": true
+  },
+  "506db2b9458954f9": {
+    "cp_revisado": true
+  },
+  "f155a8b2df4c9d18": {
+    "cp_revisado": true
+  },
+  "8fa4c6d0e67becef": {
+    "cp_revisado": true
   }
 }
