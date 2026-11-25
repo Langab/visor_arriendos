@@ -18,7 +18,7 @@
     "lat": null,
     "lng": null,
     "id": "50863d54e02e55c0",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -39,7 +39,7 @@
     "lat": null,
     "lng": null,
     "id": "36278ea9c1d604fe",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -60,7 +60,7 @@
     "lat": null,
     "lng": null,
     "id": "6f1081cc397ff55e",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -81,7 +81,7 @@
     "lat": null,
     "lng": null,
     "id": "065d2dd328cc5eac",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -102,7 +102,7 @@
     "lat": null,
     "lng": null,
     "id": "27a5222b809bb50d",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -123,7 +123,7 @@
     "lat": null,
     "lng": null,
     "id": "791797ca85826d3e",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -144,7 +144,7 @@
     "lat": null,
     "lng": null,
     "id": "f2da939eebad661a",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -165,7 +165,7 @@
     "lat": null,
     "lng": null,
     "id": "39f4a45b1f557828",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -186,7 +186,7 @@
     "lat": null,
     "lng": null,
     "id": "d9e890d6706c6128",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -207,7 +207,7 @@
     "lat": null,
     "lng": null,
     "id": "b6979ff6ac9bc86a",
-    "extraido_en": "2026-11-24T10:01:09"
+    "extraido_en": "2026-11-25T10:04:05"
   },
   {
     "fuente": "chilepropiedades",
@@ -228,7 +228,175 @@
     "lat": null,
     "lng": null,
     "id": "2f52aee697f84d65",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:07"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/bustos-2410/150346910",
+    "titulo": "Departamento en Arriendo en Bustos 2410",
+    "precio_clp": 790000,
+    "precio_original": "UF 20",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 68.0,
+    "direccion": "Departamento en Arriendo en Bustos 2410",
+    "comuna": "Providencia",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/6689072b-2757-45cb-9283-e96b237c89c6-1795598147418.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "98b22d701ecfecc0",
+    "extraido_en": "2026-11-25T10:04:07"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/barcelona-2018/150299150",
+    "titulo": "Arriendo Departamento Providencia 2 Dormitorios 1 Baño",
+    "precio_clp": 750000,
+    "precio_original": "$ 750.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 1,
+    "superficie_m2": 65.0,
+    "direccion": "Arriendo Departamento Providencia 2 Dormitorios 1 Baño",
+    "comuna": "Providencia",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/8c981075-4b61-4c4c-acfd-b9ce51a0e6b4-1795575737562.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "7e646979c50d6de9",
+    "extraido_en": "2026-11-25T10:04:07"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/moderno-duplex-con-terraza-y-aire-190741/150292485",
+    "titulo": "En Providencia",
+    "precio_clp": 829500,
+    "precio_original": "UF 21",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 2,
+    "superficie_m2": 74.0,
+    "direccion": "En Providencia",
+    "comuna": "Providencia",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/a79340d3-0b92-4adc-8484-3b7e31710406-1795561965547.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "a4be49e827c159b5",
+    "extraido_en": "2026-11-25T10:04:07"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/los-jacintos-2991/150287463",
+    "titulo": "Metro Francisco Bilbao, Departamento Parque Pocuro",
+    "precio_clp": 730000,
+    "precio_original": "$ 730.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 54.0,
+    "direccion": "Metro Francisco Bilbao, Departamento Parque Pocuro",
+    "comuna": "Departamento Parque Pocuro",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/3ed5fb05-a9d9-4a11-a0d9-24faf6ed5239-1795553165627.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "cc92669ca2181e24",
+    "extraido_en": "2026-11-25T10:04:07"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/nueva-de-lyon-21/150287229",
+    "titulo": "Nueva de Lyon 21, Providencia",
+    "precio_clp": 1100000,
+    "precio_original": "$ 1.100.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 3,
+    "banos": 2,
+    "superficie_m2": 88.0,
+    "direccion": "Nueva de Lyon 21, Providencia",
+    "comuna": "Providencia",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/fb2976f6-5d68-430b-ba74-5c6ac7af932d-1795552613639.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "730cb5ea3bb2e41c",
+    "extraido_en": "2026-11-25T10:04:07"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/entre-condell-y-seminario/150265043",
+    "titulo": "Entre condell y seminario, Providencia",
+    "precio_clp": 480000,
+    "precio_original": "$ 480.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 35.0,
+    "direccion": "Entre condell y seminario, Providencia",
+    "comuna": "Providencia",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/82969381-77bc-4797-848d-ae8695312f40-1795533094019.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "0e8eb4b804631c67",
+    "extraido_en": "2026-11-25T10:04:07"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/metro-ines-de-suarez/150264594",
+    "titulo": "Departamento en Arriendo en Metro Inés de Suárez",
+    "precio_clp": 1264000,
+    "precio_original": "UF 32",
+    "gastos_comunes_clp": null,
+    "dormitorios": 3,
+    "banos": 2,
+    "superficie_m2": 91.0,
+    "direccion": "Departamento en Arriendo en Metro Inés de Suárez",
+    "comuna": "Providencia",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/cfdc3337-a4a0-438d-8b6c-8d3fd639a006-1795532209516.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "915066b5ba91aac7",
+    "extraido_en": "2026-11-25T10:04:07"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/excelente-ubicacion-terraza-128743/99951178",
+    "titulo": "En Providencia",
+    "precio_clp": 680000,
+    "precio_original": "$ 680.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 1,
+    "superficie_m2": 55.0,
+    "direccion": "En Providencia",
+    "comuna": "Providencia",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/31010bb7-6dc6-4077-9dc5-2e6f94d510bf-1795565221128.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "6c891fb19483f860",
+    "extraido_en": "2026-11-25T10:04:07"
   },
   {
     "fuente": "chilepropiedades",
@@ -249,7 +417,28 @@
     "lat": null,
     "lng": null,
     "id": "b6a78b7cfe09c4df",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:07"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/hermoso-depto-1h1b-159045/115976359",
+    "titulo": "En Providencia",
+    "precio_clp": 590000,
+    "precio_original": "$ 590.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 35.0,
+    "direccion": "En Providencia",
+    "comuna": "Providencia",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/2d873701-7109-44fa-a132-c6f181e616c3-1795576586414.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "7fad5989ad335744",
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
@@ -270,7 +459,7 @@
     "lat": null,
     "lng": null,
     "id": "b3371a213bb6a0b1",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
@@ -291,7 +480,7 @@
     "lat": null,
     "lng": null,
     "id": "69cf6f8c8c4cb0f7",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
@@ -312,7 +501,7 @@
     "lat": null,
     "lng": null,
     "id": "6bdd18763af274bc",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
@@ -333,7 +522,7 @@
     "lat": null,
     "lng": null,
     "id": "585206878a71c9c3",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
@@ -354,7 +543,7 @@
     "lat": null,
     "lng": null,
     "id": "ac4223f0f466dce7",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
@@ -375,7 +564,7 @@
     "lat": null,
     "lng": null,
     "id": "e176a7f6745ddad8",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
@@ -396,7 +585,7 @@
     "lat": null,
     "lng": null,
     "id": "f721c4ec28986e7e",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
@@ -417,28 +606,28 @@
     "lat": null,
     "lng": null,
     "id": "4c3be15566007ed9",
-    "extraido_en": "2026-11-24T10:01:12"
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/metro-p-de-valdivia/150114075",
-    "titulo": "Metro p. De valdivia, Providencia",
-    "precio_clp": 600000,
-    "precio_original": "$ 600.000",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/miguel-claro/143846641",
+    "titulo": "Departamento en José Miguel Claro. 3 Dormitorios. 90 M2",
+    "precio_clp": 1698500,
+    "precio_original": "UF 43",
     "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 40.0,
-    "direccion": "Metro p. De valdivia, Providencia",
+    "dormitorios": 3,
+    "banos": 2,
+    "superficie_m2": 95.0,
+    "direccion": "Departamento en José Miguel Claro. 3 Dormitorios. 90 M2",
     "comuna": "Providencia",
     "barrio": "",
     "corredor": null,
     "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/2b20c6bc-0ac7-49b2-a15a-7439a3de3f60-1795445476302.jpg",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/8d5fee8f-756d-4077-a0c4-96220f427321-1792218495192.jpg",
     "lat": null,
     "lng": null,
-    "id": "10e656a823fcd788",
-    "extraido_en": "2026-11-24T10:01:14"
+    "id": "77c083b5f76becdc",
+    "extraido_en": "2026-11-25T10:04:10"
   },
   {
     "fuente": "chilepropiedades",
@@ -459,7 +648,7 @@
     "lat": null,
     "lng": null,
     "id": "edda2063a3a33bc4",
-    "extraido_en": "2026-11-24T10:01:14"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -480,7 +669,7 @@
     "lat": null,
     "lng": null,
     "id": "7ca699f2d76cc94c",
-    "extraido_en": "2026-11-24T10:01:14"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -501,7 +690,7 @@
     "lat": null,
     "lng": null,
     "id": "5df9bf79180ec470",
-    "extraido_en": "2026-11-24T10:01:14"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -522,7 +711,7 @@
     "lat": null,
     "lng": null,
     "id": "b6854578762495fa",
-    "extraido_en": "2026-11-24T10:01:14"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -543,7 +732,7 @@
     "lat": null,
     "lng": null,
     "id": "74dbb87c1e22b248",
-    "extraido_en": "2026-11-24T10:01:14"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -564,7 +753,7 @@
     "lat": null,
     "lng": null,
     "id": "9e64df9088c3f8b9",
-    "extraido_en": "2026-11-24T10:01:14"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -585,7 +774,7 @@
     "lat": null,
     "lng": null,
     "id": "08032396c09c1bf1",
-    "extraido_en": "2026-11-24T10:01:14"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -606,7 +795,7 @@
     "lat": null,
     "lng": null,
     "id": "90c5f61f7393a022",
-    "extraido_en": "2026-11-24T10:01:14"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -627,7 +816,7 @@
     "lat": null,
     "lng": null,
     "id": "011eee885779fcfe",
-    "extraido_en": "2026-11-24T10:01:14"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -648,7 +837,7 @@
     "lat": null,
     "lng": null,
     "id": "63b7b38663158d8a",
-    "extraido_en": "2026-11-24T10:01:17"
+    "extraido_en": "2026-11-25T10:04:12"
   },
   {
     "fuente": "chilepropiedades",
@@ -669,7 +858,7 @@
     "lat": null,
     "lng": null,
     "id": "810492e399e58708",
-    "extraido_en": "2026-11-24T10:01:17"
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
@@ -690,7 +879,7 @@
     "lat": null,
     "lng": null,
     "id": "5a14948a341e359c",
-    "extraido_en": "2026-11-24T10:01:17"
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
@@ -711,7 +900,7 @@
     "lat": null,
     "lng": null,
     "id": "e34ad0079257a40e",
-    "extraido_en": "2026-11-24T10:01:17"
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
@@ -732,11 +921,11 @@
     "lat": null,
     "lng": null,
     "id": "55a76f49cf19d852",
-    "extraido_en": "2026-11-24T10:01:17"
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/conectividad-y-comodidad-en-un-solo-lugar-190737/149705923",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/estilo-de-vida-urbano-en-espacioso-hogar-190737/149705923",
     "titulo": "En Providencia",
     "precio_clp": 780000,
     "precio_original": "$ 780.000",
@@ -749,11 +938,11 @@
     "barrio": "",
     "corredor": null,
     "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/ec01c87d-6c42-488d-bdfb-f0289f23a03f-1795170049908.jpg",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/bd6545db-734b-4a67-8720-366f7eeb66b5-1795593857985.jpg",
     "lat": null,
     "lng": null,
-    "id": "3bf9ce0956c19f0b",
-    "extraido_en": "2026-11-24T10:01:17"
+    "id": "0599754b347fe56f",
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
@@ -774,7 +963,7 @@
     "lat": null,
     "lng": null,
     "id": "31e6a499fc49b11e",
-    "extraido_en": "2026-11-24T10:01:17"
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
@@ -795,7 +984,7 @@
     "lat": null,
     "lng": null,
     "id": "b7547a05c03c4309",
-    "extraido_en": "2026-11-24T10:01:17"
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
@@ -816,7 +1005,7 @@
     "lat": null,
     "lng": null,
     "id": "1f0b939fcc6389ba",
-    "extraido_en": "2026-11-24T10:01:17"
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
@@ -837,7 +1026,7 @@
     "lat": null,
     "lng": null,
     "id": "f3f0bf1513cdd9cf",
-    "extraido_en": "2026-11-24T10:01:17"
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
@@ -858,259 +1047,7 @@
     "lat": null,
     "lng": null,
     "id": "0cceb4ae75b16490",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/diego-de-velasquez/149643841",
-    "titulo": "Dpto Primer Piso con Patio 3D/2B + Serv - Diego de Velásquez",
-    "precio_clp": 1150000,
-    "precio_original": "$ 1.150.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 3,
-    "banos": 2,
-    "superficie_m2": 193.0,
-    "direccion": "Dpto Primer Piso con Patio 3D/2B + Serv - Diego de Velásquez",
-    "comuna": "Providencia",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/7f8fac77-2cd2-4d3a-b1ac-82307d9d84db.jpeg",
-    "lat": null,
-    "lng": null,
-    "id": "0a1f813544003f99",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/avenida-providencia-2411/149638990",
-    "titulo": "Arriendo Dpto. 3D 2B Frente a Costanera Center Providencia 2411",
-    "precio_clp": 850000,
-    "precio_original": "$ 850.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 3,
-    "banos": 2,
-    "superficie_m2": 79.0,
-    "direccion": "Arriendo Dpto. 3D 2B Frente a Costanera Center Providencia 2411",
-    "comuna": "Providencia",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/914f5339-7cb3-4f8c-a937-0eaafae5e28d.jpeg",
-    "lat": null,
-    "lng": null,
-    "id": "e86cd1d9a654a455",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/dario-urzua/149629145",
-    "titulo": "Departamento en Arriendo en Darío Urzúa",
-    "precio_clp": 1350000,
-    "precio_original": "$ 1.350.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 3,
-    "banos": 3,
-    "superficie_m2": 120.0,
-    "direccion": "Departamento en Arriendo en Darío Urzúa",
-    "comuna": "Providencia",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/5ffd1b2b-ce71-4501-91a2-fe1b5c4e9f23-1795114815881.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "2d6bc402f5a81d00",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/avenida-ricardo-lyon/149629102",
-    "titulo": "Departamento en Arriendo en Avenida Ricardo Lyon",
-    "precio_clp": 890000,
-    "precio_original": "$ 890.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 75.0,
-    "direccion": "Departamento en Arriendo en Avenida Ricardo Lyon",
-    "comuna": "Providencia",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/fb24711c-5a97-48fa-9bce-4207832581d3-1795114789901.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "09e952262d83b4dc",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/avenida-ricardo-lyon/149629081",
-    "titulo": "Departamento en Arriendo en Avenida Ricardo Lyon",
-    "precio_clp": 980000,
-    "precio_original": "$ 980.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 75.0,
-    "direccion": "Departamento en Arriendo en Avenida Ricardo Lyon",
-    "comuna": "Providencia",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/b80f72db-5211-4858-91d4-913acb3e55cd-1795114764299.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "e17002a89647283f",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/lyon-1655/149627441",
-    "titulo": "Departamento Av Lyon con Av Pocuro",
-    "precio_clp": 500000,
-    "precio_original": "$ 500.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 35.0,
-    "direccion": "Departamento Av Lyon con Av Pocuro",
-    "comuna": "Providencia",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/8b8aa9bb-189a-429d-971a-4fac4234cf82.jpeg",
-    "lat": null,
-    "lng": null,
-    "id": "871266b2cc33afb3",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/metro-manuel-montt-vista-151109/111987372",
-    "titulo": "En Providencia",
-    "precio_clp": 650000,
-    "precio_original": "$ 650.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 45.0,
-    "direccion": "En Providencia",
-    "comuna": "Providencia",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/0abf66b1-ade5-4ac6-8cbe-2b0e08495ce1-1795111819242.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "59ba4fc9e7516fff",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/amplio-y-luminoso-departamento-190652/149547313",
-    "titulo": "En Providencia",
-    "precio_clp": 1400000,
-    "precio_original": "$ 1.400.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 3,
-    "banos": 2,
-    "superficie_m2": 110.0,
-    "direccion": "En Providencia",
-    "comuna": "Providencia",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/d16ef2b2-7b9c-483f-9d5f-221bea1d8b09-1795100410090.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "8525a755fa44392c",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/providencia/departamento/comodo-y-luminoso-departamento-190612/149545233",
-    "titulo": "En Providencia",
-    "precio_clp": 590000,
-    "precio_original": "$ 590.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 37.25,
-    "direccion": "En Providencia",
-    "comuna": "Providencia",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/2183f37e-3686-4a87-932f-581c2d676767-1795096296073.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "1c5751c45e54ed8a",
-    "extraido_en": "2026-11-24T10:01:19"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/dieciocho-620/144350879",
-    "titulo": "2 Baños y Estacionamiento., Departamento de 2 Dormitorios",
-    "precio_clp": 460000,
-    "precio_original": "$ 460.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 50.0,
-    "direccion": "2 Baños y Estacionamiento., Departamento de 2 Dormitorios",
-    "comuna": "Departamento de 2 Dormitorios",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/fc3bd513-d5c6-4a58-a204-c51cd4c6c5f1.jpeg",
-    "lat": null,
-    "lng": null,
-    "id": "107dba89819b86f7",
-    "extraido_en": "2026-11-24T10:01:22"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/manuel-antonio-tocornal-455/144611500",
-    "titulo": "Arriendo Hermoso Departamento Tocornal / Santa Isabel Stgo Centro",
-    "precio_clp": 350000,
-    "precio_original": "$ 350.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 40.0,
-    "direccion": "Arriendo Hermoso Departamento Tocornal / Santa Isabel Stgo Centro",
-    "comuna": "Santiago",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/83da19e3-21c5-4d2e-912a-b81144b368d7.jpeg",
-    "lat": null,
-    "lng": null,
-    "id": "9726f665740a15d5",
-    "extraido_en": "2026-11-24T10:01:22"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/diagonal-vicuna-mackenna-metro-nuble/139549371",
-    "titulo": "Diagonal Vicuña Mackenna / Metro Ñuble, Santiago",
-    "precio_clp": 520000,
-    "precio_original": "$ 520.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 55.0,
-    "direccion": "Diagonal Vicuña Mackenna / Metro Ñuble, Santiago",
-    "comuna": "Santiago",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/e60ec946-38f6-4209-9423-8b8d28963035.jpeg",
-    "lat": null,
-    "lng": null,
-    "id": "6bc36219a951ac85",
-    "extraido_en": "2026-11-24T10:01:22"
+    "extraido_en": "2026-11-25T10:04:15"
   },
   {
     "fuente": "chilepropiedades",
@@ -1131,7 +1068,91 @@
     "lat": null,
     "lng": null,
     "id": "9596e3d9e6001289",
-    "extraido_en": "2026-11-24T10:01:22"
+    "extraido_en": "2026-11-25T10:04:17"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/mosqueto-429/150264418",
+    "titulo": "Merced Edificio Moderno, Impecable, Mosqueto",
+    "precio_clp": 500000,
+    "precio_original": "$ 500.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 73.0,
+    "direccion": "Merced Edificio Moderno, Impecable, Mosqueto",
+    "comuna": "Mosqueto",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/4d55dfed-39aa-432d-a78d-9f0cd06ee732.jpeg",
+    "lat": null,
+    "lng": null,
+    "id": "0b5c03f8b2c4a1ef",
+    "extraido_en": "2026-11-25T10:04:17"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/dieciocho-620/144350879",
+    "titulo": "2 Baños y Estacionamiento., Departamento de 2 Dormitorios",
+    "precio_clp": 460000,
+    "precio_original": "$ 460.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 50.0,
+    "direccion": "2 Baños y Estacionamiento., Departamento de 2 Dormitorios",
+    "comuna": "Departamento de 2 Dormitorios",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/fc3bd513-d5c6-4a58-a204-c51cd4c6c5f1.jpeg",
+    "lat": null,
+    "lng": null,
+    "id": "107dba89819b86f7",
+    "extraido_en": "2026-11-25T10:04:17"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/manuel-antonio-tocornal-455/144611500",
+    "titulo": "Arriendo Hermoso Departamento Tocornal / Santa Isabel Stgo Centro",
+    "precio_clp": 350000,
+    "precio_original": "$ 350.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 40.0,
+    "direccion": "Arriendo Hermoso Departamento Tocornal / Santa Isabel Stgo Centro",
+    "comuna": "Santiago",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/83da19e3-21c5-4d2e-912a-b81144b368d7.jpeg",
+    "lat": null,
+    "lng": null,
+    "id": "9726f665740a15d5",
+    "extraido_en": "2026-11-25T10:04:17"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/diagonal-vicuna-mackenna-metro-nuble/139549371",
+    "titulo": "Diagonal Vicuña Mackenna / Metro Ñuble, Santiago",
+    "precio_clp": 520000,
+    "precio_original": "$ 520.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 55.0,
+    "direccion": "Diagonal Vicuña Mackenna / Metro Ñuble, Santiago",
+    "comuna": "Santiago",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/e60ec946-38f6-4209-9423-8b8d28963035.jpeg",
+    "lat": null,
+    "lng": null,
+    "id": "6bc36219a951ac85",
+    "extraido_en": "2026-11-25T10:04:17"
   },
   {
     "fuente": "chilepropiedades",
@@ -1152,7 +1173,7 @@
     "lat": null,
     "lng": null,
     "id": "41d62dbf6d48a619",
-    "extraido_en": "2026-11-24T10:01:22"
+    "extraido_en": "2026-11-25T10:04:17"
   },
   {
     "fuente": "chilepropiedades",
@@ -1173,7 +1194,7 @@
     "lat": null,
     "lng": null,
     "id": "4f9e840622f62aba",
-    "extraido_en": "2026-11-24T10:01:22"
+    "extraido_en": "2026-11-25T10:04:17"
   },
   {
     "fuente": "chilepropiedades",
@@ -1194,7 +1215,7 @@
     "lat": null,
     "lng": null,
     "id": "2ed676c4f8b68be9",
-    "extraido_en": "2026-11-24T10:01:22"
+    "extraido_en": "2026-11-25T10:04:17"
   },
   {
     "fuente": "chilepropiedades",
@@ -1215,7 +1236,7 @@
     "lat": null,
     "lng": null,
     "id": "5f04bbd5de283f89",
-    "extraido_en": "2026-11-24T10:01:22"
+    "extraido_en": "2026-11-25T10:04:17"
   },
   {
     "fuente": "chilepropiedades",
@@ -1236,7 +1257,7 @@
     "lat": null,
     "lng": null,
     "id": "f8a0823cdeb01dea",
-    "extraido_en": "2026-11-24T10:01:22"
+    "extraido_en": "2026-11-25T10:04:17"
   },
   {
     "fuente": "chilepropiedades",
@@ -1257,7 +1278,7 @@
     "lat": null,
     "lng": null,
     "id": "51d4301744949404",
-    "extraido_en": "2026-11-24T10:01:22"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1278,7 +1299,7 @@
     "lat": null,
     "lng": null,
     "id": "5ca48b99bdd48799",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1299,7 +1320,7 @@
     "lat": null,
     "lng": null,
     "id": "adad32791846cfe8",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1320,7 +1341,7 @@
     "lat": null,
     "lng": null,
     "id": "7311048825638627",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1341,7 +1362,7 @@
     "lat": null,
     "lng": null,
     "id": "e66f31ecc1607e57",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1362,7 +1383,7 @@
     "lat": null,
     "lng": null,
     "id": "75c56555737024e3",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1383,7 +1404,7 @@
     "lat": null,
     "lng": null,
     "id": "00aefb391d2d96c1",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1404,7 +1425,7 @@
     "lat": null,
     "lng": null,
     "id": "005b55b59ee6acc3",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1425,7 +1446,7 @@
     "lat": null,
     "lng": null,
     "id": "bd3453f4d88156b2",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1446,7 +1467,7 @@
     "lat": null,
     "lng": null,
     "id": "abc1930677d650f1",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:20"
   },
   {
     "fuente": "chilepropiedades",
@@ -1467,7 +1488,7 @@
     "lat": null,
     "lng": null,
     "id": "bd268896072a2c4a",
-    "extraido_en": "2026-11-24T10:01:24"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1488,7 +1509,7 @@
     "lat": null,
     "lng": null,
     "id": "cb3666933279893a",
-    "extraido_en": "2026-11-24T10:01:27"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1509,7 +1530,7 @@
     "lat": null,
     "lng": null,
     "id": "75e688c84e2d9513",
-    "extraido_en": "2026-11-24T10:01:27"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1530,7 +1551,7 @@
     "lat": null,
     "lng": null,
     "id": "f25903ac046a6f44",
-    "extraido_en": "2026-11-24T10:01:27"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1551,7 +1572,7 @@
     "lat": null,
     "lng": null,
     "id": "967a04fd840f1ac0",
-    "extraido_en": "2026-11-24T10:01:27"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1572,7 +1593,7 @@
     "lat": null,
     "lng": null,
     "id": "8528632acbf9c0fb",
-    "extraido_en": "2026-11-24T10:01:27"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1593,28 +1614,7 @@
     "lat": null,
     "lng": null,
     "id": "3b8e8390c6f97e83",
-    "extraido_en": "2026-11-24T10:01:27"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/santa-elena-1722/114271897",
-    "titulo": "Santa Elena 1722 Santiago, Metro Ñuble Dpto 2D 1 B",
-    "precio_clp": 365000,
-    "precio_original": "$ 365.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 1,
-    "superficie_m2": 50.0,
-    "direccion": "Santa Elena 1722 Santiago, Metro Ñuble Dpto 2D 1 B",
-    "comuna": "Metro Ñuble Dpto 2D 1 B",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/9e6acb8d4d274bc0b325ffeb19e10eae.jpeg",
-    "lat": null,
-    "lng": null,
-    "id": "811cde37b9b324fa",
-    "extraido_en": "2026-11-24T10:01:27"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1635,7 +1635,7 @@
     "lat": null,
     "lng": null,
     "id": "7d0cdfcdf32177ce",
-    "extraido_en": "2026-11-24T10:01:27"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1656,7 +1656,7 @@
     "lat": null,
     "lng": null,
     "id": "88782a39aad08ee7",
-    "extraido_en": "2026-11-24T10:01:27"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1677,7 +1677,7 @@
     "lat": null,
     "lng": null,
     "id": "adca848ec3478c39",
-    "extraido_en": "2026-11-24T10:01:27"
+    "extraido_en": "2026-11-25T10:04:22"
   },
   {
     "fuente": "chilepropiedades",
@@ -1698,7 +1698,7 @@
     "lat": null,
     "lng": null,
     "id": "3cbab24e308c6aef",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1719,7 +1719,7 @@
     "lat": null,
     "lng": null,
     "id": "2bc7d0fd2f8bc886",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1740,7 +1740,7 @@
     "lat": null,
     "lng": null,
     "id": "706c0c06888b326e",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1761,7 +1761,7 @@
     "lat": null,
     "lng": null,
     "id": "f0ebedd8a66e8a84",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1782,7 +1782,7 @@
     "lat": null,
     "lng": null,
     "id": "87f237c227f4dec4",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1803,7 +1803,7 @@
     "lat": null,
     "lng": null,
     "id": "c500974837173d35",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1824,7 +1824,7 @@
     "lat": null,
     "lng": null,
     "id": "3cbde62025551cb9",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1845,7 +1845,7 @@
     "lat": null,
     "lng": null,
     "id": "935b01412ea93edd",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1866,7 +1866,7 @@
     "lat": null,
     "lng": null,
     "id": "2c584b08834b2c27",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1887,7 +1887,7 @@
     "lat": null,
     "lng": null,
     "id": "370b32d69b20dc3c",
-    "extraido_en": "2026-11-24T10:01:30"
+    "extraido_en": "2026-11-25T10:04:25"
   },
   {
     "fuente": "chilepropiedades",
@@ -1908,7 +1908,7 @@
     "lat": null,
     "lng": null,
     "id": "b13359bc8e4703db",
-    "extraido_en": "2026-11-24T10:01:32"
+    "extraido_en": "2026-11-25T10:04:27"
   },
   {
     "fuente": "chilepropiedades",
@@ -1929,7 +1929,7 @@
     "lat": null,
     "lng": null,
     "id": "895cbf103b3a9ff8",
-    "extraido_en": "2026-11-24T10:01:32"
+    "extraido_en": "2026-11-25T10:04:27"
   },
   {
     "fuente": "chilepropiedades",
@@ -1950,7 +1950,7 @@
     "lat": null,
     "lng": null,
     "id": "b3d54999e865912e",
-    "extraido_en": "2026-11-24T10:01:32"
+    "extraido_en": "2026-11-25T10:04:27"
   },
   {
     "fuente": "chilepropiedades",
@@ -1971,7 +1971,7 @@
     "lat": null,
     "lng": null,
     "id": "ca1f641155cc2d49",
-    "extraido_en": "2026-11-24T10:01:32"
+    "extraido_en": "2026-11-25T10:04:27"
   },
   {
     "fuente": "chilepropiedades",
@@ -1992,7 +1992,7 @@
     "lat": null,
     "lng": null,
     "id": "3271d236ef510077",
-    "extraido_en": "2026-11-24T10:01:32"
+    "extraido_en": "2026-11-25T10:04:27"
   },
   {
     "fuente": "chilepropiedades",
@@ -2013,7 +2013,7 @@
     "lat": null,
     "lng": null,
     "id": "a3b4920e2c6e0ccf",
-    "extraido_en": "2026-11-24T10:01:32"
+    "extraido_en": "2026-11-25T10:04:27"
   },
   {
     "fuente": "chilepropiedades",
@@ -2034,7 +2034,7 @@
     "lat": null,
     "lng": null,
     "id": "82781265cf9bf19f",
-    "extraido_en": "2026-11-24T10:01:32"
+    "extraido_en": "2026-11-25T10:04:27"
   },
   {
     "fuente": "chilepropiedades",
@@ -2055,49 +2055,49 @@
     "lat": null,
     "lng": null,
     "id": "1b03c47437f0ebe6",
-    "extraido_en": "2026-11-24T10:01:32"
+    "extraido_en": "2026-11-25T10:04:27"
   },
   {
     "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/metro-nuble/150258622",
-    "titulo": "Metro ñuble, Santiago",
-    "precio_clp": 520000,
-    "precio_original": "$ 520.000",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/avenida-santa-isabel-77/150353685",
+    "titulo": "380.000 Arriendo Depto 38m2 1 Dorm. Metro Santa Isabel.",
+    "precio_clp": 380000,
+    "precio_original": "$ 380.000",
     "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 59.0,
-    "direccion": "Metro ñuble, Santiago",
-    "comuna": "Santiago",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/45386411-d5d2-4060-a894-c289639a181c-1795525246489.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "aba569a0da343ac3",
-    "extraido_en": "2026-11-24T10:01:32"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/zenteno-1490/150256164",
-    "titulo": "Se Arrienda Dpto 2D 1B Zenteno",
-    "precio_clp": 290000,
-    "precio_original": "$ 290.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
+    "dormitorios": 1,
     "banos": 1,
-    "superficie_m2": 57.0,
-    "direccion": "Se Arrienda Dpto 2D 1B Zenteno",
+    "superficie_m2": 38.0,
+    "direccion": "380.000 Arriendo Depto 38m2 1 Dorm. Metro Santa Isabel.",
     "comuna": "Santiago",
     "barrio": "",
     "corredor": null,
     "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/9b4bdeca-e465-4334-a51e-31ef6136b03a-1795522087114.jpg",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/c670e419-d277-4e14-9727-0932006dc5b1.jpeg",
     "lat": null,
     "lng": null,
-    "id": "f3993e64ef491c84",
-    "extraido_en": "2026-11-24T10:01:32"
+    "id": "0f18991aab9f488f",
+    "extraido_en": "2026-11-25T10:04:27"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/santiago/departamento/vergara-700/150353193",
+    "titulo": "Mitad de Precio Primer Mes de Arriendo 1 D 1 B",
+    "precio_clp": 360000,
+    "precio_original": "$ 360.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 30.0,
+    "direccion": "Mitad de Precio Primer Mes de Arriendo 1 D 1 B",
+    "comuna": "Santiago",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/9956da94-d35c-40ff-b16e-9ae9425a4939-1795610663626.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "ae3d23a228b124c3",
+    "extraido_en": "2026-11-25T10:04:27"
   },
   {
     "fuente": "chilepropiedades",
@@ -2118,7 +2118,7 @@
     "lat": null,
     "lng": null,
     "id": "1d83ead2843cccab",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2139,7 +2139,7 @@
     "lat": null,
     "lng": null,
     "id": "6ec786a95026c8ec",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2160,7 +2160,7 @@
     "lat": null,
     "lng": null,
     "id": "81e5d2a52f2bebca",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2181,7 +2181,7 @@
     "lat": null,
     "lng": null,
     "id": "74c4b0e80bbe5c4a",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2202,7 +2202,7 @@
     "lat": null,
     "lng": null,
     "id": "c80502bef64fd7bf",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2223,7 +2223,7 @@
     "lat": null,
     "lng": null,
     "id": "bd50a4980289a73b",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2244,7 +2244,7 @@
     "lat": null,
     "lng": null,
     "id": "6ac795e04b6f44c4",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2265,7 +2265,7 @@
     "lat": null,
     "lng": null,
     "id": "2829e96e0de7a826",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2286,7 +2286,7 @@
     "lat": null,
     "lng": null,
     "id": "4af3fecda2aeebc8",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2307,7 +2307,7 @@
     "lat": null,
     "lng": null,
     "id": "c7e5dd7f769572bb",
-    "extraido_en": "2026-11-24T10:01:35"
+    "extraido_en": "2026-11-25T10:04:30"
   },
   {
     "fuente": "chilepropiedades",
@@ -2328,7 +2328,7 @@
     "lat": null,
     "lng": null,
     "id": "c4ffca2f1d943e90",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:33"
   },
   {
     "fuente": "chilepropiedades",
@@ -2349,7 +2349,7 @@
     "lat": null,
     "lng": null,
     "id": "b25a7a61802c77f5",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:33"
   },
   {
     "fuente": "chilepropiedades",
@@ -2370,7 +2370,7 @@
     "lat": null,
     "lng": null,
     "id": "d6737507e0f6b9f5",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:33"
   },
   {
     "fuente": "chilepropiedades",
@@ -2391,7 +2391,7 @@
     "lat": null,
     "lng": null,
     "id": "4fd590a3ff6b085f",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:33"
   },
   {
     "fuente": "chilepropiedades",
@@ -2412,7 +2412,7 @@
     "lat": null,
     "lng": null,
     "id": "0bad336b593f57fd",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:33"
   },
   {
     "fuente": "chilepropiedades",
@@ -2433,7 +2433,7 @@
     "lat": null,
     "lng": null,
     "id": "98a5769238e34022",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:33"
   },
   {
     "fuente": "chilepropiedades",
@@ -2454,7 +2454,7 @@
     "lat": null,
     "lng": null,
     "id": "8b3ce9d26c7e7dfa",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:33"
   },
   {
     "fuente": "chilepropiedades",
@@ -2475,7 +2475,553 @@
     "lat": null,
     "lng": null,
     "id": "780145144684090f",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:33"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/con-estacionamiento-y-bodega-191047/150353411",
+    "titulo": "En Ñuñoa",
+    "precio_clp": 499000,
+    "precio_original": "$ 499.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 30.0,
+    "direccion": "En Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/7e20d48e-08d2-441e-a83e-cc49bed4a3e7-1795611041454.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "094c462400471b4f",
+    "extraido_en": "2026-11-25T10:04:33"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/vicuna-mackenna/150348987",
+    "titulo": "Departamento en Arriendo en Vicuña Mackenna",
+    "precio_clp": 500000,
+    "precio_original": "$ 500.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 59.0,
+    "direccion": "Departamento en Arriendo en Vicuña Mackenna",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/c44814cd-0eb5-49b2-87e8-ecd5b042c038-1795602716828.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "a34b4fd3a28688f4",
+    "extraido_en": "2026-11-25T10:04:33"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/av-matta/150347067",
+    "titulo": "Departamento en Arriendo en Av.Matta",
+    "precio_clp": 480000,
+    "precio_original": "$ 480.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 37.0,
+    "direccion": "Departamento en Arriendo en Av.Matta",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/3727e758-7604-44dc-9177-97cef9d3a982-1795598426672.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "a560a857ec49fac0",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/avenida-matta/150347033",
+    "titulo": "Avenida matta, Ñuñoa",
+    "precio_clp": 450000,
+    "precio_original": "$ 450.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 35.0,
+    "direccion": "Avenida matta, Ñuñoa",
+    "comuna": "Ñuñoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/619379ab-0853-42a7-bc72-2d1489832d5b-1795598370146.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "5bba106e3163c6af",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/departamento-excelente-conectividad-191221/150346798",
+    "titulo": "En Ñuñoa",
+    "precio_clp": 450000,
+    "precio_original": "$ 450.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 34.0,
+    "direccion": "En Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/04059a9a-1e6e-4907-a08f-429f85c7d398-1795597865781.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "4fb0260337c4d68f",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/lindo-depto-2d2b-exequiel-fernandez-nunoa-191014/150345738",
+    "titulo": "En Ñuñoa",
+    "precio_clp": 780000,
+    "precio_original": "$ 780.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 60.0,
+    "direccion": "En Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/b5a3d7fb-9321-4d07-bb37-e77c0e233dfc-1795595216593.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "74ae6621d52bcf13",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/excelente-inversion-centrica-190997/150344616",
+    "titulo": "En Ñuñoa",
+    "precio_clp": 850000,
+    "precio_original": "$ 850.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 76.0,
+    "direccion": "En Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/e2b8f787-b09e-46a4-8d51-4f8267efeb97-1795593923822.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "44405d0aa155bd51",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/arriendom-1d-1b-e-b-nunoa-191034/150299814",
+    "titulo": "En Ñuñoa",
+    "precio_clp": 420000,
+    "precio_original": "$ 420.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 38.0,
+    "direccion": "En Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/corredoras/0/cd791c0e2573477084ab3d261562b030.png",
+    "lat": null,
+    "lng": null,
+    "id": "f5939cb03ecc70c2",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/amplitud-en-1er-piso-conectividad-191097/150298467",
+    "titulo": "En Ñuñoa",
+    "precio_clp": 650000,
+    "precio_original": "$ 650.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 1,
+    "superficie_m2": 70.0,
+    "direccion": "En Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/a0eee9f7-8b49-499d-b9b3-100d469c311b-1795574096925.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "f71f8f0c5855459c",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/francisco-meneses-1580/146192440",
+    "titulo": "Nuevo y Bello Depto Departamento en Ñuñoa 1D Piscina Gran Terraza",
+    "precio_clp": 390000,
+    "precio_original": "$ 390.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 42.0,
+    "direccion": "Nuevo y Bello Depto Departamento en Ñuñoa 1D Piscina Gran Terraza",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/ad04dc72-5e58-414c-9b72-0bd90a3c3e60.jpeg",
+    "lat": null,
+    "lng": null,
+    "id": "8467f0c51e18ec37",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/comodidad-y-conectividad-en-nunoa-191181/150298247",
+    "titulo": "En Ñuñoa",
+    "precio_clp": 360000,
+    "precio_original": "$ 360.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 30.0,
+    "direccion": "En Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/82b37c3e-8b4a-4f08-9fd8-ae398735cf04-1795573408301.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "76f42d69f5745263",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/avda-rodrigo-de-araya-zanartu-til-til-nunoa/150296068",
+    "titulo": "Excelente Dpto. Mariposa Nuevo 2D 2B y Estacionamiento en Metro R...",
+    "precio_clp": 550000,
+    "precio_original": "$ 550.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 56.0,
+    "direccion": "Excelente Dpto. Mariposa Nuevo 2D 2B y Estacionamiento en Metro R...",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/9bc1bc95-fb30-4197-8b27-6f445abf1307-1795569138857.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "d27d059829ea601b",
+    "extraido_en": "2026-11-25T10:04:35"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/mes-amplio-estudio-amoblado-190977/150295993",
+    "titulo": "En Ñuñoa",
+    "precio_clp": 490000,
+    "precio_original": "$ 490.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 33.0,
+    "direccion": "En Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/20102074-822e-4768-939b-13b91b8bd487-1795568993774.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "dc22e8a09b8c227a",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/dpto-2dormitorios-1-bano-metro-nuble-nunoa-190990/150293939",
+    "titulo": "En Ñuñoa",
+    "precio_clp": 460000,
+    "precio_original": "$ 460.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 1,
+    "superficie_m2": 38.0,
+    "direccion": "En Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/ace8ab0b-970a-4e28-87c9-fbdffc84e456-1795564902729.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "aa771bedb1cee4af",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/exequiel-fernandez-1670/150290512",
+    "titulo": "Arriendo Departamento 2hab 2ba Ñuñoa",
+    "precio_clp": 750000,
+    "precio_original": "$ 750.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 85.0,
+    "direccion": "Arriendo Departamento 2hab 2ba Ñuñoa",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/c64b1098-26a0-49ab-8e60-52810e0f557d-1795558069693.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "5c0e64cb7f855f32",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/zanartu-1905/150284507",
+    "titulo": "Zañartu &Amp Marathon - 1D 1B + Bodega",
+    "precio_clp": 370000,
+    "precio_original": "$ 370.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 41.0,
+    "direccion": "Zañartu &Amp Marathon - 1D 1B + Bodega",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/94ea8a13-473d-4450-b21b-4b0a2c10af80-1795548154758.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "f2854ec8b03b7456",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/til-til-1980-nunoa-chile/150265703",
+    "titulo": "Arriendo Ñuñoa Zañartu",
+    "precio_clp": 370000,
+    "precio_original": "$ 370.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 34.0,
+    "direccion": "Arriendo Ñuñoa Zañartu",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/e614e055-b3cb-4cbf-af7c-de24107860c4-1795533781281.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "7690dd7f9f051884",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/barrio-suarez-mujica/150264698",
+    "titulo": "Barrio suárez mujica, Ñuñoa",
+    "precio_clp": 850000,
+    "precio_original": "$ 850.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 78.0,
+    "direccion": "Barrio suárez mujica, Ñuñoa",
+    "comuna": "Ñuñoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/aec51cb4-cc4a-413f-b7a3-0bb9f5ab13de-1795532470431.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "10de5e066fca3d90",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-monsenor-eyzaguirre/150264622",
+    "titulo": "Departamento en Arriendo en Metro Monseñor Eyzaguirre",
+    "precio_clp": 680000,
+    "precio_original": "$ 680.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 1,
+    "superficie_m2": 49.0,
+    "direccion": "Departamento en Arriendo en Metro Monseñor Eyzaguirre",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/71e9d4eb-5a02-4ed0-bfdb-17449424180a-1795532242964.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "f83ad0596715c16a",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-chile-espana/150264402",
+    "titulo": "Departamento en Arriendo en Metro Chile España",
+    "precio_clp": 650000,
+    "precio_original": "$ 650.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 1,
+    "superficie_m2": 55.0,
+    "direccion": "Departamento en Arriendo en Metro Chile España",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/c172857f-0009-41d6-ac05-0b4ec4c8046b-1795531911582.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "ae3f65ca4f35aa43",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/avenida-eliecer-parada/150262695",
+    "titulo": "Departamento en Parque Botánico. 2 Dormitorios. 80 M2",
+    "precio_clp": 948000,
+    "precio_original": "UF 24",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 80.0,
+    "direccion": "Departamento en Parque Botánico. 2 Dormitorios. 80 M2",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/2457e3ca-629f-40e7-b78c-1df3a568be75-1795529360332.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "28a6cfcc8b26ccdb",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/avenida-vicuna-mackenna/150262650",
+    "titulo": "Departamento en Metro Irarrázaval. 1 Dormitorio. 38 M2",
+    "precio_clp": 500000,
+    "precio_original": "$ 500.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 40.0,
+    "direccion": "Departamento en Metro Irarrázaval. 1 Dormitorio. 38 M2",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/40590774-2e7f-4e98-8f32-7a388292ad00-1795529291589.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "203a298289396253",
+    "extraido_en": "2026-11-25T10:04:37"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/avenida-rodrigo-de-araya/150262453",
+    "titulo": "Departamento en Via Nueve. 1 Dormitorio. 32 M2",
+    "precio_clp": 500000,
+    "precio_original": "$ 500.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 39.0,
+    "direccion": "Departamento en Via Nueve. 1 Dormitorio. 32 M2",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/248b8137-53ac-4c41-b8ec-c8ce41bf26bf-1795529109144.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "1433e4878f97194e",
+    "extraido_en": "2026-11-25T10:04:40"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/avda-rodrigo-de-araya-zanartu-til-til-nunoa/148854867",
+    "titulo": "Metro Rodrigo de Araya Dpto. Mariposa Nuevo 2D 2B y Estacionamien...",
+    "precio_clp": 550000,
+    "precio_original": "$ 550.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 56.0,
+    "direccion": "Metro Rodrigo de Araya Dpto. Mariposa Nuevo 2D 2B y Estacionamien...",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/81db038a-0ee4-4898-8e47-e08baee52018-1794617518257.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "045823afecb8db14",
+    "extraido_en": "2026-11-25T10:04:40"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/av-jose-pedro-alessandri-1550/150258982",
+    "titulo": "Dpto. Portal Ñuñoa - 2D / 2B / Estacionamiento",
+    "precio_clp": 690000,
+    "precio_original": "$ 690.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 68.0,
+    "direccion": "Dpto. Portal Ñuñoa - 2D / 2B / Estacionamiento",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/2a0f4057-d0da-47ef-b156-a62fa938a907-1795525912407.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "cfd7cf1c60188f41",
+    "extraido_en": "2026-11-25T10:04:40"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/avenida-rodrigo-de-araya/143507991",
+    "titulo": "Departamento en Plaza Zañartu. 2 Dormitorios. 52 M2",
+    "precio_clp": 700000,
+    "precio_original": "$ 700.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 2,
+    "superficie_m2": 60.0,
+    "direccion": "Departamento en Plaza Zañartu. 2 Dormitorios. 52 M2",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/8359ee8d-b302-45f6-882e-431a5661a7fa-1792074975963.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "c998a930169a7145",
+    "extraido_en": "2026-11-25T10:04:40"
   },
   {
     "fuente": "chilepropiedades",
@@ -2496,14 +3042,77 @@
     "lat": null,
     "lng": null,
     "id": "1e2b434799c3c6d4",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:40"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/zanartu/149360879",
+    "titulo": "Departamento en Via Nueve. 2 Dormitorios. 40 M2",
+    "precio_clp": 430000,
+    "precio_original": "$ 430.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 2,
+    "banos": 1,
+    "superficie_m2": 43.0,
+    "direccion": "Departamento en Via Nueve. 2 Dormitorios. 40 M2",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/abbfc1b4-5950-4f2b-9b62-ef99e3fa8514-1795007804701.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "7781c75a48a069c6",
+    "extraido_en": "2026-11-25T10:04:40"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/zanartu/121787634",
+    "titulo": "Departamento en Via Nueve. 1 Dormitorio. 50 M2",
+    "precio_clp": 480000,
+    "precio_original": "$ 480.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 55.0,
+    "direccion": "Departamento en Via Nueve. 1 Dormitorio. 50 M2",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/08596c1f6b85426aab1ee6dd0cf4a440.jpeg",
+    "lat": null,
+    "lng": null,
+    "id": "97ac6ac8673b5ce6",
+    "extraido_en": "2026-11-25T10:04:40"
+  },
+  {
+    "fuente": "chilepropiedades",
+    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/seminario/77092553",
+    "titulo": "Departamento en Irarrazaval Norte. 1 Dormitorio. 34 M2",
+    "precio_clp": 500000,
+    "precio_original": "$ 500.000",
+    "gastos_comunes_clp": null,
+    "dormitorios": 1,
+    "banos": 1,
+    "superficie_m2": 36.0,
+    "direccion": "Departamento en Irarrazaval Norte. 1 Dormitorio. 34 M2",
+    "comuna": "Nunoa",
+    "barrio": "",
+    "corredor": null,
+    "plazo_entrega": "",
+    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/723c49f5-f033-401c-a2e7-742ee8d428a3-1793868232841.jpg",
+    "lat": null,
+    "lng": null,
+    "id": "d7d51ef73daccb06",
+    "extraido_en": "2026-11-25T10:04:40"
   },
   {
     "fuente": "chilepropiedades",
     "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/estudio/los-avellanos-2551/150248679",
     "titulo": "Arriendo Studio 1B Garantía y Comisión en 3 Cuotas Ñuñoa",
-    "precio_clp": 382169,
-    "precio_original": "$ 382.169",
+    "precio_clp": 382233,
+    "precio_original": "$ 382.233",
     "gastos_comunes_clp": null,
     "dormitorios": 1,
     "banos": null,
@@ -2517,7 +3126,7 @@
     "lat": null,
     "lng": null,
     "id": "727ccb27225f4dfe",
-    "extraido_en": "2026-11-24T10:01:38"
+    "extraido_en": "2026-11-25T10:04:40"
   },
   {
     "fuente": "chilepropiedades",
@@ -2538,615 +3147,6 @@
     "lat": null,
     "lng": null,
     "id": "01fe7f62e832f953",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-irarrazaval/150244054",
-    "titulo": "Departamento en Arriendo en Metro Irarrazaval",
-    "precio_clp": 350000,
-    "precio_original": "$ 350.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 33.0,
-    "direccion": "Departamento en Arriendo en Metro Irarrazaval",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/b373c8f2-198c-4fd4-9f0e-930d05091ce4-1795512633746.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "82639970043c75bc",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-nuble/150244019",
-    "titulo": "Departamento en Arriendo en Metro Ñuble",
-    "precio_clp": 360000,
-    "precio_original": "$ 360.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": null,
-    "superficie_m2": 32.0,
-    "direccion": "Departamento en Arriendo en Metro Ñuble",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/fa7dd7e7-a6ed-42c3-b955-e2f93a384fc4-1795512585503.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "345fd33649d51170",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-rodrigo-de-araya/150243963",
-    "titulo": "Departamento en Arriendo en Metro Rodrigo de Araya",
-    "precio_clp": 390000,
-    "precio_original": "$ 390.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 33.0,
-    "direccion": "Departamento en Arriendo en Metro Rodrigo de Araya",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/20e1ced0-bc92-4d6a-bf56-e3afae902002-1795512511106.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "851bc7ff7e2f7d5b",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/rodrigo-de-araya-con-marathon/150243945",
-    "titulo": "Departamento en Arriendo en Rodrigo de Araya con Marathon",
-    "precio_clp": 400000,
-    "precio_original": "$ 400.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 43.0,
-    "direccion": "Departamento en Arriendo en Rodrigo de Araya con Marathon",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/d0980d1c-1c15-425b-a504-b0c69ea79609-1795512490824.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "7e679e0936d85f59",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-rodrigo-de-araya/150243921",
-    "titulo": "Departamento en Arriendo en Metro Rodrigo de Araya",
-    "precio_clp": 480000,
-    "precio_original": "$ 480.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 33.0,
-    "direccion": "Departamento en Arriendo en Metro Rodrigo de Araya",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/741dd6d5-b0c6-43c0-ad34-ac821b689462-1795512458971.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "3fe416ab360edc7b",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/nuevo-los-alerces-con-av-macul/150243896",
-    "titulo": "Los Alerces con Av Macul, Departamento en Arriendo en Nuevo",
-    "precio_clp": 500000,
-    "precio_original": "$ 500.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 37.0,
-    "direccion": "Los Alerces con Av Macul, Departamento en Arriendo en Nuevo",
-    "comuna": "Departamento en Arriendo en Nuevo",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/053a9221-6cca-46a8-ade2-cdb610568472-1795512426503.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "b55c8839cdc445a6",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-rodrigo-de-araya/150243866",
-    "titulo": "Departamento en Arriendo en Metro Rodrigo de Araya",
-    "precio_clp": 520000,
-    "precio_original": "$ 520.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 65.0,
-    "direccion": "Departamento en Arriendo en Metro Rodrigo de Araya",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/425417a4-db14-404d-abf0-60d5589e387a-1795512386025.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "4a973ce327e33017",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-rodrigo-de-araya/150243767",
-    "titulo": "Departamento en Arriendo en Metro Rodrigo de Araya",
-    "precio_clp": 550000,
-    "precio_original": "$ 550.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 1,
-    "superficie_m2": 55.0,
-    "direccion": "Departamento en Arriendo en Metro Rodrigo de Araya",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/bd795cd2-1cd1-4f43-a5bf-220178f40284-1795512256128.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "63df6289bdc4bab1",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/dpto-hamburgo/150243711",
-    "titulo": "Departamento en Arriendo en Dpto Hamburgo",
-    "precio_clp": 580000,
-    "precio_original": "$ 580.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 35.0,
-    "direccion": "Departamento en Arriendo en Dpto Hamburgo",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/f532a3c9-3b19-4085-a8d5-7de97b5765fd-1795512183391.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "ef7cf69e26b5e717",
-    "extraido_en": "2026-11-24T10:01:40"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/parque-ramon-cruz/150242926",
-    "titulo": "Departamento en Arriendo en Parque Ramon Cruz",
-    "precio_clp": 680000,
-    "precio_original": "$ 680.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 59.0,
-    "direccion": "Departamento en Arriendo en Parque Ramon Cruz",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/56c86d72-17db-447b-959c-898fecee9bea-1795511130063.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "4985d50bb14586d3",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/alc-jorge-monckeberg-1351/150241590",
-    "titulo": "Estupendo Depa en Arriendo en Ñuñoa",
-    "precio_clp": 770000,
-    "precio_original": "$ 770.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 3,
-    "banos": 2,
-    "superficie_m2": 68.0,
-    "direccion": "Estupendo Depa en Arriendo en Ñuñoa",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/f0bd5aa4-5c81-4e0b-b9bb-74ad89148ef5-1795508668876.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "c5f7992b0dee3a29",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/bremen-1501/150240270",
-    "titulo": "Arriendo en Bremen 3D 2B y Azotea Privada",
-    "precio_clp": 1435000,
-    "precio_original": "$ 1.435.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 3,
-    "banos": 2,
-    "superficie_m2": 120.0,
-    "direccion": "Arriendo en Bremen 3D 2B y Azotea Privada",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/be6cf8fd-8dfb-4830-ab05-c85768b1915b-1795506478591.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "07fa7a88b553610c",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/espronceda-440/150199176",
-    "titulo": "Arriendo Cercano Metro Chile España",
-    "precio_clp": 650000,
-    "precio_original": "$ 650.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 40.0,
-    "direccion": "Arriendo Cercano Metro Chile España",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/c128b189-2c3b-4560-a46a-de9b416fd36e-1795502285309.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "06577dc365534283",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-nuble/150198242",
-    "titulo": "Departamento en Arriendo en Metro Ñuble",
-    "precio_clp": 420000,
-    "precio_original": "$ 420.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 39.0,
-    "direccion": "Departamento en Arriendo en Metro Ñuble",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/5979b781-ee20-411b-baf0-39e39e26c59a-1795501506876.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "1218850c2e353dd2",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/avenida-irarrazaval-5000/150195749",
-    "titulo": "Acogedor Departamento de 1 Dormitorio en Amoblado",
-    "precio_clp": 480000,
-    "precio_original": "$ 480.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 40.0,
-    "direccion": "Acogedor Departamento de 1 Dormitorio en Amoblado",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/684b3ccd-a028-4485-999b-ba3d2782b284-1795497687403.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "21ab87959e1eb111",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/san-eugenio-500/76664992",
-    "titulo": "Departamento en Arriendo en San Eugenio 500",
-    "precio_clp": 495000,
-    "precio_original": "$ 495.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 40.0,
-    "direccion": "Departamento en Arriendo en San Eugenio 500",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/28322f2c-ae37-4fe7-be18-682bc157cc04-1790672509675.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "20c5f199a0f11a13",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-plaza-egana/149324747",
-    "titulo": "Departamento en Arriendo en Metro Plaza Egaña",
-    "precio_clp": 750000,
-    "precio_original": "$ 750.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 72.0,
-    "direccion": "Departamento en Arriendo en Metro Plaza Egaña",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/bf7e531a-d707-4b7b-9e5d-63e01dd80717-1794971729877.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "f51a21fd32d9b5c8",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/metro-nuble/149408870",
-    "titulo": "Metro ñuble, Ñuñoa",
-    "precio_clp": 560000,
-    "precio_original": "$ 560.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 54.0,
-    "direccion": "Metro ñuble, Ñuñoa",
-    "comuna": "Ñuñoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/81ca485c-83c0-41cc-89a9-f67d1962c2f0-1795025982958.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "371df80474e86948",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/francisco-de-villagra-127/146817502",
-    "titulo": "Arriendo Departamento 1 Dormitorio 1 Baño 1 Est Sector P Ega",
-    "precio_clp": 513500,
-    "precio_original": "UF 13",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 40.0,
-    "direccion": "Arriendo Departamento 1 Dormitorio 1 Baño 1 Est Sector P Ega",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/433d6040-f976-48a4-8ddb-d942b1822e6b-1793297868056.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "d070777cee439fd1",
-    "extraido_en": "2026-11-24T10:01:43"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/estrella-solitaria-47000/150176159",
-    "titulo": "Departamento en Arriendo en Estrella Solitaria Ñuñoa",
-    "precio_clp": 671500,
-    "precio_original": "UF 17",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 60.0,
-    "direccion": "Departamento en Arriendo en Estrella Solitaria Ñuñoa",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/71ddc99a-3612-4e9c-9b56-06718d87df2f-1795467386679.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "d3ac545393c1475d",
-    "extraido_en": "2026-11-24T10:01:46"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/juan-enrique-concha-juan-enrique-concha-80/150175500",
-    "titulo": "Oriente, Mascotas, 1D 1B con Bodega y Estacionamiento",
-    "precio_clp": 500000,
-    "precio_original": "$ 500.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 33.0,
-    "direccion": "Oriente, Mascotas, 1D 1B con Bodega y Estacionamiento",
-    "comuna": "1D 1B con Bodega y Estacionamiento",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/b424534f-273b-4fa9-a138-22f7425044a4-1795465698282.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "c2f975d068a67952",
-    "extraido_en": "2026-11-24T10:01:46"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/jose-domingo-canas-445/150125679",
-    "titulo": "Arriendo Depto 2D2B Garantía y Comisión en 3 Cuotas Piso 16",
-    "precio_clp": 742153,
-    "precio_original": "$ 742.153",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 61.3,
-    "direccion": "Arriendo Depto 2D2B Garantía y Comisión en 3 Cuotas Piso 16",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/06783b61-4ef5-4a99-85af-4542369140bb-1795457629796.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "198490cae8715f7e",
-    "extraido_en": "2026-11-24T10:01:46"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/jose-domingo-canas-445/150125664",
-    "titulo": "Garantía y Comisión en 3 Cuotas Arriendo Depto 1D1B Piso 9",
-    "precio_clp": 494796,
-    "precio_original": "$ 494.796",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 39.31,
-    "direccion": "Garantía y Comisión en 3 Cuotas Arriendo Depto 1D1B Piso 9",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/79a20fe4-b2f4-4379-8787-456078da37a8-1795457609925.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "18c81e7bb4b162bb",
-    "extraido_en": "2026-11-24T10:01:46"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/jose-domingo-canas-445/150125651",
-    "titulo": "Garantía y Comisión en 3 Cuotas Arriendo Depto 1D1B Piso 8",
-    "precio_clp": 494796,
-    "precio_original": "$ 494.796",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 39.31,
-    "direccion": "Garantía y Comisión en 3 Cuotas Arriendo Depto 1D1B Piso 8",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/7284b108-f7ef-4561-b1fc-fc0bacbae61b-1795457588872.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "bd7376335af89fe9",
-    "extraido_en": "2026-11-24T10:01:46"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/lo-encalada-irarrazaval-matta-oriente/150121748",
-    "titulo": "Departamento en Arriendo en Lo Encalada / Irarrazaval / Matta Ori...",
-    "precio_clp": 500000,
-    "precio_original": "$ 500.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 41.0,
-    "direccion": "Departamento en Arriendo en Lo Encalada / Irarrazaval / Matta Ori...",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/1f63046d-d8ae-4a38-aed2-133b9a8986b9-1795456457450.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "ec911df328f89e2a",
-    "extraido_en": "2026-11-24T10:01:46"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/francisco-meneses-guillermo-mann/150120181",
-    "titulo": "Francisco meneses / guillermo mann, Ñuñoa",
-    "precio_clp": 390000,
-    "precio_original": "$ 390.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 46.0,
-    "direccion": "Francisco meneses / guillermo mann, Ñuñoa",
-    "comuna": "Ñuñoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/8a3fafb9-8db3-43e6-bc31-f6fae249d8f4-1795453939068.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "44b3ad9498faa10d",
-    "extraido_en": "2026-11-24T10:01:46"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/san-eugenio-1401/150118552",
-    "titulo": "San eugenio 1401, Ñuñoa",
-    "precio_clp": 380000,
-    "precio_original": "$ 380.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 1,
-    "banos": 1,
-    "superficie_m2": 40.0,
-    "direccion": "San eugenio 1401, Ñuñoa",
-    "comuna": "Ñuñoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/d6d55269-ada9-4353-bcdb-3190250d52fc-1795452808960.jpg",
-    "lat": null,
-    "lng": null,
-    "id": "c30b3ec021da7d64",
-    "extraido_en": "2026-11-24T10:01:46"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/mujica-99/150116720",
-    "titulo": "Arriendo Depto 2D/2B a Pasos Metro Irarrázaval",
-    "precio_clp": 620000,
-    "precio_original": "$ 620.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 50.0,
-    "direccion": "Arriendo Depto 2D/2B a Pasos Metro Irarrázaval",
-    "comuna": "Nunoa",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/5a0817dc-f3bd-43cf-bc72-d8953264b0d6.jpeg",
-    "lat": null,
-    "lng": null,
-    "id": "70b945db65ad0dc8",
-    "extraido_en": "2026-11-24T10:01:46"
-  },
-  {
-    "fuente": "chilepropiedades",
-    "url": "https://chilepropiedades.cl/ver-publicacion/arriendo-mensual/nunoa/departamento/gaspar-villarroel/150067022",
-    "titulo": "Calle Gaspar Villarroel 1840, Departamento",
-    "precio_clp": 550000,
-    "precio_original": "$ 550.000",
-    "gastos_comunes_clp": null,
-    "dormitorios": 2,
-    "banos": 2,
-    "superficie_m2": 51.0,
-    "direccion": "Calle Gaspar Villarroel 1840, Departamento",
-    "comuna": "Departamento",
-    "barrio": "",
-    "corredor": null,
-    "plazo_entrega": "",
-    "imagen": "https://chilepropiedades.cl/imagenes/publicacion/0/bd399e78-7def-47a9-b928-013573f924c7.jpeg",
-    "lat": null,
-    "lng": null,
-    "id": "fd27d5cd73923eef",
-    "extraido_en": "2026-11-24T10:01:46"
+    "extraido_en": "2026-11-25T10:04:40"
   }
 ]
