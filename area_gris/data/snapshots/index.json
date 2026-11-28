@@ -946,5 +946,17 @@
     "nuevos": 117,
     "bajaron_precio": 11,
     "subieron_precio": 9
+  },
+  {
+    "fecha": "2026-11-28_1019",
+    "total": 643,
+    "match_perfecto": 39,
+    "dentro_presupuesto": 57,
+    "tres_dorms": 619,
+    "en_barrio": 392,
+    "precio_mediano": 430000,
+    "nuevos": 164,
+    "bajaron_precio": 3,
+    "subieron_precio": 6
   }
 ]
